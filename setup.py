@@ -13,7 +13,11 @@ with open('handy/__init__.py', 'r') as f:
 with open('README.rst', 'r', encoding='utf-8') as f:
     readme = f.read()
 
-REQUIRES = []
+REQUIRES = [
+            'pysftp>=0.2.9',
+            'urllib>=1.22',
+            'urllib3>=1.21.1,<1.23',
+            ]
 
 setup(
     name='handy',
