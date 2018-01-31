@@ -13,6 +13,15 @@ with open('handy/__init__.py', 'r') as f:
 with open('README.rst', 'r', encoding='utf-8') as f:
     readme = f.read()
 
+# 'setup.py publish' shortcut.
+import sys,os
+if sys.argv[-1] == 'publish':
+    os.system('python setup.py sdist bdist_wheel')
+    os.system('twine upload dist/*')
+    sys.exit()
+
+packages = ['handy']
+
 REQUIRES = [
             'pysftp>=0.2.9',
             'urllib3>=1.21.1,<1.23',
@@ -29,7 +38,7 @@ setup(
     maintainer_email='gustav0125@outlook.com',
     url='https://github.com/gustavkkk/handy',
     license='MIT/Apache-2.0',
-
+    include_package_data=True,
     keywords=[
         '',
     ],
@@ -50,6 +59,6 @@ setup(
 
     install_requires=REQUIRES,
     tests_require=['coverage', 'pytest'],
-
-    packages=find_packages(),
+    zip_safe=False,
+    packages=packages,#find_packages(),
 )
