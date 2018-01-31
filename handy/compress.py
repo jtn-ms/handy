@@ -48,6 +48,21 @@ def decompress():
     cmd = '%s x %s -o%s  -p%s -sdel'%(_7z,filename,dst,pw)
     subprocess.call(cmd)
 
+def decompress_zip(filename):
+    _7z = None
+    for path in ["C:\\Program Files\\7-Zip\\7z.exe","C:\\Program Files (x86)\\7-Zip\\7z.exe"]:
+        if os.path.exists(path):
+            _7z = path
+            break
+    if not _7z:
+        print('Please install 7z first!')
+        return
+    if not os.path.exists(filename):
+        print('No such a file exists!')
+        return
+    dst = os.path.join(os.getcwd(),os.path.splitext(filename)[0])
+    cmd = '%s x %s -o%s -sdel'%(_7z,filename,dst)
+    subprocess.call(cmd)
 def main():
     parser = argparse.ArgumentParser()
     #parser.add_argument("square", help="display a square of a given number",type=int)
