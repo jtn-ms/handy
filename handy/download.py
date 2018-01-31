@@ -17,13 +17,11 @@ lfd_uci_edu_pkgs = [
 def scrape(url='https://www.lfd.uci.edu/~gohlke/pythonlibs/'):
     os.system('curl %s'%url)
 models = [
-       #- Fast-R-CNN 시험용 자료들입니다.
        #'https://www.cntk.ai/DataSets/Grocery/Grocery.zip',
        #'https://www.cntk.ai/Models/AlexNet/AlexNet.model',
        'https://cntk.ai/Models/FRCN_Grocery/Fast-RCNN.model',
        #- Visual Object Tagging Tool (VOTT)
        #'http://opencv.jp/opencv-1.0.0_org/docs/papers/camshift.pdf',
-       #- cntk에서 사용할수 있는 이미 학습된 자료들
        'https://www.cntk.ai/Models/CNTK_Pretrained/AlexNet_ImageNet_CNTK.model',
        'https://www.cntk.ai/Models/Caffe_Converted/AlexNet_ImageNet_Caffe.model',
        'https://www.cntk.ai/Models/CNTK_Pretrained/InceptionV3_ImageNet_CNTK.model',
@@ -40,7 +38,6 @@ models = [
        'https://www.cntk.ai/Models/Caffe_Converted/VGG19_ImageNet_Caffe.model',
        'https://www.cntk.ai/Models/FRCN_Grocery/Fast-RCNN_grocery100.model',
        'https://www.cntk.ai/Models/FRCN_Pascal/Fast-RCNN.model',
-       #- Fast-R-CNN에서 리용되는 selective search 방법에 대한 자료와 문서입니다.
        'http://dl.dropboxusercontent.com/s/orrt7o6bp6ae0tc/selective_search_data.tgz?dl=0',
        'http://koen.me/research/pub/uijlings-ijcv2013-draft.pdf'
        ]
@@ -56,7 +53,6 @@ frcnn_tutorial = [
                     'https://www.yumpu.com/en/document/view/55251653/fast-r-cnn-object-detection-with-caffe',
                 ]
 nupkgs = [
-        #5.	CNTK-2.1의 원천코드를 빌드하는데 필요한 NuGet Package를 요청합니다.
         'https://az320820.vo.msecnd.net/packages/cntk.cpuonly.2.1.0.nupkg',
         'https://az320820.vo.msecnd.net/packages/cntk.gpu.2.1.0.nupkg',
         'https://az320820.vo.msecnd.net/packages/cntk.uwp.cpuonly.2.1.0.nupkg',
