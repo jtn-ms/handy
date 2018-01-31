@@ -15,7 +15,6 @@ with open('README.rst', 'r', encoding='utf-8') as f:
 
 REQUIRES = [
             'pysftp>=0.2.9',
-            'urllib>=1.22',
             'urllib3>=1.21.1,<1.23',
             ]
 
