@@ -5,7 +5,7 @@ Created on Tue Jan 30 16:53:30 2018
 @author: Frank
 """
 
-from download import models
+from .download import models
 
 # Best way to download files
 # 1. list to text
