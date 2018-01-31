@@ -20,7 +20,7 @@ if sys.argv[-1] == 'publish':
     os.system('twine upload dist/*')
     sys.exit()
 
-packages = ['handy']
+packages = ['handi']
 
 REQUIRES = [
             'pysftp>=0.2.9',
@@ -29,13 +29,13 @@ REQUIRES = [
 
 keywords = ''
 setup(
-    name='handy',
+    name='handi',
     version=version,
     description='',
     long_description=readme,
-    author='gustavkkk',
+    author='gustav0125',
     author_email='gustav0125@outlook.com',
-    maintainer='gustavkkk',
+    maintainer='gustav0125',
     maintainer_email='gustav0125@outlook.com',
     url='https://github.com/gustavkkk/handy',
     license='MIT/Apache-2.0',
@@ -59,5 +59,5 @@ setup(
     install_requires=REQUIRES,
     tests_require=['coverage', 'pytest'],
     zip_safe=False,
-    packages=packages,#find_packages(),
+    packages=find_packages(),#packages,#
 )
