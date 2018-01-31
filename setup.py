@@ -27,6 +27,7 @@ REQUIRES = [
             'urllib3>=1.21.1,<1.23',
             ]
 
+keywords = ''
 setup(
     name='handy',
     version=version,
@@ -39,9 +40,7 @@ setup(
     url='https://github.com/gustavkkk/handy',
     license='MIT/Apache-2.0',
     include_package_data=True,
-    keywords=[
-        '',
-    ],
+    keywords=['utility','basics'],
 
     classifiers=[
         'Development Status :: 4 - Beta',
