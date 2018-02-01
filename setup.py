@@ -27,10 +27,6 @@ REQUIRES = [
             'urllib3>=1.21.1,<1.23',
             'tqdm>=4.19.5',
             'wget>=3.2',
-            #'magic_wormhole>=0.10.4',
-            #'thefuck>=3.25',
-            'pyautogui>=0.9.36'
-            #'tensorflow-gpu>=1.2.0',
             ]
 
 keywords = ''

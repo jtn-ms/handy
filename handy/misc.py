@@ -30,24 +30,32 @@ import webbrowser
 import platform
 
 def open_chrome(filepath):
+    chrome_path = None
     for case in switch(platform.system()):
         if case('Windows'):
-            chrome_path = "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s"#'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe %s'
+            for fullpath in ["C:/Program Files (x86)/Google/Chrome/Application/chrome.exe","C:/Program Files/Google/Chrome/Application/chrome.exe"]:
+                if os.path.exists(fullpath):
+                    chrome_path = fullpath + " %s"#'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe %s'
+                    break
             break
         if case('MacOS'):
+            print('MacOS code not steady. No exception handling')
             chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
             break
         if case('Linux'):
-            chrome_path = '/usr/bin/google-chrome %s'
+            if os.path.exists('/usr/bin/google-chrome'):
+                chrome_path = '/usr/bin/google-chrome %s'
             break
-    print(chrome_path,filepath)
-    webbrowser.get(chrome_path).open(filepath)#("http://bing.com")
+    if chrome_path:
+        print(chrome_path,filepath)
+        webbrowser.get(chrome_path).open(filepath)#("http://bing.com")
+    else:
+        webbrowser.open(filepath)
 
 def resource_path(relative):
     if hasattr(sys, "_MEIPASS"):
         return os.path.join(sys._MEIPASS, relative)
     return os.path.join(relative)
-
 
 # usage:
 #            for case in switch(position):

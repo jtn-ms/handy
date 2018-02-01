@@ -136,7 +136,11 @@ def get_fileinfo(url):
 def download_urllib(url,filename=None):
     if not filename:
         filename = url.split('/')[-1]
-    urllib.urlretrieve (url, filename)
+    import sys
+    if sys.version_info >= (3,):
+        urllib2.urlretrieve (url, filename)
+    else:
+        urllib.urlretrieve (url, filename)
 
 def download_urllib2(url):
     file_name = url.split('/')[-1]
@@ -211,7 +215,7 @@ def download_wget(url,useBar=False):
         response = wget.download(url, out='/tmp/', bar=do_nothing)
     print(response)
     return response
-    
+
 def download(url,mode='system'):
     if 'system' in mode:
         download_system(url)
@@ -229,7 +233,4 @@ def main():
         download(url,'system')
         
 if __name__ == "__main__":
-    #main()
-    #list2txt(models,'models.txt')
-    pass
-    
+    main()   
