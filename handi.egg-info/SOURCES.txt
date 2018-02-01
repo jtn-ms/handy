@@ -13,6 +13,7 @@ handy/__init__.py
 handy/compress.py
 handy/download.py
 handy/list2txt.py
+handy/misc.py
 handy/portscan.py
 handy/push.py
 handy/upload.py

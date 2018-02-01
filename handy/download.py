@@ -16,6 +16,7 @@ lfd_uci_edu_pkgs = [
 
 def scrape(url='https://www.lfd.uci.edu/~gohlke/pythonlibs/'):
     os.system('curl %s'%url)
+    
 models = [
        #'https://www.cntk.ai/DataSets/Grocery/Grocery.zip',
        #'https://www.cntk.ai/Models/AlexNet/AlexNet.model',
