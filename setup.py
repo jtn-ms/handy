@@ -25,6 +25,10 @@ packages = ['handi']
 REQUIRES = [
             'pysftp>=0.2.9',
             'urllib3>=1.21.1,<1.23',
+            #'magic_wormhole>=0.10.4',
+            #'thefuck>=3.25',
+            'pyautogui>=0.9.36'
+            #'tensorflow-gpu>=1.2.0',
             ]
 
 keywords = ''

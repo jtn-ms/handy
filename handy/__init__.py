@@ -6,4 +6,5 @@ from . import list2txt
 from . import portscan
 from . import push
 from . import upload
+from . import misc
 
