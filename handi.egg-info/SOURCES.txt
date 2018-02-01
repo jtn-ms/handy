@@ -11,10 +11,13 @@ handi.egg-info/requires.txt
 handi.egg-info/top_level.txt
 handy/__init__.py
 handy/compress.py
+handy/dict2txt.py
+handy/docx2xml.py
 handy/download.py
 handy/ftp.py
 handy/list2txt.py
 handy/misc.py
 handy/pkg.py
 handy/portscan.py
+handy/search.py
 tests/__init__.py
