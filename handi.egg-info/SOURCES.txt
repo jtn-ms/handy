@@ -12,9 +12,9 @@ handi.egg-info/top_level.txt
 handy/__init__.py
 handy/compress.py
 handy/download.py
+handy/ftp.py
 handy/list2txt.py
 handy/misc.py
+handy/pkg.py
 handy/portscan.py
-handy/push.py
-handy/upload.py
 tests/__init__.py
