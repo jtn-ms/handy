@@ -1,4 +1,4 @@
-__version__ = '0.0.5'
+__version__ = '0.0.6'
 
 from . import compress
 
@@ -11,5 +11,10 @@ from . import download
 from . import portscan
 from . import ftp
 
+from . import search
 from . import misc
+
+from . import setenv
+
+from . import docx2xml
 
