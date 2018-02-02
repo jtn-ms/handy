@@ -27,7 +27,7 @@ def txt2list(filepath):
         for line in lines:
             item = line.split('\n')[0]
             list_.append(item)
-            print(item)
+            #print(item)
     return list_
     
 if __name__ == "__main__":

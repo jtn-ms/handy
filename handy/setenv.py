@@ -5,6 +5,9 @@ Created on Thu Feb  1 18:04:48 2018
 @author: stephen
 """
 from .misc import switch
+# this function temporarily works
+# do not set environment variable permanently.
+# https://docs.python.org/3/using/windows.html
 def set_env_variable(key,value,mode='add'):
     import os
     import platform

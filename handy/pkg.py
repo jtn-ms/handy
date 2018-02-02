@@ -49,8 +49,23 @@ def install_conda_pkgs(requires):
     elif isinstance(requires,dict):
         for key in requires.keys():
             print('installing %s...'%key)
-            os.system('conda install %s'%requires[key])    
+            os.system('conda install %s'%requires[key])
 
+def download_debi_pkg(requires):
+    #https://stackoverflow.com/questions/4419268/how-do-i-download-a-package-from-apt-get-without-installing-it
+    if not requires:
+        return
+    if isinstance(requires,list):
+        for pkg in requires:
+            pkg_name = get_upper(pkg)
+            print('installing %s...'%pkg_name)
+            os.system('apt-get -d install %s'%pkg)
+    elif isinstance(requires,dict):
+        for key in requires.keys():
+            print('installing %s...'%key)
+            os.system('apt-get -d install %s'%requires[key])
+    print('chk->/var/cache/apt/archives')
+            
 def check_cache_dir():
     if 'LocalAppData' not in os.environ.keys():
         print('No windows! No LocalAppData!')
