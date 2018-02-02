@@ -20,4 +20,5 @@ handy/misc.py
 handy/pkg.py
 handy/portscan.py
 handy/search.py
+handy/setenv.py
 tests/__init__.py

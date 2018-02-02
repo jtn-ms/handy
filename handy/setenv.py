@@ -11,11 +11,12 @@ def set_env_variable(key,value,mode='add'):
     if key in os.environ.keys() and 'add' in mode:
         for case in switch(platform.system()):
             if case('Windows'):
-                os.environ[key] = os.environ[str(key)] + ';' + str(value)
+                if str(value) not in os.environ[key]:
+                    os.environ[key] = os.environ[str(key)] + ';' + str(value)
                 break
             if case('Linux'):
                 break
             if case('MacOS'):
                 break
     else:
-        os.environ[key] = value
+        os.environ[key] = str(value)
