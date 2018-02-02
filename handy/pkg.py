@@ -13,13 +13,49 @@ def get_upper(string,covers=['>','=','<']):
     return string
     
 def download_pypi_pkgs(requires=['wget>=3.2']):
-    for pkg in requires:
-        pkg_name = get_upper(pkg)
-        print('downloading %s...'%pkg_name)
-        os.system('pip download %s'%pkg)
+    if not requires:
+        return
+    if isinstance(requires,list):
+        for pkg in requires:
+            pkg_name = get_upper(pkg)
+            print('downloading %s...'%pkg_name)
+            os.system('pip download %s'%pkg)
+    elif isinstance(requires,dict):
+        for key in requires.keys():
+            print('downloading %s...'%key)
+            os.system('pip download %s'%requires[key])        
         
-def install_pkgs(requires):
-    for pkg in requires:
-        pkg_name = get_upper(pkg)
-        print('installing %s...'%pkg_name)
-        os.system('pip install %s'%pkg)
+def install_pypi_pkgs(requires):
+    if not requires:
+        return
+    if isinstance(requires,list):
+        for pkg in requires:
+            pkg_name = get_upper(pkg)
+            print('installing %s...'%pkg_name)
+            os.system('pip install %s'%pkg)
+    elif isinstance(requires,dict):
+        for key in requires.keys():
+            print('installing %s...'%key)
+            os.system('pip install %s'%requires[key])            
+
+def install_conda_pkgs(requires):
+    if not requires:
+        return
+    if isinstance(requires,list):
+        for pkg in requires:
+            pkg_name = get_upper(pkg)
+            print('installing %s...'%pkg_name)
+            os.system('conda install %s'%pkg)
+    elif isinstance(requires,dict):
+        for key in requires.keys():
+            print('installing %s...'%key)
+            os.system('conda install %s'%requires[key])    
+
+def check_cache_dir():
+    if 'LocalAppData' not in os.environ.keys():
+        print('No windows! No LocalAppData!')
+        return None
+    for item in ['pip/Cache','conda/conda/pkgs']:
+        path = os.path.join(os.environ['LocalAppData'],item)
+        if os.path.exists(path):
+            print(path)

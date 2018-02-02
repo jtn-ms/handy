@@ -9,7 +9,8 @@ import json
 
 def dict2txt(dict_,filename):
     with open(filename, 'w') as file:
-         file.write(json.dumps(dict_))
+        string = json.dumps(dict_).replace(",", ",\n")
+        file.write(string)
 
 def txt2dict(filepath):
     with open(filepath, 'r') as file:
