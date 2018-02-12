@@ -1,28 +1,34 @@
-handy
-=====
+handi(handy)
 
------
-
-.. contents:: **Table of Contents**
-    :backlinks: none
+Anything by just a single click
+It is made according to 'one-click' idea of the author.
+In short, it contains some frequently-used functions.
+All you have to do is to just call the corresponding function.
+It will save your time and your energy consumption.
 
 Installation
-------------
 
-handy is distributed on `PyPI <https://pypi.org>`_ as a universal
-wheel and is available on Linux/macOS and Windows and supports
-Python 2.7/3.5+ and PyPy.
+$ pip install -U handi
 
-.. code-block:: bash
 
-    $ pip install handy
+Utilities
+1.conversion
+ 
+ -docx2xml
+	
+ -list2txt
+
+ -dict2json
+
+2.compression
+
+ ...
+
+Usage
+
+from handy.docx2xml import docx2xml
+docx2xml('xxx.docx')
 
 License
--------
 
-handy is distributed under the terms of both
-
-- `MIT License <https://choosealicense.com/licenses/mit>`_
-- `Apache License, Version 2.0 <https://choosealicense.com/licenses/apache-2.0>`_
-
-at your option.
+MIT License <https://choosealicense.com/licenses/mit>

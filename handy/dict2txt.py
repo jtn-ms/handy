@@ -23,7 +23,11 @@ def dict2txt(dict_,filename):
     
 def txt2dict(filepath):
     json2dict(filepath)
-    
+
+INDEX = {
+        '投标文件格式':['no'],
+        '封面页':['project_info','company'],
+        }
 if __name__ == "__main__":
-    dict2txt({'妈妈':1,'爸爸':2},'test.json')
+    dict2txt(INDEX,'test.json')
     print(txt2dict('test.json'))
