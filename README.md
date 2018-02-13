@@ -38,13 +38,26 @@ It will save your time and your energy consumption.
 
     ...
     
-# Usage
+### Usage
 
       $ python
       >>>from handy.docx2xml import docx2xml
       >>>docx2xml('xxx.docx')
 
-# License
+### License
 
    MIT License <https://choosealicense.com/licenses/mit>
    
+### Thanks
+
+  THis is my first package, created by hatch[https://github.com/ofek/hatch]. Thanks to Ofek Lev.
+  
+### Tip
+
+  If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
+  
+      $ pip install hatch
+      $ pip install your-package-name
+        checking if the pkg name in your mind is already taken or not.
+      $ hatch new your-package-name
+        creating the project of the name
