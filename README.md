@@ -3,7 +3,7 @@
    This repo was made and maintained according to 'one-click' idea of the author.
 It contains some frequently-used functions.
 All you have to do is to just call the corresponding function.
-It will save your time and your energy consumption.
+It will save your time and your energy.
 
 ### "One-Click"
 
@@ -49,8 +49,12 @@ It will save your time and your energy consumption.
 
   If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
   
+      1. to install hatch
       $ pip install hatch
+      2. to check if the pkg name in your mind is already taken or not.
       $ pip install your-package-name
-        checking if the pkg name in your mind is already taken or not.
+      3. to create the project of the name
       $ hatch new your-package-name
-        creating the project of the name
+      4. to copy .bat files to the folder
+      5. to create .pypirc in %userprofile% for windows, $HOME for linux
+      6. to check setup.py, _init_.py
