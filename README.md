@@ -53,8 +53,8 @@ It will save your time and your energy.
       $ pip install hatch
       2. to check if the pkg name in your mind is already taken or not.
       $ pip install your-package-name
-      3. to create the project of the name
+      3. to create the project of the name
       $ hatch new your-package-name
       4. to copy .bat files to the folder
-      5. to create .pypirc in %userprofile% for windows, $HOME for linux
+      5. to create .pypirc in %userprofile% for windows, $HOME for linux
       6. to check setup.py, _init_.py
