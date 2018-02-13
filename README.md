@@ -43,7 +43,7 @@ It will save your time and your energy for minor jobs.
    
 ### Thanks
 
-  THis is my first package, created by hatch[https://github.com/ofek/hatch]. Thanks to Ofek Lev.
+  THis is my first package, created by [hatch](https://github.com/ofek/hatch). Thanks to Ofek Lev.
   
 ### Tip
 
