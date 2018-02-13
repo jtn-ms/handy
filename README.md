@@ -1,11 +1,11 @@
 # handi(handy)
 
-This repo was made and maintained according to 'one-click' idea of the author.
+This repo is made and maintained according to 'one-click' idea of the author.
 It contains some frequently-used functions.
 All you have to do is to just call the corresponding function.
 It will save your time and your energy for minor jobs.
 
-### "One-Click"
+### One-Click
 
 * "One-Click" means to do anything by just a single click.
 * "One-Click" stands for simple, fast.
