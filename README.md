@@ -8,7 +8,7 @@ It will save your time and your energy for minor jobs.
 ### One-Click
 
 * "One-Click" means to do anything by just a single click.
-* "One-Click" stands for simple, fast.
+* "One-Click" stands for simple and fast.
 * "One-Click" helps you save time on daily and repetitive jobs as much as possible
 , and focus on more important things.
 * "One-Click" is inspired by python and is to accelerate the speed.
