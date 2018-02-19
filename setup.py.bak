@@ -63,6 +63,6 @@ setup(
     zip_safe=False,
     packages=find_packages(),#packages,#
 	package_data={
-				'': ['*.xml', '*.rels'],
+				'': ['*.xml', '*.rele'],
 	},
 )
