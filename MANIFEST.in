@@ -1,3 +1,6 @@
 include LICENSE-APACHE
 include LICENSE-MIT
 include README.rst
+recursive-include handy *.zip *.xml *.rels
+global-include *.zip *.xml *.rels
+graft handy

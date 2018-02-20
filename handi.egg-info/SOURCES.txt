@@ -21,4 +21,16 @@ handy/pkg.py
 handy/portscan.py
 handy/search.py
 handy/setenv.py
+handy/packages/gen_phone.py
+handy/tmp/[Content_Types].xml
+handy/tmp/_rels/.rels
+handy/tmp/docProps/app.xml
+handy/tmp/docProps/core.xml
+handy/tmp/word/document.xml
+handy/tmp/word/fontTable.xml
+handy/tmp/word/settings.xml
+handy/tmp/word/styles.xml
+handy/tmp/word/webSettings.xml
+handy/tmp/word/_rels/document.xml.rels
+handy/tmp/word/theme/theme1.xml
 tests/__init__.py

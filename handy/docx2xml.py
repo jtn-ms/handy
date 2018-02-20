@@ -39,15 +39,17 @@ def xmltree2docx(xmltree,docx_filename):
             docx_.write(os.path.join(os.getcwd(),filename), filename)
             
 # need to be refined
+import site
+path = os.path.join(site.getsitepackages()[1],'handy')
 def xml2docx(xml_filename,docx_filename):
-    shutil.copy(xml_filename, os.path.join(os.getcwd(),'tmp/word/document.xml'))
+    shutil.copy(xml_filename, os.path.join(path,'tmp/word/document.xml'))
     #
     with ZipFile(docx_filename, "w") as docx_:
         for filename in filenames:
-            docx_.write(os.path.join(os.getcwd(),'tmp/'+filename), filename)
+            docx_.write(os.path.join(path,'tmp/'+filename), filename)
 
 #from docx import Document
-from handy.compress import compress
+#from handy.compress import compress
 if __name__ == "__main__":
     docx2xml(sys.argv[1])
     

@@ -1,1 +1,2 @@
 http://setuptools.readthedocs.io/en/latest/setuptools.html
+https://stackoverflow.com/questions/7522250/how-to-include-package-data-with-setuptools-distribute
