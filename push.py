@@ -22,15 +22,25 @@ def push(comment):
     os.system('git commit -m %s'%comment)
     os.system('git push origin master')
 
-import sys
-
+import argparse
 def main():
-    if len(sys.argv) < 2:
-        print('leave comment please.')
-        comment = input()
-        push(comment)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-b","--branch", help="branch=[master,old],select git branch")
+    parser.add_argument("-c","--comment", help="leave comment please.")
+    args = parser.parse_args()
+    # checking out branch
+    if args.branch:
+        branch = args.branch
     else:
-        push(sys.argv[1])
-        
+        branch = input('select git branch.\n')
+    import os
+    os.system('git fetch && git checkout %s'%branch)
+    # pushing code
+    if args.comment:
+        push(args.comment)
+    else:
+        comment = input('leave comment please.\n')
+        push(comment)
+
 if __name__ == "__main__":
     main()

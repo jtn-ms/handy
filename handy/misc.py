@@ -4,6 +4,9 @@ Created on Sun Nov 19 18:01:09 2017
 
 @author: Frank
 """
+
+from __future__ import absolute_import
+
 import os,sys
 
 def remove_all_files_with_certain_extension(dirpath,extension=".docx"):

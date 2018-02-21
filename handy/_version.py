@@ -24,10 +24,4 @@
 #
 ###############################################################################
 
-from __future__ import absolute_import
-
-from handy._version import __version__
-
-__name__ = 'handy'
-
-__version_info__ = tuple([ int(num) for num in __version__.split('.')])
+__version__ = '0.3.9'

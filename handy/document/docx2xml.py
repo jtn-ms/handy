@@ -5,6 +5,8 @@ Created on Sun Nov 19 15:12:09 2017
 @author: Frank
 """
 
+from __future__ import absolute_import
+
 from zipfile import ZipFile
 from lxml import etree
 import os
@@ -29,24 +31,25 @@ def docx2xmltree(docx_filename):
         xmltree = etree.fromstring(xml)
         return xmltree
 
+# need to be refined
+import site
+__path__ = os.path.join(site.getsitepackages()[1],'handy/document')
+tmp_path = os.path.join(__path__,'tmp')
 def xmltree2docx(xmltree,docx_filename):
     prettyxml = etree.tostring(xmltree,pretty_print=True)
-    with open(os.path.join(os.getcwd(),'word/document.xml'),'w+b') as xml_file:
+    with open(os.path.join(tmp_path,'word/document.xml'),'w+b') as xml_file:
         xml_file.write(prettyxml)
     #
     with ZipFile(docx_filename, "w") as docx_:
         for filename in filenames:
-            docx_.write(os.path.join(os.getcwd(),filename), filename)
+            docx_.write(os.path.join(tmp_path,filename), filename)
             
-# need to be refined
-import site
-path = os.path.join(site.getsitepackages()[1],'handy')
 def xml2docx(xml_filename,docx_filename):
-    shutil.copy(xml_filename, os.path.join(path,'tmp/word/document.xml'))
+    shutil.copy(xml_filename, os.path.join(tmp_path,'word/document.xml'))
     #
     with ZipFile(docx_filename, "w") as docx_:
         for filename in filenames:
-            docx_.write(os.path.join(path,'tmp/'+filename), filename)
+            docx_.write(os.path.join(tmp_path,filename), filename)
 
 #from docx import Document
 #from handy.compress import compress

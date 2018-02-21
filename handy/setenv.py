@@ -4,7 +4,9 @@ Created on Thu Feb  1 18:04:48 2018
 
 @author: stephen
 """
-from .misc import switch
+from __future__ import absolute_import
+
+from handy.misc import switch
 # this function temporarily works
 # do not set environment variable permanently.
 # https://docs.python.org/3/using/windows.html

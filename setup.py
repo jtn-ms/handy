@@ -2,7 +2,7 @@ from io import open
 
 from setuptools import find_packages, setup
 
-with open('handy/__init__.py', 'r') as f:
+with open('handy/_version.py', 'r') as f:
     for line in f:
         if line.startswith('__version__'):
             version = line.strip().split('=')[1].strip(' \'"')

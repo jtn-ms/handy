@@ -4,6 +4,9 @@ Created on Thu Feb  1 03:15:57 2018
 
 @author: stephen
 """
+
+from __future__ import absolute_import
+
 import os
 
 def get_upper(string,covers=['>','=','<']):
