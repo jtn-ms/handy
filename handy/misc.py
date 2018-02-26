@@ -87,3 +87,7 @@ class switch(object):
             return True
         else:
             return False
+        
+def sorted_keys(dictionary):
+    keys = sorted(dictionary, key=dictionary.__getitem__)
+    return keys
