@@ -91,3 +91,12 @@ class switch(object):
 def sorted_keys(dictionary):
     keys = sorted(dictionary, key=dictionary.__getitem__)
     return keys
+
+def reverse_dic(dic):
+    return {v: k for k, v in dic.items()}
+
+from inspect import currentframe, getframeinfo
+def log(msg):
+    frameinfo = getframeinfo(currentframe())
+    print('%s in line %d,%s'%(msg,frameinfo.lineno,frameinfo.filename))
+

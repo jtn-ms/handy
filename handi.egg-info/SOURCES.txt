@@ -37,5 +37,6 @@ handy/network/download.py
 handy/network/ftp.py
 handy/network/portscan.py
 handy/random/__init__.py
-handy/random/gen_phone.py
+handy/random/id.py
+handy/random/phone.py
 tests/__init__.py
