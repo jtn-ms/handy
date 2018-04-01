@@ -18,6 +18,7 @@ handy/document/__init__.py
 handy/document/dict2txt.py
 handy/document/docx2xml.py
 handy/document/list2txt.py
+handy/document/pdf2docx.py
 handy/document/tmp/[Content_Types].xml
 handy/document/tmp/_rels/.rels
 handy/document/tmp/docProps/app.xml

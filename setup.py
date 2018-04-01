@@ -27,6 +27,7 @@ REQUIRES = [
             'urllib3>=1.21.1,<1.23',
             'tqdm>=4.19.5',
             'wget>=3.2',
+			'cryptography>=2.1.4'
             ]
 
 keywords = ''
