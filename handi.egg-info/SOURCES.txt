@@ -14,10 +14,13 @@ handy/_version.py
 handy/misc.py
 handy/pkg.py
 handy/setenv.py
+handy/crypto/__init__.py
+handy/crypto/encrypt.py
 handy/document/__init__.py
 handy/document/dict2txt.py
 handy/document/docx2xml.py
 handy/document/list2txt.py
+handy/document/models.txt
 handy/document/pdf2docx.py
 handy/document/tmp/[Content_Types].xml
 handy/document/tmp/_rels/.rels
@@ -37,6 +40,7 @@ handy/network/__init__.py
 handy/network/download.py
 handy/network/ftp.py
 handy/network/portscan.py
+handy/network/upload.py
 handy/random/__init__.py
 handy/random/id.py
 handy/random/phone.py

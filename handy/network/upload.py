@@ -12,7 +12,19 @@ def download_repo():
     key = input('Type Key:\n')
     repo = input('Load Repo File:\n')
     repo_path = decryptfromfile(repo,key)
-    os.system('git clone %s'%repo_path)
+    if not repo_path:
+        print('decrypting failed')
+        return
+    from sys import platform
+    if platform == "linux" or platform == "linux2":
+        os.system("gnome-terminal -e 'bash -c \"sudo apt-get update; exec bash\"'")
+    elif platform == "darwin":
+        pass
+    elif platform == "win32":
+        os.system("start /B start cmd.exe @cmd /k ")
+    import pyautogui
+    pyautogui.typewrite('git clone %s'%repo_path,interval=0.01)
+    pyautogui.press('enter')
 
 def upload_repo():
     comment = input('Type Comment:\n')

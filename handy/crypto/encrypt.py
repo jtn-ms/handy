@@ -34,6 +34,11 @@ def encrypt(origin='IseeU',
 
 def decrypt(encrypted=__encrypted_,
             key='IloveU'):
+    try:
+        base64.urlsafe_b64decode(encrypted)
+    except:
+        print('invalid token')
+        return
     code = gen_key(key)
     f = Fernet(code)
     return f.decrypt(str.encode(encrypted)).decode()
@@ -49,9 +54,9 @@ def encrypt2file(origin=None,
     if not filename:
         filename = input('Type FileName:\n')
     encrypted = encrypt(origin,key)
-    fullpath = os.path.abspath(filename)
+    fullpath = os.path.abspath(filename.replace("'",''))
     with open(fullpath,'w+b') as file:
-        #print(encrypted)
+        print(encrypted)
         file.write(str.encode(encrypted))
 
 def decryptfromfile(filepath=None,
@@ -60,18 +65,21 @@ def decryptfromfile(filepath=None,
         filepath = input('Type FileName:\n')
     if not key:
         key = input('Type Key:\n')
-    fullpath = os.path.abspath(filepath)
+    fullpath = os.path.abspath(filepath.replace("'",''))
+    if not os.path.exists(fullpath):
+        print('There is no such a file')
+        return
     fname,ext = os.path.splitext(os.path.split(fullpath)[1])
     encrypted = None
-    with open(filepath,'r+b') as file:
+    with open(fullpath,'r+b') as file:
         line = file.read()
-        if len(line) == 100:
+        if len(line) >= 100:
             encrypted = line if isinstance(line,str) else line.decode()
-        elif len(fname) == 100:
+        elif len(fname) >= 100:
             encrypted = fname
     if encrypted:
         decrypted = decrypt(encrypted,key)
-        #print(decrypted)
+        print(decrypted)
         return decrypted
     
 def test():
