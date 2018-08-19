@@ -44,4 +44,7 @@ handy/network/upload.py
 handy/random/__init__.py
 handy/random/id.py
 handy/random/phone.py
+handy/weixin/__init__.py
+handy/weixin/bot.py
+handy/weixin/scrape.tmp
 tests/__init__.py
