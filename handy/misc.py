@@ -95,10 +95,11 @@ def sorted_keys(dictionary):
 def reverse_dic(dic):
     return {v: k for k, v in dic.items()}
 
-from inspect import currentframe, getframeinfo,stack
-def log(*arg):
-    caller = getframeinfo(stack()[1][0])
-    print(*arg,'in line %d,%s'%(caller.lineno,os.path.split(caller.filename)[1]))
-    #frameinfo = getframeinfo(currentframe())
-    #print(*arg,'in line %d,%s'%(frameinfo.lineno,frameinfo.filename))
+if sys.version[0] > 2:
+    from inspect import getframeinfo,stack#,currentframe
+    def log(*arg):
+        caller = getframeinfo(stack()[1][0])
+        print(*arg,'in line %d,%s'%(caller.lineno,os.path.split(caller.filename)[1]))
+        #frameinfo = getframeinfo(currentframe())
+        #print(*arg,'in line %d,%s'%(frameinfo.lineno,frameinfo.filename))
 

@@ -3,3 +3,4 @@ urllib==1.22
 PyDocx
 docx
 cryptography>=2.1.4
+pyautogui>=0.9.36
