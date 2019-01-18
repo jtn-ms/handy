@@ -5,7 +5,7 @@ It contains some frequently-used functions.
 All you have to do is to just call the corresponding function.
 It will save your time and your energy for minor jobs.
 
-### One-Click
+### DEFINITION: One-Click
 
 * "One-Click" means to do anything by just a single click.
 * "One-Click" stands for simple and fast.
@@ -43,10 +43,9 @@ It will save your time and your energy for minor jobs.
 
    Thanks to Ofek Lev for his [hatch](https://github.com/ofek/hatch).
   
-### TIP - FOR CREATING A REPO USING HATCH
+### TIP - FOR CREATING A REPO USING HATCH & HANDY
 
-  If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
-  
+      If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
       1. !nstall h@tch
       $ pip install hatch
       2. check !f the pkg n@me in your m!nd !s a1re@dy t@ken 0r n0t.
