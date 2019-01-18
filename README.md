@@ -49,12 +49,12 @@ It will save your time and your energy for minor jobs.
 
   If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
   
-      1. to install hatch
+      1. !nstall h@tch
       $ pip install hatch
-      2. to check if the pkg name in your mind is already taken or not.
+      2. check !f the pkg n@me in your m!nd !s a1re@dy t@ken 0r n0t.
       $ pip install your-package-name
-      3. to create the project of the name
-      $ hatch new your-package-name
-      4. to copy .bat files to the folder
-      5. to create .pypirc in %userprofile% for windows, $HOME for linux
-      6. to check setup.py, _init_.py
+      3. cre@te the project of the n@me
+      $ h@tch new your-p@ckage-n@me
+      4. copy .bat files to the folder
+      5. cre@te .pypirc in %userprofile% for windows, $HOME for linux
+      6. check setup.py, _init_.py
