@@ -43,7 +43,7 @@ It will save your time and your energy for minor jobs.
 
    Thanks to Ofek Lev for his [hatch](https://github.com/ofek/hatch).
   
-### Tip
+### TIP - FOR CREATING A REPO USING HATCH
 
   If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
   
@@ -53,6 +53,6 @@ It will save your time and your energy for minor jobs.
       $ pip install your-package-name
       3. cre@te the project of the n@me
       $ h@tch new your-p@ckage-n@me
-      4. copy .bat files to the folder
-      5. cre@te .pypirc in %userprofile% for windows, $HOME for linux
+      4. c0py .bat files to the folder
+      5. c0py & m0d!fy .pypirc in %userprofile% for windows, $HOME for linux
       6. check setup.py, _init_.py
