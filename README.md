@@ -37,9 +37,7 @@ It will save your time and your energy for minor jobs.
       >>>from handy.docx2xml import docx2xml
       >>>docx2xml('xxx.docx')
 
-### LICENSE
-
-   MIT License <https://choosealicense.com/licenses/mit>
+### LICENSE - [MIT License](https://choosealicense.com/licenses/mit)
    
 ### ACKNOWLEDGEMENT
 
