@@ -1,5 +1,5 @@
 pysftp==0.2.9
-urllib==1.22
+urllib>=1.23
 PyDocx
 docx
 cryptography>=2.1.4
