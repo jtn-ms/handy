@@ -13,11 +13,11 @@ It will save your time and your energy for minor jobs.
 , and focus on more important things.
 * "One-Click" is inspired by python's simpleness and is to accelerate the speed.
 
-### Installation
+### INSTALLATION
       
       $ pip install -U handi
 
-### Utilities 
+### FUNCTIONS 
 
    * conversion
 
@@ -31,7 +31,7 @@ It will save your time and your energy for minor jobs.
 
     ...
     
-### Usage
+### USAGES
 
       $ python
       >>>from handy.docx2xml import docx2xml
