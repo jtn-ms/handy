@@ -46,6 +46,7 @@ It will save your time and your energy for minor jobs.
 ### TIP - FOR CREATING A REPO USING HATCH & HANDY
 
       If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
+      
       1. !nstall h@tch
       $ pip install hatch
       2. check !f the pkg n@me in your m!nd !s a1re@dy t@ken 0r n0t.
