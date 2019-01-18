@@ -1,6 +1,6 @@
 # handi(handy)
 
-This repo is made and maintained according to 'one-click' idea of the author.
+This repository is create and maintained according to 'one-click' idea of the author.
 It contains some frequently-used functions.
 All you have to do is to just call the corresponding function.
 It will save your time and your energy for minor jobs.
@@ -37,13 +37,13 @@ It will save your time and your energy for minor jobs.
       >>>from handy.docx2xml import docx2xml
       >>>docx2xml('xxx.docx')
 
-### License
+### LICENSE
 
    MIT License <https://choosealicense.com/licenses/mit>
    
-### Thanks
+### ACKNOWLEDGEMENT
 
-  THis is my first package, created by [hatch](https://github.com/ofek/hatch). Thanks to Ofek Lev.
+   Thanks to Ofek Lev for his [hatch](https://github.com/ofek/hatch).
   
 ### Tip
 
