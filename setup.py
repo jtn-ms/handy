@@ -24,10 +24,10 @@ packages = ['handi']
 
 REQUIRES = [
             'pysftp>=0.2.9',
-            'urllib3>=1.21.1,<1.23',
+            'urllib3>=1.23',
             'tqdm>=4.19.5',
             'wget>=3.2',
-			'cryptography>=2.1.4'
+	    'cryptography>=2.1.4'
             ]
 
 keywords = ''
@@ -63,7 +63,7 @@ setup(
     tests_require=['coverage', 'pytest'],
     zip_safe=False,
     packages=find_packages(),#packages,#
-	package_data={
-				'': ['*.zip','*.py'],
+    package_data={
+		  '': ['*.zip','*.py'],
 	},
 )
