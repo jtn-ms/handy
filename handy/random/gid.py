@@ -20,12 +20,12 @@ def getValidateCheckout(id17):
 import random
 import datetime
 
-def random_date(start="1960-01-01",end = "2000-12-30"):
+def randomDate(start="1960-01-01",end = "2000-12-30"):
     days = (datetime.datetime.strptime(end, "%Y-%m-%d") - datetime.datetime.strptime(start, "%Y-%m-%d")).days + 1
     date = datetime.datetime.strftime(datetime.datetime.strptime(start, "%Y-%m-%d") + datetime.timedelta(random.randint(0,days)), "%Y%m%d")    
     return date
 
-def random_greencard_id(sex = 1):
+def randomGID(sex = 1):
     '''产生随机可用身份证号，sex = 1表示男性，sex = 0表示女性'''
     #地址码产生
     from addr import addr #地址码
@@ -34,7 +34,7 @@ def random_greencard_id(sex = 1):
     addrName = addr[addrInfo][1]
     idNumber = str(addrId)
     #出生日期码
-    birthDays = random_date()
+    birthDays = randomDate()
     idNumber = idNumber + str(birthDays)
     #顺序码
     for i in range(2):#产生前面的随机值
@@ -60,7 +60,7 @@ def extract_birthday(gid):
                                  int(gid[10:12]),\
                                  int(gid[12:14]))#gid[6:14]
 
-def calculate_age(born):
+def calculateAge(born):
     today = datetime.datetime.today()
     try:
         birthday = born.replace(year=today.year)
@@ -71,9 +71,9 @@ def calculate_age(born):
     else:
         return today.year - born.year
 
-def calc_age(gid):
-    return calculate_age(extract_birthday(gid))
+def calcAge(gid):
+    return calculateAge(extract_birthday(gid))
     
 if __name__ == "__main__":
-    print(calc_age('610481197108046218'))#random_greencard_id())#calculate_age(datetime.datetime(1989,1,25))
+    print(calcAge('610481197108046218'))#random_greencard_id())#calculate_age(datetime.datetime(1989,1,25))
     
