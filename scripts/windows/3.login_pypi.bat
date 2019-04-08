@@ -1,2 +1,2 @@
-python setup.py register
+python ../../setup.py register
 pause

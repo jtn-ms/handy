@@ -15,7 +15,10 @@ handy/misc.py
 handy/pkg.py
 handy/setenv.py
 handy/crypto/__init__.py
+handy/crypto/encode.py
 handy/crypto/encrypt.py
+handy/crypto/test_encode.py
+handy/crypto/test_encrypt.py
 handy/document/__init__.py
 handy/document/dict2txt.py
 handy/document/docx2xml.py
@@ -42,8 +45,10 @@ handy/network/ftp.py
 handy/network/portscan.py
 handy/network/upload.py
 handy/random/__init__.py
-handy/random/id.py
-handy/random/phone.py
+handy/random/gid.py
+handy/random/number.py
+handy/random/passwd.py
+handy/random/test_random.py
 handy/weixin/__init__.py
 handy/weixin/bot.py
 handy/weixin/scrape.tmp
