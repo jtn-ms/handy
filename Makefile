@@ -14,10 +14,13 @@ setup:
 	pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
 	
 # repo management part
+GITHUB_USER_NAME = gustavkkk
+GITHUB_PASSWORD = 12345678
+
 login:
 	git config --global user.email "gustav0125@outlook.com"
 	git config --global user.name "gustavkkk"
-	git remote set-url origin https://gustavkkk@github.com/gustavkkk/handy.git
+	git remote set-url origin https://$(GITHUB_USER_NAME):$(GITHUB_PASSWORD)@github.com/gustavkkk/handy.git
 
 up:
 ifeq ($(CURRENT_OS),Windows)
