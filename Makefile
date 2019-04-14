@@ -15,7 +15,7 @@ setup:
 	
 # repo management part
 GITHUB_USER_NAME = gustavkkk
-GITHUB_PASSWORD = 12345678
+GITHUB_PASSWORD = gustavko0125
 
 login:
 	git config --global user.email "gustav0125@outlook.com"
