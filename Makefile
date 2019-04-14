@@ -5,8 +5,9 @@ else
     CURRENT_OS := $(shell uname -s)
 endif
 
-all: up upload install
+all: update install
 
+# setup
 install:
 	pip install -U handi
 
@@ -18,12 +19,28 @@ GITHUB_ACCOUNT = gustav0125@outlook.com
 GITHUB_USER_NAME = gustavkkk
 GITHUB_PASSWORD = gustavko0125
 
+# config
+config: login copy register
+
 login:
 	git config --global user.email "$(GITHUB_ACCOUNT)"
 	git config --global user.name "$(GITHUB_USER_NAME)"
 	git remote set-url origin https://$(GITHUB_USER_NAME):$(GITHUB_PASSWORD)@github.com/gustavkkk/handy.git
 
-up: clean
+copy:
+ifeq ($(CURRENT_OS),Windows)
+	@copy .pypirc %USERPROFILE%
+else
+	@cp .pypirc $HOME
+endif
+
+register:
+	@python setup.py register
+
+# update
+update: clean upsrc uppkg
+
+upsrc:
 ifeq ($(CURRENT_OS),Windows)
 	@git add .
 	@echo "Enter a Comment:"
@@ -37,17 +54,7 @@ else
 	git push origin master
 endif
 
-copy:
-ifeq ($(CURRENT_OS),Windows)
-	@copy .pypirc %USERPROFILE%
-else
-	@cp .pypirc $HOME
-endif
-
-register:
-	@python setup.py register
-
-upload:
+uppkg:
 	@python setup.py sdist upload
 	
 # clean part
