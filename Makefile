@@ -17,6 +17,7 @@ setup:
 login:
 	git config --global user.email "gustav0125@outlook.com"
 	git config --global user.name "gustavkkk"
+	git remote set-url origin https://gustavkkk@github.com/gustavkkk/handy.git
 
 up:
 ifeq ($(CURRENT_OS),Windows)
