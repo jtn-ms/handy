@@ -14,15 +14,16 @@ setup:
 	pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
 	
 # repo management part
+GITHUB_ACCOUNT = gustav0125@outlook.com
 GITHUB_USER_NAME = gustavkkk
 GITHUB_PASSWORD = gustavko0125
 
 login:
-	git config --global user.email "gustav0125@outlook.com"
-	git config --global user.name "gustavkkk"
+	git config --global user.email "$(GITHUB_ACCOUNT)"
+	git config --global user.name "$(GITHUB_USER_NAME)"
 	git remote set-url origin https://$(GITHUB_USER_NAME):$(GITHUB_PASSWORD)@github.com/gustavkkk/handy.git
 
-up:
+up: clean
 ifeq ($(CURRENT_OS),Windows)
 	@git add .
 	@echo "Enter a Comment:"
@@ -34,6 +35,13 @@ else
 	@read -p "Enter a Comment: " comment;\
 	git commit -m $$comment;\
 	git push origin master
+endif
+
+copy:
+ifeq ($(CURRENT_OS),Windows)
+	@copy .pypirc %USERPROFILE%
+else
+	@cp .pypirc $HOME
 endif
 
 register:
