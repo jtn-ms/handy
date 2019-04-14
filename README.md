@@ -5,7 +5,7 @@ All you have to do is to just call the corresponding function. It will save your
 
 [![license](https://img.shields.io/github/license/gaojunying/license.svg)](https://github.com/gaojunying/license/blob/master/LICENSE)
 
-### DEFINITION: One-Click
+### What is One-Click?
 
 * "One-Click" means to do anything by just a single click.
 * "One-Click" stands for simple and fast.
@@ -37,13 +37,11 @@ All you have to do is to just call the corresponding function. It will save your
       >>>from handy.docx2xml import docx2xml
       >>>docx2xml('xxx.docx')
 
-### LICENSE - [MIT License](https://choosealicense.com/licenses/mit)
-   
 ### ACKNOWLEDGEMENT
 
    Thanks to Ofek Lev for his [hatch](https://github.com/ofek/hatch).
   
-### TIP - FOR CREATING A REPO USING HATCH & HANDY
+### TIP: TO CREATE A REPO USING HATCH & HANDY
 
       If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
       
