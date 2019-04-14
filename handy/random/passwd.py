@@ -8,4 +8,4 @@ def randomPW(N):
                                  string.digits) for _ in range(N))
 
 if __name__ == "__main__":
-    print randomstr(10)
+    print(randomPW(10))
