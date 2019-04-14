@@ -1,1 +1,0 @@
-find ../../ -regex ".*\.\(pyc\)" | xargs rm 

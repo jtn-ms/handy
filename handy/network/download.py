@@ -216,6 +216,13 @@ def download_wget(url,useBar=False):
     print(response)
     return response
 
+ ##### onedrive ####################################
+# import onedrivesdk								#
+# redirect_uri = 'http://localhost:8080/'			#
+# client_id='aef8dc46-82c7-4c55-94fb-bc578b66ccd3'	#
+# client_secret='reyjZMS8!~wxcTWJR2793?|'			#
+ ###################################################
+ 
 def download(url,mode='system'):
     if 'system' in mode:
         download_system(url)
@@ -228,6 +235,10 @@ def download(url,mode='system'):
     elif 'urllib2' in mode:
         download_urllib2(url)
 
+def download_onedrive(filename):
+	pass
+def upload_onedrive(filename):
+	pass
 def main():
     for url in models:
         download(url,'system')
