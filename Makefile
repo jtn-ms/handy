@@ -17,7 +17,7 @@ setup:
 # repo management part
 GITHUB_ACCOUNT = gustav0125@outlook.com
 GITHUB_USER_NAME = gustavkkk
-GITHUB_PASSWORD = gustavko0125
+GITHUB_PASSWORD = xxxxxxx
 
 # config
 config: login copy register
@@ -31,7 +31,7 @@ copy:
 ifeq ($(CURRENT_OS),Windows)
 	@copy .pypirc %USERPROFILE%
 else
-	@cp .pypirc $HOME
+	@cp .pypirc $(HOME)
 endif
 
 register:
