@@ -82,8 +82,8 @@ ifeq ($(CURRENT_OS),Windows)
 	@rmdir /q /s src
 	@rmdir /q /s dist
 else
-	@find . -name *.pyc -exec rm -f {} \;
-	@find . -name *.bak -exec rm -f {} \;
+	@find -name "*.pyc" -exec rm -f {} \;
+	@find -name "*.bak" -exec rm -f {} \;
 	@find -name dist | xargs rm -rf
 	@find -name .cache | xargs rm -rf
 	@find -name .pytest_cache | xargs rm -rf
