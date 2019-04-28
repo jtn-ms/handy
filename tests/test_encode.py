@@ -5,7 +5,7 @@ def test_genesis():
     assert(encode("testing") == "74657374696e67")
     assert(encode("god's color") == "676f64277320636f6c6f72")
 
-from handy.random.passwd import randomPW
+from handy.rand.passwd import randomPW
 
 def test_stress():
     count=1000
