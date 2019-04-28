@@ -15,6 +15,7 @@ pyautogui>=0.9.36
 rlp==0.6.0
 pycparser>=2.18
 pytest>=2.9.0
+brute>=0.0.3
 PyDocx
 docx
 
