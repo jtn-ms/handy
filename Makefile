@@ -13,22 +13,37 @@ install:
 
 setup:
 	pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
-	
-# repo management part
-GITHUB_ACCOUNT = gustav0125@outlook.com
-GITHUB_USER_NAME = gustavkkk
-GITHUB_PASSWORD = xxxxxxx
+
+test:
+	pytest
 
 # config
 config: login copy register
 
 login:
-	git config --global user.email "$(GITHUB_ACCOUNT)"
-	git config --global user.name "$(GITHUB_USER_NAME)"
-	git remote set-url origin https://$(GITHUB_USER_NAME):$(GITHUB_PASSWORD)@github.com/gustavkkk/handy.git
+ifeq ($(CURRENT_OS),Windows)
+	@echo "type mail:"
+	@set /p mail=""
+	@echo "type username:"
+	@set /p username=""
+	@echo "type password:"
+	@set /p password=""
+	@git config --global user.email "%mail%"
+	@git config --global user.name "%username%"
+	@git remote set-url origin https://%username%:%GITHUB_PASSWORD%@github.com/gustavkkk/handy.git
+else
+	@read -p "type mail:" mail;\
+	read -p "type username:" username;\
+	read -p "type password: " password;\
+	git config --global user.email "$$mail"\
+	git config --global user.name "$$password"\
+	git remote set-url origin https://$$username:$$password@github.com/gustavkkk/handy.git	
+endif
+
 
 copy:
 ifeq ($(CURRENT_OS),Windows)
+	@
 	@copy .pypirc %USERPROFILE%
 else
 	@cp .pypirc $(HOME)
@@ -38,18 +53,18 @@ register:
 	@python setup.py register
 
 # update
-update: clean upsrc uppkg
+update: upsrc uppkg
 
-upsrc:
+upsrc: clean
 ifeq ($(CURRENT_OS),Windows)
 	@git add .
-	@echo "Enter a Comment:"
+	@echo "type comment:"
 	@set /p comment=""
 	@git commit -m %comment%
 	@git push origin master
 else
 	@git add .
-	@read -p "Enter a Comment: " comment;\
+	@read -p "type comment: " comment;\
 	git commit -m $$comment;\
 	git push origin master
 endif
@@ -67,6 +82,10 @@ ifeq ($(CURRENT_OS),Windows)
 	@rmdir /q /s src
 	@rmdir /q /s dist
 else
-	@find . -regex ".*\.\(pyc\|bak\)" | xargs rm
-	@rm -rf dist
+	@find . -name *.pyc -exec rm -f {} \;
+	@find . -name *.bak -exec rm -f {} \;
+	@find -name dist | xargs rm -rf
+	@find -name .cache | xargs rm -rf
+	@find -name .pytest_cache | xargs rm -rf
+	@find -name __pycache__ | xargs rm -rf 
 endif

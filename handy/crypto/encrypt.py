@@ -26,22 +26,20 @@ def gen_key(key,flag=True,base=__base__):
     code = base64.urlsafe_b64encode(bkey)# 32->44
     return code
     
-def encrypt(origin='bey0nd',
-            key='I@mTheG0d'):
+def encrypt(origin='bey0nd', key='I@mTheG0d'):
     code = gen_key(key)
     f = Fernet(code)
     return f.encrypt(str.encode(origin)).decode()
 
-def decrypt(encrypted=__encrypted_,
-            key='I@mTheG0d'):
+def decrypt(encrypted=__encrypted_, key='I@mTheG0d'):
     try:
         base64.urlsafe_b64decode(encrypted)
     except:
-        print('invalid token')
-        return
+        print('invalid token'); return
     code = gen_key(key)
     f = Fernet(code)
-    return f.decrypt(str.encode(encrypted)).decode()
+    from handy.conv.basics import byte2ascii
+    return f.decrypt(byte2ascii(encrypted)).decode()
 
 import os
 def encrypt2file(origin=None,
