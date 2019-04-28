@@ -27,29 +27,36 @@ REQUIRES = [
             'urllib3>=1.23',
             'tqdm>=4.19.5',
             'wget>=3.2',
-	    'cryptography>=2.1.4'
+	        'cryptography>=2.1.4'
             ]
 
 keywords = ''
 setup(
     name='handi',
     version=version,
-    description='',
+    description='legacy commands & utils',
     long_description=readme,
     author='gustav0125',
     author_email='gustav0125@outlook.com',
     maintainer='gustav0125',
     maintainer_email='gustav0125@outlook.com',
     url='https://github.com/gustavkkk/handy',
-    license='MIT/Apache-2.0',
+    license='MIT',
     include_package_data=True,
     keywords=['utility','basics'],
-
+    
+    package_dir={"": "src"},
+    entry_points={
+        "console_scripts":
+        [
+            "handy = handy",
+        ]
+    },   
+    
     classifiers=[
         'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
-        'License :: OSI Approved :: Apache Software License',
         'Natural Language :: English',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 2.7',
@@ -62,7 +69,7 @@ setup(
     install_requires=REQUIRES,
     tests_require=['coverage', 'pytest'],
     zip_safe=False,
-    packages=find_packages(),#packages,#
+    packages=find_packages(),
     package_data={
 		  '': ['*.zip','*.py'],
 	},

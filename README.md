@@ -54,6 +54,6 @@ All you have to do is to just call the corresponding function. It will save your
       $ pip install your-package-name
       3. cre@te the project of the n@me
       $ h@tch new your-p@ckage-n@me
-      4. c0py .bat files to the folder
+      4. c0py makefile to the folder
       5. c0py & m0d!fy .pypirc in %userprofile% for windows, $HOME for linux
       6. check setup.py, _init_.py

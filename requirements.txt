@@ -16,6 +16,7 @@ rlp==0.6.0
 pycparser>=2.18
 pytest>=2.9.0
 brute>=0.0.3
+pyinstaller==3.0
 PyDocx
 docx
 

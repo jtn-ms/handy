@@ -8,6 +8,9 @@ endif
 all: update install
 
 # setup
+build:
+	pyinstaller --clean --distpath=dist handy.spec
+
 install:
 	pip install -U handi
 
