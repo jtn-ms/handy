@@ -5,8 +5,7 @@ def unicode2ascii(unistr):
     else: return unistr
 
 def ascii2unicode(ascistr):
-    
-    if sys.version_info[0] == 2: return unicode(ascistr) or ascistr.decode()
+    if sys.version_info[0] == 2: return ascistr.decode()# or  unicode(ascistr)
     else: return ascistr
 
 def byte2unicode(bytestr):

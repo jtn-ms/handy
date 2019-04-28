@@ -1,5 +1,4 @@
 import os
-import pytest
 from handy.crypto.encrypt import encrypt,decrypt
 
 count = 1000

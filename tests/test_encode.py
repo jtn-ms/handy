@@ -1,5 +1,4 @@
 import os
-import pytest
 from handy.crypto.encode import encode, decode
 
 def test_genesis():
@@ -8,8 +7,8 @@ def test_genesis():
 
 from handy.random.passwd import randomPW
 
-def test_times():
-    testtimes=1000
-    for i in range(testtimes):
+def test_stress():
+    count=1000
+    for i in range(count):
         test_str = randomPW(i + 5)
         assert(decode(encode(test_str)) == test_str)
