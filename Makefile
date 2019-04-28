@@ -8,14 +8,15 @@ endif
 all: update install
 
 # setup
-build:
+build: clean
 	pyinstaller --clean --distpath=dist handy.spec
 
 install:
 	pip install -U handi
 
 setup:
-	pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
+	#pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
+	python setup.py install
 
 test:
 	pytest
@@ -85,12 +86,14 @@ ifeq ($(CURRENT_OS),Windows)
 	@rmdir /q /s src
 	@rmdir /q /s dist
 	@rmdir /q /s build
+	@rmdir /q /s handi.egg-info
 else
 	@find -name "*.pyc" -exec rm -f {} \;
 	@find -name "*.bak" -exec rm -f {} \;
 	@find -name dist | xargs rm -rf
 	@find -name .cache | xargs rm -rf
 	@find -name build | xargs rm -rf
+	@find -name handi.egg-info | xargs rm -rf
 	@find -name .pytest_cache | xargs rm -rf
 	@find -name __pycache__ | xargs rm -rf 
 endif

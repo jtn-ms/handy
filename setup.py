@@ -2,11 +2,9 @@ from io import open
 
 from setuptools import find_packages, setup
 
-with open('handy/_version.py', 'r') as f:
+with open('src/handy/_version.py', 'r') as f:
     for line in f:
-        if line.startswith('__version__'):
-            version = line.strip().split('=')[1].strip(' \'"')
-            break
+        if line.startswith('__version__'): version = line.strip().split('=')[1].strip(' \'"'); break
     else:
         version = '0.0.1'
 

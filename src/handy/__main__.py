@@ -11,20 +11,20 @@ def main():
     parser.add_argument('-i','--inpath', default='', help='indicates input file path.')
     parser.add_argument('-o','--outpath', default='', help='indicates output file path.')
     args = parser.parse_args()
-    from .misc import switch
+    from handy.misc import switch
     for mode in switch(args.mode):
         if mode('json'):
             for func in switch(args.func):
-                from .json.handler import load,save
-                from .dict.handler import delkey,rmempty
+                from handy.json.handler import load,save
+                from handy.dict.handler import delkey,rmempty
                 if func('delkey'):
                     if not args.inpath: print('add filepath with -f/--filepath.')
-                    if not args.data: print('add keyname to be deleted with -i/--input.')
-                    if not args.outpath: args.outpath='output.json' 
+                    if not args.data: print('add keyname to be deleted with -d/--data.')
+                    if not args.outpath: print("when outpath not indicated, it will use inputpath as default"); args.outpath=args.inpath
                     data = load(args.inpath)
                     delkey(data,args.data)
-                    rmempty(data,args.data)
-                    save(args.outpath)
+                    rmempty(data)
+                    save(data,args.outpath)
                     break
                 if func():
                     print('type mode with -x or --func.\n \
