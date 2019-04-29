@@ -47,10 +47,13 @@ endif
 
 copy:
 ifeq ($(CURRENT_OS),Windows)
-	@
 	@copy .pypirc %USERPROFILE%
 else
 	@cp .pypirc $(HOME)
+	@read -p "type username:" username;\
+	read -p "type password: " password;\
+	sed -i s/usrname/$$username/g $(HOME)/.pypirc;\
+	sed -i s/passphrase/$$password/g $(HOME)/.pypirc
 endif
 
 register:
@@ -77,7 +80,7 @@ uppkg:
 	@python setup.py sdist upload
 	
 # clean part
-clean:
+clean: 
 ifeq ($(CURRENT_OS),Windows)
 	@del /q /s *.bak
 	@del /q /s *.pyc
