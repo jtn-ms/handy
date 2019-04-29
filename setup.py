@@ -47,7 +47,10 @@ setup(
     entry_points={
         "console_scripts":
         [
-            "utils = handy.cli.cli:client",
+            "gutils = handy.cli.cli:main",
+            "delkey = handy.cli.delkey:main",
+            "rmempty = handy.cli.rmempty:main",
+            "chkey = handy.cli.chkey:main",
         ]
     },   
     

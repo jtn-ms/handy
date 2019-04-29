@@ -2,7 +2,7 @@ import sys
 import argparse
 parser = argparse.ArgumentParser()
 
-def client():
+def main():
     parser.add_argument('-m','--mode', default='json', help='modes: json, document, hack, file, network (default: json)')
     parser.add_argument('-x','--func', default='delkey', help='functions: delkey,rmkey ...')
     parser.add_argument('-d','--data', default='', help='input data')
