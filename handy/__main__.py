@@ -1,51 +1,7 @@
 
 from __future__ import absolute_import, print_function, unicode_literals
 
-import sys
-
-import argparse
-parser = argparse.ArgumentParser()
-
-def main():
-    parser.add_argument('-m','--mode', default='json', help='modes: json, document, hack, file, network (default: json)')
-    parser.add_argument('-x','--func', default='delkey', help='functions: delkey,rmkey ...')
-    parser.add_argument('-d','--data', default='', help='input data')
-    parser.add_argument('-i','--inpath', default='', help='indicates input file path.')
-    parser.add_argument('-o','--outpath', default='', help='indicates output file path.')
-    args = parser.parse_args()
-    from handy.misc import switch
-    for mode in switch(args.mode):
-        if mode('json'):
-            for func in switch(args.func):
-                from handy.json.handler import load,save
-                from handy.dict.handler import delkey,rmempty,isin
-                if func('delkey'):
-                    if not args.inpath: print('add input path with -i/--inpath.'); break
-                    if not args.data: print('add keyname to be deleted with -d/--data.'); break
-                    if not args.outpath:    
-                        if sys.version_info[0] == 2: answer = raw_input("when outpath not indicated, it will use inputpath as default.(yes/no/manual):\n")
-                        else: answer = input("when outpath not indicated, it will use inputpath as default.(yes/no/manual):\n")
-                        if 'y' in answer: args.outpath=args.inpath
-                        elif 'n' in answer: break
-                        else: args.outpath = answer
-                    data = load(args.inpath)
-                    if data is None: print("input file doesn't exist or wrong file."); break
-                    from handy.conv.basics import ascii2unicode
-                    print(args.data)
-                    if isin(data,args.data): print("exists"); delkey(data,args.data)
-                    else: delkey(data,ascii2unicode(args.data))
-                    rmempty(data)
-                    print(data,args.outpath)
-                    save(data,args.outpath)
-                    break
-                if func():
-                    print('type mode with -x or --func.\n \
-                          modes: delkey, rmempty')
-                    break
-            break
-        if mode():
-            print('type mode with -m or --mode')
-            break
+from handy.cli.cli import client
     
 if __name__ == "__main__":
-    main()
+    client()

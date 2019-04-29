@@ -6,7 +6,7 @@ import os, sys
 # your cwd should be in the same dir as this file, so .. is the project directory:
 basepath = os.path.realpath('.')
 
-a = Analysis([os.path.join(basepath, 'src/handy/__main__.py'), ],
+a = Analysis([os.path.join(basepath, 'handy/__main__.py'), ],
              pathex=[basepath, ],
              binaries=[],
              datas=[],
@@ -20,12 +20,18 @@ a = Analysis([os.path.join(basepath, 'src/handy/__main__.py'), ],
 
 pyz = PYZ(a.pure, a.zipped_data, cipher=None)
 
+from sys import platform
+
+if platform == "linux" or platform == "linux2": exename="handy"
+elif platform == "darwin" or platform == "win32": exename="handy.exe"
+else: exename="handy"
+
 exe = EXE(pyz,
           a.scripts,
           a.binaries,
           a.zipfiles,
           a.datas,
-          name='handy.exe',
+          name=exename,
           debug=False,
           strip=False,
           upx=True,

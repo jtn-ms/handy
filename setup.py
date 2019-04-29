@@ -43,11 +43,11 @@ setup(
     include_package_data=True,
     keywords=['utility','basics'],
     
-    #package_dir={"": "handy"},
+    #package_dir={"": "src"},
     entry_points={
         "console_scripts":
         [
-            "handy = handy",
+            "utils = handy.cli.cli:client",
         ]
     },   
     
