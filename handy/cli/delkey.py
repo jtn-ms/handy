@@ -6,8 +6,8 @@ from handy.dict.mixedict import delkey,rmempty,isin
 msg_no_output = "When outpath not indicated, it will use inputpath as default.\n\
                  Please Type y/n/p(Yes/No/Outpath):\n"
 msg_not_found = "file doesn't exist or wrong file."
-msg_help = "Written by junying, 2019-04-29 \n\
-            Usage: delkey [key] [inpath] [outpath]"
+msg_help = "Written by junying, 2019-04-29 \
+            \nUsage: delkey [key] [inpath] [outpath]"
 def main():
     if len(sys.argv) < 3: print(msg_help); return
     elif len(sys.argv) == 3:

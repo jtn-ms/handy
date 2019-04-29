@@ -6,9 +6,9 @@ def find(name, path):
         for file in files:
             if name in file: return os.path.join(root, file)
 
-msg_help = "Written by junying, 2019-04-29 \n\
-            Usage: version [path] \n \
-            Default: version .\n"
+msg_help = "Written by junying, 2019-04-29 \
+            \nUsage: version [path]  \
+            \nDefault: version ."
 
 def main():
     if len(sys.argv) < 2: dirpath='.'

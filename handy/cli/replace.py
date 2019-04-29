@@ -1,7 +1,7 @@
 import sys, os
 
-msg_help = "Written by junying, 2019-04-29 \n\
-            Usage: repl [fromstr] [tostr] [file1] [file2] ..."
+msg_help = "Written by junying, 2019-04-29 \
+            \nUsage: repl [fromstr] [tostr] [file1] [file2] ..."
 # python version of shell command replace
 def main():
     if len(sys.argv) <= 3: print(msg_help); return

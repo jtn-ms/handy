@@ -80,7 +80,7 @@ else
 	git push origin master
 endif
 
-upkg:
+upkg: version
 	@python3 setup.py sdist upload
 	
 # clean part
@@ -102,9 +102,10 @@ else
 	@find -name build | xargs rm -rf
 	@find -name handi.egg-info | xargs rm -rf
 	@find -name .pytest_cache | xargs rm -rf
-	@find -name __pycache__ | xargs rm -rf 
+	@find -name __pycache__ | xargs rm -rf
 endif
 
 version:
+	@echo current version: $$(version)
 	@read -p "type new version: " ver;\
 	 repl $$(version) $$ver handy/_version.py
