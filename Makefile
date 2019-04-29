@@ -61,7 +61,8 @@ else
 endif
 
 register:
-	@python setup.py register
+	#@python setup.py register
+	@python3 setup.py register
 
 # update
 update: upsrc uppkg
