@@ -21,6 +21,10 @@ setup:
 test:
 	pytest
 
+pypi: copy register uppkg
+
+github: login upsrc
+
 # config
 config: login copy register
 
