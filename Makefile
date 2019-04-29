@@ -21,7 +21,7 @@ setup:
 test:
 	pytest
 
-pypi: copy register uppkg
+pypi: copy register upkg
 
 github: login upsrc
 
@@ -61,7 +61,6 @@ else
 endif
 
 register:
-	#@python setup.py register
 	@python3 setup.py register
 
 # update
@@ -81,8 +80,8 @@ else
 	git push origin master
 endif
 
-uppkg:
-	@python setup.py sdist upload
+upkg:
+	@python3 setup.py sdist upload
 	
 # clean part
 clean: 
