@@ -6,9 +6,10 @@ from handy.dict.mixedict import rmempty
 msg_no_output = "When outpath not indicated, it will use inputpath as default.\n \
                  Please Type y/n/p(Yes/No/Outpath):\n"
 msg_not_found = "file doesn't exist or wrong file."
-
+msg_help = "Written by junying, 2019-04-29 \n\
+            Usage: rmempty [inpath] [outpath]"
 def main():
-    if len(sys.argv) < 2: print("format: rmempty [inpath] [outpath]"); return
+    if len(sys.argv) < 2: print(msg_help); return
     elif len(sys.argv) == 2:
         if sys.version_info[0] == 2: answer = raw_input(msg_no_output)
         else: answer = input(msg_no_output)

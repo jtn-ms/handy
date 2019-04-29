@@ -53,6 +53,7 @@ setup(
             "chkey = handy.cli.chkey:main",
             "version = handy.cli.version:main",
             "repl = handy.cli.replace:main",
+            "deline = handy.cli.deline:main",
         ]
     },   
     
