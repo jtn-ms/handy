@@ -51,6 +51,8 @@ setup(
             "delkey = handy.cli.delkey:main",
             "rmempty = handy.cli.rmempty:main",
             "chkey = handy.cli.chkey:main",
+            "version = handy.cli.version:main",
+            "repl = handy.cli.replace:main",
         ]
     },   
     

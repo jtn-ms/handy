@@ -105,3 +105,7 @@ else
 	@find -name .pytest_cache | xargs rm -rf
 	@find -name __pycache__ | xargs rm -rf 
 endif
+
+version:
+	@read -p "type new version: " ver;\
+	 repl $$(version) $$ver handy/_version.py
