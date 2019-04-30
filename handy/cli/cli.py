@@ -2,6 +2,9 @@ import sys
 import argparse
 parser = argparse.ArgumentParser()
 
+msg_no_output = "When outpath not indicated, it will use inputpath as default.\n\
+                 Please Type y/n/p(Yes/No/Outpath):\n"
+
 def main():
     parser.add_argument('-m','--mode', default='json', help='modes: json, document, hack, file, network (default: json)')
     parser.add_argument('-x','--func', default='delkey', help='functions: delkey,rmkey ...')
@@ -19,8 +22,7 @@ def main():
                     if not args.inpath: print('add input path with -i/--inpath.'); break
                     if not args.data: print('add keyname to be deleted with -d/--data.'); break
                     if not args.outpath:    
-                        if sys.version_info[0] == 2: answer = raw_input("when outpath not indicated, it will use inputpath as default.(yes/no/manual):\n")
-                        else: answer = input("when outpath not indicated, it will use inputpath as default.(yes/no/manual):\n")
+                        answer = raw_input(msg_no_output) if sys.version_info[0] == 2 else input(msg_no_output)
                         if 'y' in answer: args.outpath=args.inpath
                         elif 'n' in answer: break
                         else: args.outpath = answer

@@ -11,8 +11,7 @@ msg_help = "Written by junying, 2019-04-29 \
 def main():
     if len(sys.argv) < 2: print(msg_help); return
     elif len(sys.argv) == 2:
-        if sys.version_info[0] == 2: answer = raw_input(msg_no_output)
-        else: answer = input(msg_no_output)
+        answer = raw_input(msg_no_output) if sys.version_info[0] == 2 else input(msg_no_output)
         if 'y' in answer: outpath=sys.argv[1]
         elif 'n' in answer: return
         else: outpath = answer
