@@ -1,0 +1,10 @@
+[console_scripts]
+chkey = handy.cli.chkey:main
+commit = handy.cli.commit:main
+deline = handy.cli.deline:main
+delkey = handy.cli.delkey:main
+gutils = handy.cli.cli:main
+repl = handy.cli.replace:main
+rmempty = handy.cli.rmempty:main
+version = handy.cli.version:main
+
