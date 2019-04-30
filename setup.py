@@ -57,6 +57,7 @@ setup(
             # git control
             "version = handy.cli.text:version",
             "commit = handy.cli.git:commit",
+            "totalines = handy.cli.text:totalines",
             # frequently-used .bashrc configuration
             "die = handy.cli.simple:shutdown",
             "cls = handy.cli.simple:clear",
