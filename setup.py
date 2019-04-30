@@ -53,7 +53,7 @@ setup(
             "rmempty = handy.cli.json:rmempty",
             "chkey = handy.cli.json:chkey",
             "repl = handy.cli.text:replace",
-            "deline = handy.cli.text:replace",
+            "deline = handy.cli.text:deline",
             # git control
             "version = handy.cli.text:version",
             "commit = handy.cli.git:commit",
