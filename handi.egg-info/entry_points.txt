@@ -1,6 +1,6 @@
 [console_scripts]
 bashrc = handy.cli.simple:openbashrc
-chkbashrc = handy.cli.simple:checkbashrc
+chkbashrc = handy.cli.simple:chkbashrc
 chkey = handy.cli.json:chkey
 cls = handy.cli.simple:clear
 commit = handy.cli.git:commit

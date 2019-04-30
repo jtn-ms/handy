@@ -15,7 +15,7 @@ def openbashrc():
     
 def sourcebashrc():
     if platform == "win32": return
-    os.system('source ~/.bashrc')
+    os.system(". ~/.bashrc")
 
 msg_info = "type keystring: "
 

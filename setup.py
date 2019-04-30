@@ -62,7 +62,7 @@ setup(
             "cls = handy.cli.simple:clear",
             "bashrc = handy.cli.simple:openbashrc",
             "flush = handy.cli.simple:sourcebashrc",
-            "chkbashrc = handy.cli.simple:checkbashrc",
+            "chkbashrc = handy.cli.simple:chkbashrc",
             "upload = handy.cli.transfer:upload",
             "download = handy.cli.transfer:download",
         ]
