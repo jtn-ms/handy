@@ -71,12 +71,12 @@ ifeq ($(CURRENT_OS),Windows)
 	@git add .
 	@echo "type comment:"
 	@set /p comment=""
-	@git commit -m %comment%
+	@git commit -m "%comment%"
 	@git push origin master
 else
 	@git add .
 	@read -p "type comment: " comment;\
-	git commit -m $$comment;\
+	git commit -m "$$comment";\
 	git push origin master
 endif
 

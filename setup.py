@@ -49,13 +49,13 @@ setup(
         [
             # json or txt f handling        
             "gutils = handy.cli.cli:main",
-            "delkey = handy.cli.delkey:main",
-            "rmempty = handy.cli.rmempty:main",
-            "chkey = handy.cli.chkey:main",
-            "repl = handy.cli.replace:main",
-            "deline = handy.cli.deline:main",
+            "delkey = handy.cli.json:delkey",
+            "rmempty = handy.cli.json:rmempty",
+            "chkey = handy.cli.json:chkey",
+            "repl = handy.cli.text:replace",
+            "deline = handy.cli.text:replace",
             # git control
-            "version = handy.cli.version:main",
+            "version = handy.cli.text:version",
             "commit = handy.cli.git:commit",
             # frequently-used .bashrc configuration
             "die = handy.cli.simple:shutdown",
