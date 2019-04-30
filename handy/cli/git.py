@@ -7,10 +7,10 @@ msg_comment = "enter comment: "
 msg_not_found = "git repo not found"
 
 cmd_add = "git add ."
-cmd_comment = "git commit -m %s"
+cmd_comment = "git commit -m '%s'"
 cmd_push = "git push origin master"
 
-def main():
+def commit():
     if len(sys.argv) > 1: print(msg_help); return
     if '.git' not in os.listdir('.'): print(msg_not_found); print(msg_help); return
     if sys.version_info[0] == 2: comment = raw_input(msg_comment)

@@ -47,14 +47,24 @@ setup(
     entry_points={
         "console_scripts":
         [
+            # json or txt f handling        
             "gutils = handy.cli.cli:main",
             "delkey = handy.cli.delkey:main",
             "rmempty = handy.cli.rmempty:main",
             "chkey = handy.cli.chkey:main",
-            "version = handy.cli.version:main",
             "repl = handy.cli.replace:main",
             "deline = handy.cli.deline:main",
-            "commit = handy.cli.commit:main",
+            # git control
+            "version = handy.cli.version:main",
+            "commit = handy.cli.git:commit",
+            # frequently-used .bashrc configuration
+            "die = handy.cli.simple:shutdown",
+            "cls = handy.cli.simple:clear",
+            "bashrc = handy.cli.simple:openbashrc",
+            "flush = handy.cli.simple:sourcebashrc",
+            "chkbashrc = handy.cli.simple:checkbashrc",
+            "upload = handy.cli.transfer:upload",
+            "download = handy.cli.transfer:download",
         ]
     },   
     
