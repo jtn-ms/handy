@@ -7,6 +7,7 @@ All you have to do is to just call the corresponding function. It will save your
 [![PyPI Downloads](https://img.shields.io/pypi/dm/handi.svg)](https://pypi.python.org/pypi/handi)
 [![Travis Build Status](https://img.shields.io/travis/gustavkkk/handy.svg)](https://travis-ci.org/gustavkkk/handy)
 [![license](https://img.shields.io/github/license/gaojunying/license.svg)](https://github.com/gaojunying/license/blob/master/LICENSE)
+[![LoC](https://tokei.rs/b1/github/gustavkkk/handy)](https://github.com/gustavkkk/handy)
 
 ### What is One-Click?
 
