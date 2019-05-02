@@ -4,7 +4,7 @@ from handy.json.handler import load,save
 from handy.dict.mixedict import isin, delkey,rmempty
 
 msg_no_output = "When outpath not indicated, it will use inputpath as default.\
-                    Please Type y/n/p(Yes/No/Outpath):\n"
+                 \nPlease Type [Y]es/[N]o/[Outpath]:\n"
 msg_not_found = "file doesn't exist or wrong file."
 msg_help_chkey = "Written by junying, 2019-04-29 \
                  \nUsage: chkey [keyname] [inpath]"

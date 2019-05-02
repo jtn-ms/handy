@@ -26,8 +26,8 @@
 
 from __future__ import absolute_import
 
-from handy._version import __version__
+#from handy._version import get_version
 
 __name__ = 'handy'
 
-__version_info__ = tuple([ int(num) for num in __version__.split('.')])
+#__version_info__ = tuple([ int(num) for num in get_version().split('.')])

@@ -117,7 +117,7 @@ def download_file(url, dest=None):
             if file_size:
                 status += "   [{0:6.2f}%]".format(file_size_dl * 100 / file_size)
             status += chr(13)
-            print(status, end="")
+            print(status)
         print()
 
     return filename

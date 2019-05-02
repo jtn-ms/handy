@@ -3,7 +3,7 @@ import argparse
 parser = argparse.ArgumentParser()
 
 msg_no_output = "When outpath not indicated, it will use inputpath as default.\n\
-                 Please Type y/n/p(Yes/No/Outpath):\n"
+                 \nPlease Type [Y]es/[N]o/[Outpath]:\n"
 
 def main():
     parser.add_argument('-m','--mode', default='json', help='modes: json, document, hack, file, network (default: json)')

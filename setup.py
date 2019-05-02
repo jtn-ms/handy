@@ -18,6 +18,10 @@ if sys.argv[-1] == 'publish':
     os.system('twine upload dist/*')
     sys.exit()
 
+import versioneer
+
+commands = versioneer.get_cmdclass()
+
 packages = ['handi']
 
 REQUIRES = [
@@ -25,7 +29,8 @@ REQUIRES = [
             'urllib3<1.23,>=1.21.1',
             'tqdm>=4.19.5',
             'wget>=3.2',
-	        'cryptography>=2.1.4'
+	        'cryptography>=2.1.4',
+            'humanize',
             ]
 
 keywords = ''
@@ -48,7 +53,7 @@ setup(
         "console_scripts":
         [
             # json or txt f handling        
-            "gutils = handy.cli.cli:main",
+            "handy = handy.cli.cli:main",
             "delkey = handy.cli.json:delkey",
             "rmempty = handy.cli.json:rmempty",
             "chkey = handy.cli.json:chkey",
@@ -83,10 +88,16 @@ setup(
     ],
 
     install_requires=REQUIRES,
+    extras_require={
+    ':sys_platform=="win32"': ["pywin32"],
+    "dev": ["mock", "tox", "pyflakes"],
+    "dilate": ["noiseprotocol"],
+    },
     tests_require=['coverage', 'pytest'],
     zip_safe=False,
     packages=find_packages(),
     package_data={
 		  '': ['*.zip','*.py'],
 	},
+    cmdclass=commands,
 )
