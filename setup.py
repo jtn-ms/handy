@@ -54,9 +54,9 @@ setup(
         [
             # json or txt f handling        
             "handy = handy.cli.cli:main",
-            "delkey = handy.cli.json:delkey",
-            "rmempty = handy.cli.json:rmempty",
-            "chkey = handy.cli.json:chkey",
+            "delkey = handy.cli.json:delKey",
+            "rmempty = handy.cli.json:rmEmpty",
+            "chkey = handy.cli.json:chKey",
             "repl = handy.cli.text:replace",
             "deline = handy.cli.text:deline",
             # git control
