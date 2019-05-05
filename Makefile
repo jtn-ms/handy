@@ -106,6 +106,6 @@ else
 endif
 
 version:
-	@echo current version: $$(version)
+	@echo current version: $$(version handy)
 	@read -p "type new version: " ver;\
-	 repl $$(version) $$ver handy/_version.py
+	 repl $$(version handy) $${ver} handy/_version.py
