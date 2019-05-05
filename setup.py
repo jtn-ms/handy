@@ -71,6 +71,12 @@ setup(
             "chkbashrc = handy.cli.simple:chkbashrc",
             "upload = handy.cli.transfer:upload",
             "download = handy.cli.transfer:download",
+            # encrypt part
+            "hash = handy.cli.crypt:hash",
+            "encode = handy.cli.crypt:Encode",
+            "decode = handy.cli.crypt:Decode",
+            "encrypt = handy.cli.crypt:Encrypt",
+            "decrypt = handy.cli.crypt:Decrypt",
         ]
     },   
     
