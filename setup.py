@@ -5,8 +5,7 @@ from setuptools import find_packages, setup
 with open('handy/_version.py', 'r') as f:
     for line in f:
         if line.startswith('__version__'): version = line.strip().split('=')[1].strip(' \'"'); break
-    else:
-        version = '0.0.1'
+    else: version = '0.0.1'
 
 with open('README.rst', 'r', encoding='utf-8') as f:
     readme = f.read()
@@ -17,7 +16,7 @@ if sys.argv[-1] == 'publish':
     os.system('python setup.py sdist bdist_wheel')
     os.system('twine upload dist/*')
     sys.exit()
-
+    
 import versioneer
 
 commands = versioneer.get_cmdclass()

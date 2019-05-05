@@ -48,7 +48,7 @@ def version():
     filepath = find('version',dirpath)
     with open(filepath, 'r') as file:
         for line in file:
-            if line.startswith('__version__') or line.startswith('_version_') or line.startswith('version'):
+            if any(line.startswith(versionstring) for versionstring in ['_version_','version','__version__']) and '=' in line:
                 version = line.strip().split('=')[1].strip(' \'"'); print(version); return
     print('not found!')
 

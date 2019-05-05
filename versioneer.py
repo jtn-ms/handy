@@ -1197,9 +1197,9 @@ def get_versions():
     return json.loads(version_json)
 """
 
-
+"""
 def versions_from_file(filename):
-    """Try to determine the version from _version.py if present."""
+    "Try to determine the version from _version.py if present."
     try:
         with open(filename) as f:
             contents = f.read()
@@ -1213,7 +1213,14 @@ def versions_from_file(filename):
     if not mo:
         raise NotThisMethod("no version_json in _version.py")
     return json.loads(mo.group(1))
-
+"""
+# junying-todo-2019-05-05
+def versions_from_file(filename):
+    with open(filename, 'r') as f:
+        for line in f:
+            if line.startswith('__version__'): version = line.strip().split('=')[1].strip(' \'"'); break
+        else: version = '0.0.1'
+    return {'dirty':False, 'version':version, 'error':False}
 
 def write_to_version_file(filename, versions):
     """Write the given version number to the given _version.py file."""
@@ -1224,7 +1231,6 @@ def write_to_version_file(filename, versions):
         f.write(SHORT_VERSION_PY % contents)
 
     print("set %s to '%s'" % (filename, versions["version"]))
-
 
 def plus_or_dot(pieces):
     """Return a + if we don't already have one, else return a ."""
@@ -1452,6 +1458,7 @@ def get_versions(verbose=False):
         try:
             pieces = from_vcs_f(cfg.tag_prefix, root, verbose)
             ver = render(pieces, cfg.style)
+            print(ver)
             if verbose:
                 print("got version from VCS %s" % ver)
             return ver
