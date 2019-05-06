@@ -34,9 +34,11 @@ def replace():
     os.system(cmd)
     
 def find(name, path):
+    cands = []
     for root, dirs, files in os.walk(path):
         for file in files:
-            if name in file: return os.path.join(root, file)
+            if name in file: cands.append(os.path.join(root, file))
+    return cands
 
 msg_help_version = "Written by junying, 2019-04-29 \
                     \nUsage: version [path]  \
@@ -45,11 +47,12 @@ msg_help_version = "Written by junying, 2019-04-29 \
 def version():
     if len(sys.argv) < 2: dirpath='.'
     else: dirpath=sys.argv[1]
-    filepath = find('version',dirpath)
-    with open(filepath, 'r') as file:
-        for line in file:
-            if any(line.startswith(versionstring) for versionstring in ['_version_','version','__version__']) and '=' in line:
-                version = line.strip().split('=')[1].strip(' \'"'); print(version); return
+    equalstring = '='
+    for filepath in find('version',dirpath):
+        with open(filepath, 'r') as file:
+            for line in file:
+                if equalstring in line and any(line.startswith(string) for string in ['__version__','_version_','version']):
+                    version = line.strip().split('=')[1].strip(' \'"'); print(version); return
     print('not found!')
 
 def filelines(filepath):
