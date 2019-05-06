@@ -23,16 +23,25 @@ msg_help_deline = "Written by junying, 2019-04-29 \
 def deline():
     if len(sys.argv) < 3: print(msg_help_deline); return
     deleteLine(sys.argv[1],sys.argv[2])
+
+def findall(path):
+    cands = []
+    for root, dirs, files in os.walk(path):
+        for file in files: cands.append(os.path.join(root, file))
+    return cands
     
 msg_help_replace = "Written by junying, 2019-04-29 \
-                    \nUsage: repl [fromstr] [tostr] [file1] [file2] ..."
+                    \nUsage: repl [fromstr] [tostr] [path1] [path2] ..."
 # python version of shell command replace
 def replace():
     if len(sys.argv) <= 3: print(msg_help_replace); return
-    files = [sys.argv[index] for index in range(3,len(sys.argv)) if os.path.exists(sys.argv[index]) and os.path.isfile(sys.argv[index])]
+    paths = [sys.argv[index] for index in range(3,len(sys.argv)) if os.path.exists(sys.argv[index]) and os.path.isfile(sys.argv[index])]
     cmd = "sed -i s/{0}/{1}/g ".format(sys.argv[1],sys.argv[2])
-    for file in files:
-        cmd += "%s "%file
+    for path in paths:
+        if not os.path.exists(path): continue
+        if os.path.isfile(path): cmd += "%s "%path
+        else: 
+            for f in findall(path): cmd+="%s "%file
     os.system(cmd)
     
 def find(name, path):
