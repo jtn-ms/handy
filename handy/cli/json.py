@@ -17,14 +17,16 @@ msg_help_delkey = "Written by junying, 2019-04-29 \
                   \nUsage: delkey [key] [inpath] [outpath]"
 msg_no_output = "When outpath not indicated, it will use inputpath as default.\
                  \nPlease Type [Y]es/[N]o/[Outpath](Default Yes):\n"
-                 
+
+yes_symbols = ['y','Y','yes','Yes']
+no_symbols = ['n','N','no','No']
+
 def delKey():
     if len(sys.argv) < 3: print(msg_help_delkey); return
     elif len(sys.argv) == 3:
         answer = raw_input(msg_no_output) if sys.version_info[0] == 2 else input(msg_no_output)
-        if not answer: answer = 'y'
-        if 'y' in answer[0] or 'Y' in answer[0]: outpath=sys.argv[2]
-        elif 'n' in answer[0] or 'N' in answer[0]: return
+        if not answer or any(symbol in answer[0] for symbol in yes_symbols): outpath=sys.argv[2]
+        elif any(symbol in answer[0] for symbol in no_symbols): return
         else: outpath = answer
     else: outpath = sys.argv[3]
     indata = load(sys.argv[2]); key = sys.argv[1]
@@ -38,8 +40,8 @@ def rmEmpty():
     if len(sys.argv) < 2: print(msg_help_rmempty); return
     elif len(sys.argv) == 2:
         answer = raw_input(msg_no_output) if sys.version_info[0] == 2 else input(msg_no_output)
-        if 'y' in answer: outpath=sys.argv[1]
-        elif 'n' in answer: return
+        if not answer or any(symbol in answer[0] for symbol in yes_symbols): outpath=sys.argv[1]
+        elif any(symbol in answer[0] for symbol in no_symbols): return
         else: outpath = answer
     else: outpath = sys.argv[2]
     # load
