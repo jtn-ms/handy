@@ -27,11 +27,14 @@ from handy.crypto.encrypt import encrypt,decrypt
 
 msg_help_encrypt = "Written by junying, 2019-05-02 \
                   \nUsage: encrypt [string] [password] "    
-msg_passwd = "enter pasword: "
+
+
+from getpass import getpass
+from .constants import msg_passwd
 
 def Encrypt():
     if len(sys.argv) < 2: print(msg_help_encrypt); return
-    elif len(sys.argv) == 2: password = raw_input(msg_passwd) if sys.version_info[0] == 2 else input(msg_passwd)
+    elif len(sys.argv) == 2: password = getpass(msg_passwd)
     else: password = sys.argv[2]
     print(encrypt(sys.argv[1],password))
 
@@ -40,6 +43,6 @@ msg_help_decrypt = "Written by junying, 2019-05-02 \
                       
 def Decrypt():
     if len(sys.argv) < 2: print(msg_help_decrypt); return
-    elif len(sys.argv) == 2: password = raw_input(msg_passwd) if sys.version_info[0] == 2 else input(msg_passwd)
+    elif len(sys.argv) == 2: password = getpass(msg_passwd)
     else: password = sys.argv[2]
     print(decrypt(sys.argv[1],password))

@@ -15,11 +15,8 @@ def chKey():
     
 msg_help_delkey = "Written by junying, 2019-04-29 \
                   \nUsage: delkey [key] [inpath] [outpath]"
-msg_no_output = "When outpath not indicated, it will use inputpath as default.\
-                 \nPlease Type [Y]es/[N]o/[Outpath](Default Yes):\n"
 
-yes_symbols = ['y','Y','yes','Yes']
-no_symbols = ['n','N','no','No']
+from .constants import msg_no_output, yes_symbols, no_symbols
 
 def delKey():
     if len(sys.argv) < 3: print(msg_help_delkey); return
