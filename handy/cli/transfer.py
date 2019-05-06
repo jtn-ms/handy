@@ -3,8 +3,9 @@ import sys
 
 msg_help_upload = "Written by junying, 2019-04-30 \
                    \nUsage: upload [filename]"
-msg_file_not_found = "file doesn't exist."
-            
+
+from .constants import msg_file_not_found
+
 def upload():
     if len(sys.argv) < 2: print(msg_help_upload); return
     if not os.path.exists(sys.argv[1]) or not os.path.isfile(sys.argv[1]): print(msg_file_not_found); return

@@ -1,9 +1,11 @@
 import sys
 import os
 
+from .constants import msg_file_not_found
+
 def deleteLine(keystring,filename):
     fullpath = os.path.realpath(filename)
-    if not os.path.exists(fullpath): print("file doesn't exist."); return
+    if not os.path.exists(fullpath): print(msg_file_not_found); return
     if not os.path.isfile(fullpath): print("directory not accepted."); return
     f = open(fullpath)
     output = []

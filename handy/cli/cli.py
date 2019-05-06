@@ -22,8 +22,8 @@ def main():
                     if not args.data: print('add keyname to be deleted with -d/--data.'); break
                     if not args.outpath:    
                         answer = raw_input(msg_no_output) if sys.version_info[0] == 2 else input(msg_no_output)
-                        if 'y' in answer: args.outpath=args.inpath
-                        elif 'n' in answer: break
+                        if any(symbol in answer[0] for symbol in yes_symbols): args.outpath=args.inpath
+                        elif any(symbol in answer[0] for symbol in no_symbols): break
                         else: args.outpath = answer
                     data = load(args.inpath)
                     if not data: print("input file doesn't exist or wrong file."); break
