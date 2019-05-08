@@ -5,6 +5,7 @@
  
 @ref: https://stackoverflow.com/questions/22676/how-do-i-download-a-file-over-http-using-python
 '''
+import os
 
 anaconda_pkg = [
                 'https://binstar-cio-packages-prod.s3.amazonaws.com/55d5a2dae850de506e38640b/589b85fffcf1cf11711ec367?response-content-disposition=attachment%3B%20filename%3D%22opencv3-3.1.0-py35_0.tar.bz2%22%3B%20filename%2A%3DUTF-8%27%27opencv3-3.1.0-py35_0.tar.bz2&response-content-type=application%2Fx-tar&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Expires=60&X-Amz-Date=20180130T043040Z&X-Amz-SignedHeaders=host&X-Amz-Security-Token=FQoDYXdzEOH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDMdfK9a5%2Fah6%2FWCN%2FCK3AwX%2BfEzjgdLiPbuncKSzRf1BJIPztgc5sdea%2Fwe%2BE09Oi860N6RVQOP26bZoRX5OGwofuAWNkIuh3QVUG96jH4ZPThSG4Fxo4EmXdtd65meRGzFwsQTLNBUTNdZ81qaXUFeRc2b1iGQp27xicmT1jjV%2F4vaPJUDBG4AwYTRHkbiofdNSfNICbLacCZRH%2Bsnx6ElNFolfBIYmfEdUBuGctuXf3hOniCIorxTwTO9agv24sWnkDltK6IQ7y1AqnhVopyowZj55LMEBJibrI3lSm9v%2FwXDHskgIc%2FmiBpK0LioF5%2BaDJUWUWmM9bCNtsd6bLpjCJNM3as9RKaZf16nXQaTG5MMRTTA0%2FT2jPiHKX%2Bj7Zg0FFKjaErBqFnCRbU2hmxloPm5N%2BUdVicECXdeXoPFTr33ePL0xSr8qJ4%2ByQnbYlT%2F6Y%2FMQB%2Bihfu%2BCioCwORCdggsNT99Yboevd568Dm8Wu0Iy1jbwq9%2FZimagKKFYJaJ6gjGpK5NaB7%2FK2wD0oO6pd8FtDqsP2xsl8v31M9JXuuTtcm%2BrB1Dd30OBDf8p3WnIefM5vpXIaLJQGYQNinFHG0vkgRooltm%2B0wU%3D&X-Amz-Credential=ASIAJFFMP3DCRB2JSCSQ%2F20180130%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=82c3c4f9c72046c9ae675f0ff757bee5c22a03c010c90b6b627b27c006e72c08',
