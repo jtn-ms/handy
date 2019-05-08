@@ -7,11 +7,12 @@ Created on Tue Jan 30 19:07:54 2018
 
 import os
 
-import ftplib
+from ftplib import FTP
+
 def upload_ftp(ip):
-    ftp = ftplib.FTP(ip)
-    uname = input('USERNAME:')
-    pw = input('PASSWORD:')
+    ftp = FTP(ip)
+    uname = input('USERNAME: ')
+    pw = input('PASSWORD: ')
     ftp.login(uname,pw)
     #ftp.cwd('/Enter the directory here/')
     for fileordir in os.listdir():
@@ -24,8 +25,8 @@ def upload_ftp(ip):
 
 import pysftp
 def upload_sftp(ip):
-    uname = input('USERNAME:')
-    pw = input('PASSWORD:')
+    uname = input('USERNAME: ')
+    pw = input('PASSWORD: ')
     srv = pysftp.Connection(host=ip, username=uname,
     password=pw,log="./temp/pysftp.log")
     with srv.cd('public'): #chdir to public
@@ -43,8 +44,8 @@ def download_urllib(ip,filename='a.txt',path='Upload'):
 
 def download_ftp(ip,filename):
     ftp = ftplib.FTP(ip)
-    uname = input('USERNAME:')
-    pw = input('PASSWORD:')
+    uname = input('USERNAME: ')
+    pw = input('PASSWORD: ')
     ftp.login(uname,pw)
     #ftp.cwd('/Enter the directory here/')
     LocalFile = open(filename, 'wb')
