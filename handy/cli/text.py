@@ -32,17 +32,30 @@ def findall(path):
     
 msg_help_replace = "Written by junying, 2019-04-29 \
                     \nUsage: repl [fromstr] [tostr] [path1] [path2] ..."
+                    
+def replacefile(srcstring,deststring,filename):
+    fullpath = os.path.realpath(filename)
+    if not os.path.exists(fullpath): print(msg_file_not_found); return
+    if not os.path.isfile(fullpath): print("directory not accepted."); return
+    f = open(fullpath)
+    output = []
+    for line in f:
+        if srcstring in line: output.append(line.replace(srcstring, deststring))
+        else: output.append(line)    
+    f.close()
+    f = open(fullpath, 'w')
+    f.writelines(output)
+    f.close()
+
 # python version of shell command replace
 def replace():
     if len(sys.argv) <= 3: print(msg_help_replace); return
     paths = [sys.argv[index] for index in range(3,len(sys.argv)) if os.path.exists(sys.argv[index]) and os.path.isfile(sys.argv[index])]
-    cmd = "sed -i s/{0}/{1}/g ".format(sys.argv[1],sys.argv[2])
     for path in paths:
         if not os.path.exists(path): continue
-        if os.path.isfile(path): cmd += "%s "%path
+        if os.path.isfile(path): replacefile(sys.argv[1],sys.argv[2],path)
         else: 
-            for f in findall(path): cmd+="%s "%file
-    os.system(cmd)
+            for f in findall(path): replacefile(sys.argv[1],sys.argv[2],f)
     
 def find(name, path):
     cands = []
