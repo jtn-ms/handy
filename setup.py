@@ -80,6 +80,7 @@ setup(
             # filter
             "column = handy.cli.filter:column",
             "row = handy.cli.filter:row",
+            "findstr = handy.cli.filter:findstr",
         ]
     },   
     
