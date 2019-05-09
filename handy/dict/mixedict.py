@@ -13,6 +13,18 @@ def delkey(mixed,field):
     elif isinstance(mixed, list) and all(isinstance(item,dict) for item in mixed):
         for item in mixed: delkey(item,field)                
 
+def findkey(mixed,field):
+    values = []
+    if isinstance(mixed,dict):
+        for key, value in mixed.items():
+            if key == field: values.append(value)
+            if isinstance(value, dict) or isinstance(value, list):
+                for v in findkey(value,field): values.append(v)
+    elif isinstance(mixed, list) and all(isinstance(item,dict) for item in mixed):
+        for item in mixed: 
+            for v in findkey(item,field): values.append(v)
+    return values
+
 def rmempty(mixed):
     if isinstance(mixed,dict):
         for key, value in mixed.items():

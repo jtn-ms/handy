@@ -56,6 +56,7 @@ setup(
             "delkey = handy.cli.json:delKey",
             "rmempty = handy.cli.json:rmEmpty",
             "chkey = handy.cli.json:chKey",
+            "findkey = handy.cli.json:findKey",
             "repl = handy.cli.text:replace",
             "deline = handy.cli.text:deline",
             # git control
