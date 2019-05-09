@@ -24,4 +24,3 @@ def chkbashrc():
     if len(sys.argv) < 2: keystring = raw_input(msg_info) if sys.version_info[0] == 2 else input(msg_info)
     else: keystring = sys.argv[1]
     os.system('cat ~/.bashrc|grep %s'%keystring)
-    

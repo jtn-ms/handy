@@ -76,6 +76,9 @@ setup(
             "decode = handy.cli.crypt:Decode",
             "encrypt = handy.cli.crypt:Encrypt",
             "decrypt = handy.cli.crypt:Decrypt",
+            # filter
+            "column = handy.cli.filter:column",
+            "row = handy.cli.filter:row",
         ]
     },   
     
