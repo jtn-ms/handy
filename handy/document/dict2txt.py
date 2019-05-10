@@ -2,7 +2,7 @@
 """
 Created on Thu Feb  1 05:00:14 2018
 
-@author: stephen
+@author: junying
 """
 
 import json
