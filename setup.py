@@ -81,6 +81,11 @@ setup(
             "column = handy.cli.filter:column",
             "row = handy.cli.filter:row",
             "findstr = handy.cli.filter:findstr",
+            "extractstr = handy.cli.filter:extractstr",
+            "fromstr = handy.cli.filter:fromstr",
+            "endstr = handy.cli.filter:endstr",
+            "excludestr = handy.cli.filter:excludestr",
+            "lenstr = handy.cli.filter:lenstr",
         ]
     },   
     

@@ -29,4 +29,61 @@ def findstr():
     for index in range(2,len(sys.argv)):
         cmd += " %s"%sys.argv[index]
     os.system(cmd)
-    
+
+msg_help_extractstr = "Written by junying, 2019-05-10 \
+                      \nUsage: extractstr [startmark] [endmark] \
+                      \nExample: extractstr AAA ZZZ "
+
+import re
+
+def extractstr():
+    if len(sys.argv) < 3: print(msg_help_extractstr); return
+    context = '{0}(.+?){1}'.format(sys.argv[1],sys.argv[2])
+    for line in sys.stdin:
+        try: found = re.search(context, line).group(1)
+        except: found = ''
+        if found: print(found)
+
+msg_help_fromstr = "Written by junying, 2019-05-10 \
+                      \nUsage: fromstr [startmark] \
+                      \nExample: fromstr AAA "
+                          
+def fromstr():
+    if len(sys.argv) < 2: print(msg_help_fromstr); return
+    for line in sys.stdin:
+        start = line.find(sys.argv[1]) + len(sys.argv[1])
+        if start < len(line): print(line[start:])
+        
+msg_help_endstr = "Written by junying, 2019-05-10 \
+                      \nUsage: endstr [endmark] \
+                      \nExample: endstr AAA "
+                          
+def endstr():
+    if len(sys.argv) < 2: print(msg_help_fromstr); return
+    for line in sys.stdin:
+        end = line.find(sys.argv[1])
+        if end: print(line[:end])
+
+msg_help_excludestr = "Written by junying, 2019-05-10 \
+                      \nUsage: excludestr [excludestring1] \
+                      \nExample: excludestr AAA "
+
+# In:  echo sssssAAAddd | excludestr AAA ddd
+# Out: sssss
+def excludestr():
+    if len(sys.argv) < 2: print(msg_help_excludestr); return
+    strlist = [sys.argv[index] for index in range(1,len(sys.argv))]
+    for line in sys.stdin:
+        origin = line
+        for keystr in strlist:
+            origin = origin.replace(keystr, '')
+        if origin: print(origin)
+        
+msg_help_lenstr = "Written by junying, 2019-05-10 \
+                      \nUsage: lenstr [string] \
+                      \nExample: lenstr AAA \
+                      \nReturn: 3"
+                          
+def lenstr():
+    if len(sys.argv) < 2: print(msg_help_lenstr); return
+    print(len(sys.argv[1]))
