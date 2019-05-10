@@ -55,6 +55,7 @@ setup(
             "handy = handy.cli.cli:main",
             "delkey = handy.cli.json:delKey",
             "rmempty = handy.cli.json:rmEmpty",
+            "beautifyjson = handy.cli.json:rmEmpty",
             "chkey = handy.cli.json:chKey",
             "findkey = handy.cli.json:findKey",
             "repl = handy.cli.text:replace",

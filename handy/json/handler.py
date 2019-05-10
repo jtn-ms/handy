@@ -17,6 +17,7 @@ def load(filename):
 
 def save(dict_,filename,ensure_ascii = False):
     with open(os.path.realpath(filename), 'w') as file:
-        string = json.dumps(dict_,ensure_ascii=ensure_ascii, sort_keys=True, indent=4)#.replace(",", ",\n")
+        #string = json.dumps(dict_,ensure_ascii=ensure_ascii, sort_keys=True, indent=4)#.replace(",", ",\n")
+        string = json.dumps(dict_, sort_keys=True, indent=4)#.replace(",", ",\n")
         file.write(string)
     
