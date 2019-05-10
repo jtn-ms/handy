@@ -86,6 +86,8 @@ setup(
             "endstr = handy.cli.filter:endstr",
             "excludestr = handy.cli.filter:excludestr",
             "lenstr = handy.cli.filter:lenstr",
+            # chkinfo
+            "dirsize = handy.cli.chkinfo:dirsize",
         ]
     },   
     
