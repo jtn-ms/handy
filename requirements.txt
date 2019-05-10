@@ -17,6 +17,5 @@ pycparser>=2.18
 pytest>=2.9.0
 brute>=0.0.3
 pyinstaller==3.0
-PyDocx
-docx
-
+pydocx>0.9.10
+docx>=0.2.4
