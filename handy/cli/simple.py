@@ -2,7 +2,7 @@ import os,sys
 from sys import platform
 
 def shutdown():
-    if platform == "win32": os.system("shutdown /s now")
+    if platform == "win32": os.system("shutdown -h")
     os.system("shutdown -h now")
 
 def clear():
