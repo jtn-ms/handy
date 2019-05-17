@@ -89,6 +89,7 @@ setup(
             "lenstr = handy.cli.filter:lenstr",
             # chkinfo
             "dirsize = handy.cli.chkinfo:dirsize",
+            "linecount = handy.cli.text:linecount",
         ]
     },   
     

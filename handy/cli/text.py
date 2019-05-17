@@ -97,3 +97,11 @@ def totalines():
         for file in files:
             if any(ext in os.path.splitext(file)[1] for ext in exts): count += filelines(os.path.join(root, file))
     print("lines: %d"%count)
+
+msg_help_linecount = "Written by junying, 2019-05-17 \
+                     \nUsage: linecount [filename]"
+    
+def linecount():
+    if len(sys.argv) < 2: print(msg_help_linecount); return
+    if not os.path.exists(sys.argv[1]) or not os.path.isfile(sys.argv[1]): print(msg_file_not_found)
+    print(filelines(sys.argv[1]))
