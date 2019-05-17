@@ -108,11 +108,27 @@ def excludestr():
         
 msg_help_lenstr = "Written by junying, 2019-05-10 \
                       \nUsage: lenstr [string] \
-                      \nExample: lenstr AAA \
-                      \nReturn: 3"
+                      \nExample: lenstr 123456789 \
+                      \nReturn: 9"
 
-# In:  $ lenstr 123456789
-# Out:   9               
 def lenstr():
     if len(sys.argv) < 2: print(msg_help_lenstr); return
     print(len(sys.argv[1]))
+
+msg_help_upperstr = "Written by junying, 2019-05-10 \
+                    \nUsage: upperstr [string] \
+                    \nExample: upperstr abcdef \
+                    \nReturn: ABCDEF"
+
+def upperstr():
+    if len(sys.argv) < 2: print(msg_help_upperstr); return
+    print(sys.argv[1].upper())
+    
+msg_help_lowerstr = "Written by junying, 2019-05-10 \
+                    \nUsage: lowerstr [string] \
+                    \nExample: lowerstr ABCDEF \
+                    \nReturn: abcdef"
+
+def lowerstr():
+    if len(sys.argv) < 2: print(msg_help_lowerstr); return
+    print(sys.argv[1].lower())

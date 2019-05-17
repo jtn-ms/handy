@@ -20,3 +20,4 @@ pyinstaller==3.0
 pydocx>0.9.10
 docx>=0.2.4
 comtypes>=1.1.7
+scapy==2.2.0.dev0

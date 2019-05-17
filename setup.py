@@ -87,6 +87,8 @@ setup(
             "endstr = handy.cli.filter:endstr",
             "excludestr = handy.cli.filter:excludestr",
             "lenstr = handy.cli.filter:lenstr",
+            "upperstr = handy.cli.filter:upperstr",
+            "lowerstr = handy.cli.filter:lowerstr",
             # chkinfo
             "dirsize = handy.cli.chkinfo:dirsize",
             "linecount = handy.cli.text:linecount",
