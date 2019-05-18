@@ -118,7 +118,7 @@ setup(
     zip_safe=False,
     packages=find_packages(),
     package_data={
-		  '': ['*.zip','*.py'],
+		  '': ['*.zip','*.py','*.xml'],
 	},
     cmdclass=commands,
 )

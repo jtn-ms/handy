@@ -1,6 +1,6 @@
 import sys
 
-from handy.json.handler import load,save
+from handy.jzon.handler import load,save
 from handy.dict.mixedict import delkey, findkey, isin, rmempty
 from .constants import msg_file_not_found
 

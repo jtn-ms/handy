@@ -97,15 +97,21 @@ ifeq ($(CURRENT_OS),Windows)
 else
 	@find -name "*.pyc" -exec rm -f {} \;
 	@find -name "*.bak" -exec rm -f {} \;
+	@find -name "*.tar.gz" -exec rm -f {} \;
 	@find -name dist | xargs rm -rf
 	@find -name .cache | xargs rm -rf
 	@find -name build | xargs rm -rf
 	@find -name handi.egg-info | xargs rm -rf
 	@find -name .pytest_cache | xargs rm -rf
 	@find -name __pycache__ | xargs rm -rf
+	@find -name deb_dist | xargs rm -rf
+	@find -name debian | xargs rm -rf
 endif
 
 version:
 	@echo current version: $$(version handy)
 	@read -p "type new version: " ver;\
 	 repl $$(version handy) $${ver} handy/_version.py
+
+deb:
+	@python3 setup.py --command-packages=stdeb.command bdist_deb

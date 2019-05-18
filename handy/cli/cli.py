@@ -15,7 +15,7 @@ def main():
     for mode in switch(args.mode):
         if mode('json'):
             for func in switch(args.func):
-                from handy.json.handler import load,save
+                from handy.jzon.handler import load,save
                 from handy.dict.mixedict import delkey,rmempty,isin
                 if func('delkey'):
                     if not args.inpath: print('add input path with -i/--inpath.'); break
