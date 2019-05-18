@@ -108,7 +108,7 @@ setup(
         'Programming Language :: Python :: Implementation :: PyPy',
     ],
 
-    install_requires=REQUIRES,
+    #install_requires=REQUIRES,
     extras_require={
     ':sys_platform=="win32"': ["pywin32"],
     "dev": ["mock", "tox", "pyflakes"],
@@ -118,7 +118,7 @@ setup(
     zip_safe=False,
     packages=find_packages(),
     package_data={
-		  '': ['*.zip','*.py','*.xml'],
+		  '': ['*.zip','*.py','*.xml','*.rels'],
 	},
     cmdclass=commands,
 )

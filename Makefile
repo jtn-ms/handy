@@ -96,6 +96,7 @@ ifeq ($(CURRENT_OS),Windows)
 	@rmdir /q /s handi.egg-info
 else
 	@find -name "*.pyc" -exec rm -f {} \;
+	@find -name "*.deb" -exec rm -f {} \;
 	@find -name "*.bak" -exec rm -f {} \;
 	@find -name "*.tar.gz" -exec rm -f {} \;
 	@find -name dist | xargs rm -rf
@@ -113,5 +114,26 @@ version:
 	@read -p "type new version: " ver;\
 	 repl $$(version handy) $${ver} handy/_version.py
 
+pre:
+	@dpkg -P scala
+
 deb:
-	@python3 setup.py --command-packages=stdeb.command bdist_deb
+	@python setup.py --command-packages=stdeb.command bdist_deb
+
+deb-fpm:
+	@fpm -s python -t deb ../handy/setup.py
+
+install-deb:
+	@dpkg --force-overwrite -i deb_dist/python-handi_$$(version handy)-1_all.deb
+
+install-deb-fpm:
+	@dpkg --force-overwrite -i python-handi_$$(version handy)_all.deb
+
+clear:
+	@rm -f $$(which handy) $$(which delkey) $$(which beautifyjson) $$(which rmempty) $$(which chkey) $$(which findkey) $$(which repl) $$(which deline)
+	@rm -f $$(which version) $$(which commit) $$(which totalines) 
+	@rm -f $$(which die) $$(which cls) $$(which bashrc) $$(which chkbashrc) $$(which flush) $$(which upload) $$(which download)
+	@rm -f $$(which hash) $$(which encode) $$(which decode) $$(which encrypt) $$(which decrypt)
+	@rm -f $$(which column) $$(which row) $$(which findstr) $$(which extractstr) $$(which fromstr) $$(which endstr) $$(which lenstr) $$(which upperstr) $$(which lowerstr)
+	@rm -f $$(which dirsize) $$(which linecount)
+
