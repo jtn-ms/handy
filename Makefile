@@ -117,9 +117,12 @@ version:
 pre:
 	@dpkg -P scala
 
+# problem: version 0.0.1
+# install path: /usr/bin
 deb:
 	@python setup.py --command-packages=stdeb.command bdist_deb
 
+# install path: /usr/local/bin
 deb-fpm:
 	@fpm -s python -t deb ../handy/setup.py
 
@@ -139,4 +142,6 @@ clear:
 	@rm -f $$(which hash) $$(which encode) $$(which decode) $$(which encrypt) $$(which decrypt)
 	@rm -f $$(which column) $$(which row) $$(which findstr) $$(which extractstr) $$(which fromstr) $$(which endstr) $$(which lenstr) $$(which upperstr) $$(which lowerstr)
 	@rm -f $$(which dirsize) $$(which linecount)
+
+.PHONY: build install clear
 
