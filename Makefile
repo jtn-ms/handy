@@ -123,6 +123,9 @@ deb:
 deb-fpm:
 	@fpm -s python -t deb ../handy/setup.py
 
+rpm-fpm:
+	@fpm -s python -t rpm ../handy/setup.py
+
 install-deb:
 	@dpkg --force-overwrite -i deb_dist/python-handi_$$(version handy)-1_all.deb
 
