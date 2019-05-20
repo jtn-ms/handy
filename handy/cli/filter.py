@@ -16,7 +16,8 @@ def column():
                    
 msg_help_row = "Written by junying, 2019-05-09 \
                \nUsage1: row [index] \
-               \nUsage2: row [index] [filename]"
+               \nUsage2: row [index] [filename] \
+               \nUsage3: row [index] [filename] [zeroflag]"
 
 from .constants import msg_file_not_found
 
@@ -25,10 +26,12 @@ def row():
     if platform == "win32": return
     if len(sys.argv) < 2: print(msg_help_row); return
     if any(char not in string.digits for char in sys.argv[1]): print("index must be digits"); return
-    if len(sys.argv) == 2: os.system("sed -n '%sp'"%sys.argv[1])
-    elif len(sys.argv) == 3:
-        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
-        os.system("cat {1} | sed -n '{0}p'".format(sys.argv[1],sys.argv[2])) 
+    if len(sys.argv) == 2: os.system("sed -n '%sp'"%sys.argv[1]); return
+    if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
+    if len(sys.argv) == 3:
+        os.system("cat {1} | sed -n '{0}p'".format(sys.argv[1],sys.argv[2]))
+    else:
+        os.system("cat {1} | sed -n '{0}p'".format(int(sys.argv[1])+1,sys.argv[2]))
 
 msg_help_findstr = "Written by junying, 2019-05-09 \
                    \nUsage: find [keystring] [path] \
