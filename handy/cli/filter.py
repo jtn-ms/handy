@@ -2,22 +2,33 @@ import platform
 import os,sys
 
 msg_help_column = "Written by junying, 2019-05-09 \
-                \nUsage: column [index]"
+                  \nUsage1: column [index] \
+                  \nUsage2: column [index] [filename]"
                     
 def column():
     if platform == "win32": return
     if len(sys.argv) < 2: print(msg_help_column); return
-    os.system("awk '{print $%sF}'"%sys.argv[1])
-
+    if any(char not in string.digits for char in sys.argv[1]): print("index must be digits"); return
+    if len(sys.argv) == 2: os.system("awk '{print $%sF}'"%sys.argv[1])
+    elif len(sys.argv) == 3:
+        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
+        os.system("cat {1} | awk '{print ${0}F}'".format(sys.argv[1],sys.argv[2])) 
                    
 msg_help_row = "Written by junying, 2019-05-09 \
-               \nUsage: row [index]"
-                    
+               \nUsage1: row [index] \
+               \nUsage2: row [index] [filename]"
+
+from .constants import msg_file_not_found
+
+import string                      
 def row():
     if platform == "win32": return
     if len(sys.argv) < 2: print(msg_help_row); return
-    os.system("sed -n '%sp'"%sys.argv[1])
-    
+    if any(char not in string.digits for char in sys.argv[1]): print("index must be digits"); return
+    if len(sys.argv) == 2: os.system("sed -n '%sp'"%sys.argv[1])
+    elif len(sys.argv) == 3:
+        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
+        os.system("cat {1} | sed -n '{0}p'".format(sys.argv[1],sys.argv[2])) 
 
 msg_help_findstr = "Written by junying, 2019-05-09 \
                    \nUsage: find [keystring] [path] \
@@ -132,3 +143,4 @@ msg_help_lowerstr = "Written by junying, 2019-05-10 \
 def lowerstr():
     if len(sys.argv) < 2: print(msg_help_lowerstr); return
     print(sys.argv[1].lower())
+    

@@ -92,6 +92,7 @@ setup(
             # chkinfo
             "dirsize = handy.cli.chkinfo:dirsize",
             "linecount = handy.cli.text:linecount",
+            "printline = handy.cli.filter:printline",
         ]
     },   
     
