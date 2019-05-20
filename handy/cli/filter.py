@@ -64,7 +64,7 @@ def extractstr():
     else:
         try: found = re.search(context, sys.argv[3]).group(1)
         except: found = ''
-        if found: print(found)       
+        if found: print(found)
 
 msg_help_fromstr = "Written by junying, 2019-05-10 \
                     \nUsage: fromstr [startmark] [string]\
