@@ -37,7 +37,7 @@ msg_help_findstr = "Written by junying, 2019-05-09 \
 def findstr():
     if platform == "win32": return
     if len(sys.argv) < 2: print(msg_help_findstr); return
-    cmd = "grep -nr '%s'"%sys.argv[1]
+    cmd = "grep -r '%s'"%sys.argv[1]
     if len(sys.argv) == 2: os.system(cmd); return
     for index in range(2,len(sys.argv)):
         cmd += " %s"%sys.argv[index]
