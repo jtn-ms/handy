@@ -31,6 +31,7 @@ def row():
     if len(sys.argv) == 3:
         os.system("cat {1} | sed -n '{0}p'".format(sys.argv[1],sys.argv[2]))
     else:
+        increment = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
         os.system("cat {1} | sed -n '{0}p'".format(int(sys.argv[1])+1,sys.argv[2]))
 
 msg_help_findstr = "Written by junying, 2019-05-09 \
