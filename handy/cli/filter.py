@@ -13,7 +13,7 @@ def column():
     if len(sys.argv) == 2: os.system(simplecmd)
     elif len(sys.argv) == 3:
         if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
-        cmd = "cat {1} | {0}".format(simplecmd,sys.argv[2]); print(cmd)
+        cmd = "cat {1} | {0}".format(simplecmd,sys.argv[2])
     os.system(cmd) 
                    
 msg_help_row = "Written by junying, 2019-05-09 \
