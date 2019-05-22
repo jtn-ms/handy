@@ -44,13 +44,15 @@ msg_help_clearkey = "Written by junying, 2019-05-20 \
                 
 def replconfkey():
     if len(sys.argv) < 3: print(msg_help_clearkey); return
-    if len(sys.argv) == 3: replaceKey(sys.argv[1],sys.argv[2]); return
-    if len(sys.argv[3]) > 1:
+    if len(sys.argv) == 3: # process in default mode, clean not replace
+        replaceKey(sys.argv[1],sys.argv[2]); return
+    if len(sys.argv[3]) > 1: # if third param is not quotechar but replaceX
         replacestr = concatStr(sys.argv[3]) if os.path.isfile(sys.argv[3]) else sys.argv[3]
         replaceKey(sys.argv[1],sys.argv[2],'"',replacestr); return
-    replacestr = sys.argv[4] if len(sys.argv) > 4 else ""
-    if os.path.isfile(replacestr): replacestr = concatStr(replacestr)
-    replaceKey(sys.argv[1],sys.argv[2],sys.argv[3],value)
+    else: # if third param is quotechar
+        if len(sys.argv) == 4: replaceKey(sys.argv[1],sys.argv[2],sys.argv[3]); return
+        replacestr = sys.argv[4] if not os.path.isfile(sys.argv[4]) else concatStr(sys.argv[4])
+        replaceKey(sys.argv[1],sys.argv[2],sys.argv[3],replacestr)
 
 msg_help_concatstr = "Written by junying, 2019-05-20 \
                      \nUsage: concatstr [filepath] [juncword] \
