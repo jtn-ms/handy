@@ -94,6 +94,7 @@ setup(
             "linecount = handy.cli.text:linecount",
             # config
             "replconfkey = handy.cli.config:replconfkey",
+            "replconfval = handy.cli.config:replconfval",
             "concatstr = handy.cli.config:concatstr",
         ]
     },   
