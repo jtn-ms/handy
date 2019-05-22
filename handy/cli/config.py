@@ -59,6 +59,6 @@ msg_help_concatstr = "Written by junying, 2019-05-20 \
                      \nDefault: concatstr [filepath] ',' "
                       
 def concatstr():
-    if len(sys.argv) < 2: print(msg_help_clearkey); return
+    if len(sys.argv) < 2: print(msg_help_concatstr); return
     juncword = ',' if len(sys.argv) == 2 else sys.argv[2]
     print(concatStr(sys.argv[1]))
