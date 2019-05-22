@@ -81,13 +81,16 @@ def replconfkey():
         replaceKey(sys.argv[1],sys.argv[2],sys.argv[3],replacestr)
 
 msg_help_concatstr = "Written by junying, 2019-05-20 \
-                     \nUsage: concatstr [filepath] [juncword] \
-                     \nDefault: concatstr [filepath] ',' "
+                     \nUsage: concatstr [juncword] [filepath] \
+                     \nUsage: concatstr [juncword] [str1] [str2] [str3] ...\
+                     \nDefault: concatstr [filepath] "
                       
 def concatstr():
     if len(sys.argv) < 2: print(msg_help_concatstr); return
-    juncword = ',' if len(sys.argv) == 2 else sys.argv[2]
-    print(concatStr(sys.argv[1]))
+    elif len(sys.argv) == 2: print(concatStr(sys.argv[1])); return
+    elif len(sys.argv) == 3: print(concatStr(sys.argv[2],sys.argv[1])); return
+    else: strlist=[sys.argv[index].strip('\r') for index in range(2,len(sys.argv))]; print(sys.argv[1].join(strlist)); return
+    
     
 msg_help_replconfval =  "Written by junying, 2019-05-20 \
                         \nUsage: replconfval [filepath] [keystring]  [findstr] [replacestr] [seperator] \

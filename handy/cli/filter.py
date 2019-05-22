@@ -10,11 +10,9 @@ def column():
     if len(sys.argv) < 2: print(msg_help_column); return
     if any(char not in string.digits for char in sys.argv[1]): print("index must be digits"); return
     simplecmd = "awk '{print $%sF}'"%sys.argv[1]
-    if len(sys.argv) == 2: os.system(simplecmd)
-    elif len(sys.argv) == 3:
-        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
-        cmd = "cat {1} | {0}".format(simplecmd,sys.argv[2])
-    os.system(cmd) 
+    if len(sys.argv) == 2: os.system(simplecmd); return
+    if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
+    os.system("cat {1} | {0}".format(simplecmd,sys.argv[2])) 
                    
 msg_help_row = "Written by junying, 2019-05-09 \
                \nUsage1: row [index] \
