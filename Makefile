@@ -80,7 +80,7 @@ else
 	git push origin master
 endif
 
-upkg: version
+upkg:
 	@python3 setup.py sdist upload
 	
 # clean part
@@ -109,17 +109,25 @@ else
 	@find -name debian | xargs rm -rf
 endif
 
-pyscript_version=
+# version:
+# 	@cur_ver=$$(python -c "f=open('handy/handy.conf', 'r');\
+# 										 versions=[line.strip().split('=')[1].strip(' \'\"') for line in f if line.startswith('__version__')];\
+# 										 f.close();\
+# 										 version= versions[0] if len(versions)>0 else '0.0.1';\
+# 										 print(version)");\
+# 	 echo current version: $$cur_ver;\
+# 	 read -p "type new version: " new_ver;\
+# 	 sed -i s/$$cur_ver/$$new_ver/g handy/_version.py
 
 version:
-	@cur_ver=$$(python -c "f=open('handy/handy.conf', 'r');\
-										 versions=[line.strip().split('=')[1].strip(' \'\"') for line in f if line.startswith('__version__')];\
-										 f.close();\
-										 version= versions[0] if len(versions)>0 else '0.0.1';\
-										 print(version)");\
-	 echo current version: $$cur_ver;\
-	 read -p "type new version: " new_ver;\
-	 sed -i s/$$cur_ver/$$new_ver/g handy/_version.py
+	@git describe --tags `git rev-list --tags --max-count=1`
+
+tag: upsrc
+	@cur_tag=$$(git describe --tags `git rev-list --tags --max-count=1`);\
+	 echo current version: $$cur_tag;\
+	 read -p "type new version: " new_tag;\
+	 git tag $$new_tag;\
+	 git push origin --tags
 
 pre:
 	@dpkg -P scala
@@ -150,6 +158,11 @@ clear:
 	@rm -f $$(which column) $$(which row) $$(which findstr) $$(which extractstr) $$(which fromstr) $$(which endstr) $$(which lenstr) $$(which upperstr) $$(which lowerstr)
 	@rm -f $$(which dirsize) $$(which linecount)
 	@rm -f $$(which replconfval) $$(which replconfkey) $$(which concatstr) $$(which chkstdin)
+
+publish:
+	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
+	 for cmd in $$cmds; do echo $$cmd; $$cmd; done
+	@rm -rf *.pyc
 
 .PHONY: build install clear
 

@@ -35,11 +35,11 @@ All you have to do is to just call the corresponding function. It will save your
 
     ...
     
-### USAGES
+### COMMAND-LINE-TOOLS
 
-      $ python
-      >>>from handy.docx2xml import docx2xml
-      >>>docx2xml('xxx.docx')
+      $ delkey
+      $ 
+
 
 ### ACKNOWLEDGEMENT
 
