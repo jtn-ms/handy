@@ -153,13 +153,9 @@ install-deb-fpm:
 	@dpkg --force-overwrite -i python-handi_$$(version handy)_all.deb
 
 clear:
-	@rm -f $$(which handy) $$(which delkey) $$(which beautifyjson) $$(which rmempty) $$(which chkey) $$(which findkey) $$(which repl) $$(which deline)
-	@rm -f $$(which version) $$(which commit) $$(which totalines) 
-	@rm -f $$(which die) $$(which cls) $$(which bashrc) $$(which chkbashrc) $$(which flush) $$(which upload) $$(which download)
-	@rm -f $$(which hash) $$(which encode) $$(which decode) $$(which encrypt) $$(which decrypt)
-	@rm -f $$(which column) $$(which row) $$(which findstr) $$(which extractstr) $$(which fromstr) $$(which endstr) $$(which lenstr) $$(which upperstr) $$(which lowerstr)
-	@rm -f $$(which dirsize) $$(which linecount)
-	@rm -f $$(which replconfval) $$(which replconfkey) $$(which concatstr) $$(which chkstdin)
+	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
+	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
+	@rm -rf *.pyc
 
 publish:
 	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
