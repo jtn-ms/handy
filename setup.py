@@ -2,7 +2,7 @@ from io import open
 
 from setuptools import find_packages, setup
 
-with open('handy/_version.py', 'r') as f:
+with open('handy/handy.conf', 'r') as f:
     version = '0.0.1'
     for line in f:
         if line.startswith('__version__'): version = line.strip().split('=')[1].strip(' \'"'); break
@@ -35,7 +35,7 @@ REQUIRES = [
 keywords = ''
 setup(
     name='handi',
-    version=version,
+    version=versioneer.get_version(),#version
     description='legacy commands & utils',
     long_description=readme,
     author='gustav0125',

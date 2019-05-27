@@ -109,10 +109,17 @@ else
 	@find -name debian | xargs rm -rf
 endif
 
+pyscript_version=
+
 version:
-	@echo current version: $$(version handy)
-	@read -p "type new version: " ver;\
-	 repl $$(version handy) $${ver} handy/_version.py
+	@cur_ver=$$(python -c "f=open('handy/handy.conf', 'r');\
+										 versions=[line.strip().split('=')[1].strip(' \'\"') for line in f if line.startswith('__version__')];\
+										 f.close();\
+										 version= versions[0] if len(versions)>0 else '0.0.1';\
+										 print(version)");\
+	 echo current version: $$cur_ver;\
+	 read -p "type new version: " new_ver;\
+	 sed -i s/$$cur_ver/$$new_ver/g handy/_version.py
 
 pre:
 	@dpkg -P scala
@@ -142,6 +149,7 @@ clear:
 	@rm -f $$(which hash) $$(which encode) $$(which decode) $$(which encrypt) $$(which decrypt)
 	@rm -f $$(which column) $$(which row) $$(which findstr) $$(which extractstr) $$(which fromstr) $$(which endstr) $$(which lenstr) $$(which upperstr) $$(which lowerstr)
 	@rm -f $$(which dirsize) $$(which linecount)
+	@rm -f $$(which replconfval) $$(which replconfkey) $$(which concatstr) $$(which chkstdin)
 
 .PHONY: build install clear
 
