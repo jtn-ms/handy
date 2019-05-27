@@ -13,7 +13,7 @@ entry_points = [
                 "commit = handy.cli.git:commit",
                 "totalines = handy.cli.text:totalines",
                 # frequently-used .bashrc configuration
-                "die = handy.cli.simple:shutdown",
+                "boo = handy.cli.simple:shutdown",
                 "cls = handy.cli.simple:clear",
                 "bashrc = handy.cli.simple:openbashrc",
                 "flush = handy.cli.simple:sourcebashrc",

@@ -88,6 +88,7 @@ clean:
 ifeq ($(CURRENT_OS),Windows)
 	@del /q /s *.bak
 	@del /q /s *.pyc
+	@del /q /s *.log
 	@rmdir /q /s __pycache__
 	@rmdir /q /s .pytest_cache
 	@rmdir /q /s src
@@ -96,6 +97,7 @@ ifeq ($(CURRENT_OS),Windows)
 	@rmdir /q /s handi.egg-info
 else
 	@find -name "*.pyc" -exec rm -f {} \;
+	@find -name "*.log" -exec rm -f {} \;
 	@find -name "*.deb" -exec rm -f {} \;
 	@find -name "*.bak" -exec rm -f {} \;
 	@find -name "*.tar.gz" -exec rm -f {} \;
@@ -122,7 +124,7 @@ endif
 version:
 	@git describe --tags `git rev-list --tags --max-count=1`
 
-tag: upsrc
+release: upsrc
 	@cur_tag=$$(git describe --tags `git rev-list --tags --max-count=1`);\
 	 echo current version: $$cur_tag;\
 	 read -p "type new version: " new_tag;\
@@ -161,7 +163,13 @@ clear:
 
 publish:
 	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
-	 for cmd in $$cmds; do echo $$cmd >> temp.txt; done
+	 for cmd in $$cmds; do if [ "$$cmd" != "boo" ] && \
+	 						  [ "$$cmd" != "cls" ] && \
+							  [ "$$cmd" != "commit" ] && \
+							  [ "$$cmd" != "bashrc" ] && \
+							  [ "$$cmd" != "version" ] && \
+							  [ "$$cmd" != "chkstdin" ] && \
+							  [ "$$cmd" != "chkbashrc" ]; then $$cmd|row 2|fromstr "Usage: "; fi; done
 	@rm -rf *.pyc
 
 .PHONY: build install clear

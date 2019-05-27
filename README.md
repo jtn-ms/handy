@@ -20,23 +20,33 @@ All you have to do is to just call the corresponding function. It will save your
 ### INSTALLATION
       
       $ pip install -U handi
-
-### FUNCTIONS 
-
-   * conversion
-
-    -docx2xml
-
-    -list2txt
-
-    -dict2json
-
-   * compression
-
-    ...
-    
+   
 ### COMMAND-LINE-TOOLS
-
+      $ delkey [key] [inpath] [outpath]
+      $ rmempty [inpath] [outpath]
+      $ rmempty [inpath] [outpath]
+      $ chkey [keyname] [inpath]
+      $ findkey [keyname] [inpath]
+      $ repl [fromstr] [tostr] [path1] [path2] ...
+      $ deline [keystring] [filename]
+      $ totalines [ext1] [ext2] ...                     
+      $ upload [filename]
+      $ download [filename] [password]
+      $ encode [string] 
+      $ decode [string] 
+      $ encrypt [string] [password] 
+      $ decrypt [string] [password] 
+      $ find [keystring] [path]                    
+      $ fromstr [startmark] [string]                    
+      $ fromstr [startmark] [string]                    
+      $ excludestr [excludestring1]                       
+      $ lenstr [string]                       
+      $ upperstr [string]                     
+      $ lowerstr [string]                     
+      $ linecount [filename]
+      $ replacekey [keystring] [filepath] [quotechar] [replacestring/replacefile]                     
+      $ replconfval [filepath] [keystring]  [findstr] [replacestr] [seperator]                         
+      $ concatstr [juncword] [filepath]
 
 ### ACKNOWLEDGEMENT
 

@@ -2,7 +2,7 @@ import platform
 import os,sys
 
 msg_help_column = "Written by junying, 2019-05-09 \
-                  \nUsage1: column [index] \
+                  \nUsage: column [index] \
                   \nUsage2: column [index] [filename] \
                   \nEx1: cat a.txt | column [index] \
                   \nEx2: column 1 a.txt "
@@ -19,7 +19,7 @@ def column():
     os.system("cat {1} | {0}".format(simplecmd,sys.argv[2])) 
                    
 msg_help_row = "Written by junying, 2019-05-09 \
-               \nUsage1: row [index] \
+               \nUsage: row [index] \
                \nUsage2: row [index] [filename] \
                \nUsage3: row [index] [filename] [offset] \
                \nEx1: cat a.txt | row 1 \
@@ -57,7 +57,7 @@ def findstr():
     os.system(cmd)
 
 msg_help_extractstr = "Written by junying, 2019-05-10 \
-                      \nUsage1: extractstr [startmark] [endmark] [string]\
+                      \nUsage: extractstr [startmark] [endmark] [string]\
                       \nUsage2: echo [string] | extractstr [startmark] [endmark] \
                       \nEx1: echo acdAAA12345ZZZ | extractstr AAA ZZZ \
                       \nEx2: extractstr AAA ZZZ acdAAA12345ZZZ\
