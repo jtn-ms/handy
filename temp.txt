@@ -1,0 +1,16 @@
+add input path with -i/--inpath.
+Written by junying, 2019-04-29                   
+Usage: delkey [key] [inpath] [outpath]
+Written by junying, 2019-04-29                    
+Usage: rmempty [inpath] [outpath]
+Written by junying, 2019-04-29                    
+Usage: rmempty [inpath] [outpath]
+Written by junying, 2019-04-29                  
+Usage: chkey [keyname] [inpath]
+Written by junying, 2019-05-09                  
+Usage: findkey [keyname] [inpath]
+Written by junying, 2019-04-29                     
+Usage: repl [fromstr] [tostr] [path1] [path2] ...
+Written by junying, 2019-04-29                    
+Usage: deline [keystring] [filename]
+

@@ -161,7 +161,7 @@ clear:
 
 publish:
 	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
-	 for cmd in $$cmds; do echo $$cmd; $$cmd; done
+	 for cmd in $$cmds; do echo $$cmd >> temp.txt; done
 	@rm -rf *.pyc
 
 .PHONY: build install clear

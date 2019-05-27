@@ -37,9 +37,6 @@ All you have to do is to just call the corresponding function. It will save your
     
 ### COMMAND-LINE-TOOLS
 
-      $ delkey
-      $ 
-
 
 ### ACKNOWLEDGEMENT
 
