@@ -48,8 +48,8 @@ entry_points = [
                 # network
                 "mac = handy.cli.chkinfo:mac",
                 # clipboard
-                "pbcopy = handy.cli.clipboard:pbcopy",
-                "pbpaste = handy.cli.clipboard:pbpaste",
+                #"pbcopy = handy.cli.clipboard:pbcopy",
+                #"pbpaste = handy.cli.clipboard:pbpaste",
             ]
 
 commands = [cmd.strip().replace(" ",'').split('=')[0] for cmd in entry_points]
