@@ -45,8 +45,11 @@ entry_points = [
                 "replconfkey = handy.cli.config:replconfkey",
                 "replconfval = handy.cli.config:replconfval",
                 "concatstr = handy.cli.config:concatstr",
-                # 
+                # network
                 "mac = handy.cli.chkinfo:mac",
+                # clipboard
+                "pbcopy = handy.cli.clipboard:pbcopy",
+                "pbpaste = handy.cli.clipboard:pbpaste",
             ]
 
 commands = [cmd.strip().replace(" ",'').split('=')[0] for cmd in entry_points]
