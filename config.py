@@ -9,7 +9,7 @@ entry_points = [
                 "repl = handy.cli.text:replace",
                 "deline = handy.cli.text:deline",
                 # git control
-                "version = handy.cli.text:version",
+                "version = handy.cli.chkinfo:version",
                 "commit = handy.cli.git:commit",
                 "totalines = handy.cli.text:totalines",
                 # frequently-used .bashrc configuration

@@ -3,6 +3,6 @@ include LICENSE-MIT
 include README.rst
 include versioneer.py
 include config.py
-recursive-include handy *.zip *.xml *.rels
-global-include *.zip *.xml *.rels *.py
+recursive-include handy *.zip *.xml *.rels *.conf
+global-include *.zip *.xml *.rels *.py *.conf
 graft handy

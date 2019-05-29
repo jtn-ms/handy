@@ -1,0 +1,9 @@
+Origin: linux-admins.net
+Label: linux-admins.net
+Codename: precise
+Architectures: i386 amd64 source
+Components: main
+Description: GustavPi APT Repository
+SignWith: yes
+DebOverride: override.precise
+DscOverride: override.precise

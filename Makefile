@@ -135,24 +135,114 @@ pre:
 	@dpkg -P scala
 
 # problem: version 0.0.1
+#		   python module not installed	
 # install path: /usr/bin
-deb:
-	@python setup.py --command-packages=stdeb.command bdist_deb
+# deb:
+# 	@python setup.py --command-packages=stdeb.command bdist_deb
+# install-deb:
+# 	@dpkg --force-overwrite -i deb_dist/python-handi_$$(version handy)-1_all.deb
 
 # install path: /usr/local/bin
-deb-fpm:
+deb-pre:
+	@apt-get install ruby ruby-dev rubygems build-essential
+	@gem install --no-ri --no-rdoc fpm
+
+deb:
 	@fpm -s python -t deb ../handy/setup.py
 
-rpm-fpm:
+rpm:
 	@fpm -s python -t rpm ../handy/setup.py
 
 install-deb:
-	@dpkg --force-overwrite -i deb_dist/python-handi_$$(version handy)-1_all.deb
-
-install-deb-fpm:
 	@dpkg --force-overwrite -i python-handi_$$(version handy)_all.deb
 
-clear:
+# apt
+# http://www.linux-admins.net/2012/08/creating-apt-repository-with-reprepro.html
+genkey: apt-conf
+	@apt-get install gnupg dpkg-sig reprepro
+	@gpg --gen-key
+
+delkey:
+	@gpg --delete-secret-keys GustavPi
+	@gpg --delete-keys GustavPi
+
+apt: clean on deb rmapt mkapt off
+
+apt-conf: apt-conf-dir apt-conf-dist apt-conf-options apt-conf-override
+
+apt-conf-dir:
+	@if ! [ -d "/var/packages/ubuntu/conf" ]; then mkdir -p /var/packages/ubuntu/conf; fi
+	@if ! [ -d "/var/packages/debian/conf" ]; then mkdir -p /var/packages/debian/conf; fi
+
+apt-conf-dist:
+	@if ! [ -f "/var/packages/ubuntu/conf/distributions" ]; then \
+	 cp apt/distributions /var/packages/ubuntu/conf; fi
+
+apt-conf-options:
+	@if ! [ -f "/var/packages/ubuntu/conf/options" ]; then \
+	 cp apt/options /var/packages/ubuntu/conf; fi
+
+apt-conf-override:
+	@if ! [ -f "/var/packages/ubuntu/conf/override.precise" ]; then touch /var/packages/ubuntu/conf/override.precise; fi
+
+mkapt: apt-conf
+	@debfile=$(CURDIR)/python-handi_$$(version handy)_all.deb;\
+	 dpkg-sig --sign builder $$debfile;\
+	 cd /var/packages/ubuntu;\
+	 reprepro includedeb precise $$debfile
+
+chkapt:
+	@cd /var/packages/ubuntu;\
+	 reprepro list precise
+
+rmapt:
+	@if [ -d "/var/packages/ubuntu" ]; then cd /var/packages/ubuntu;\
+	 			  						   reprepro remove precise python-handi; fi
+
+
+DOMAIN= packages.linux-admins
+IPADDR = 192.168.10.124
+KEYNAME = Anton Vos
+ppa:
+	@if [ "$$(findstr ${IPADDR} /etc/apt/sources.list)" == "" ]; then \
+		echo "deb http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;\
+		echo "deb-src http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;fi
+
+ftp:
+	@apt install apache2
+	@cd /var/www/;\
+	 cp $(CURDIR)/apt/repo.conf /etc/apache2/sites-available;\
+	 gpg --armor --output html/${DOMAIN}.key --export "${KEYNAME}";\
+	 a2ensite repo;\
+	 service apache2 reload
+	 
+apt-install:
+	@curl -H GET ${IPADDR}/${DOMAIN}.key > $(CURDIR)/${DOMAIN}.key;
+	@cp -rf /var/packages/ubuntu /var/www/html/ubuntu
+	@apt-key add ${DOMAIN}.key
+	@apt update
+	@apt install python-handi
+	@rm $(CURDIR)/${DOMAIN}.key
+
+apt-uninstall:
+	@apt remove python-handi
+	
+# https://www.maketecheasier.com/setup-local-repository-ubuntu/
+# upapt2:
+# 	@cd /var/www/;\
+# 	 mkdir -p debs;\
+# 	 cd debs;\
+# 	 mkdir -p amd64 i386;\
+# 	 debfile=$(CURDIR)/python-handi_$$(version $(CURDIR)/handy)_all.deb;\
+# 	 cp $$debfile amd64;\
+# 	 dpkg-scanpackages amd64 | gzip -9c > Packages.gz;
+# 	@if [ "$$(findstr ${IPADDR} /etc/apt/sources.list)" == "" ]; then \
+# 	  echo "deb http://${IPADDR}/debs/ amd64/" >> /etc/apt/sources.list;fi
+
+# remove all installed exection files
+# and print all
+uninstall:
+	@pip uninstall handi
 	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
 	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
 	@rm -rf *.pyc
@@ -168,5 +258,17 @@ publish:
 							  [ "$$cmd" != "chkbashrc" ]; then $$cmd|row 2|fromstr "Usage: "; fi; done
 	@rm -rf *.pyc
 
-.PHONY: build install clear
+# Manual Versioning Flag
+status:
+	@findstr use_manual_versioning setup.py 
+on:
+	@replconfval setup.py use_manual_versioning False True
+	@replconfval versioneer.py use_manual_versioning False True
+
+off:
+	@replconfval setup.py use_manual_versioning True False
+	@replconfval versioneer.py use_manual_versioning True False
+
+.PHONY: build install clear \
+		upapt
 

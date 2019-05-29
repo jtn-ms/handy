@@ -1197,30 +1197,34 @@ def get_versions():
     return json.loads(version_json)
 """
 
-def versions_from_file(filename):
-    "Try to determine the version from _version.py if present."
-    try:
-        with open(filename) as f:
-            contents = f.read()
-    except EnvironmentError:
-        raise NotThisMethod("unable to read _version.py")
-    mo = re.search(r"version_json = '''\n(.*)'''  # END VERSION_JSON",
-                   contents, re.M | re.S)
-    if not mo:
-        mo = re.search(r"version_json = '''\r\n(.*)'''  # END VERSION_JSON",
-                       contents, re.M | re.S)
-    if not mo:
-        raise NotThisMethod("no version_json in _version.py")
-    return json.loads(mo.group(1))
-
 # junying-todo-2019-05-05
 # refined in 2019-05-27
-# def versions_from_file(filename):
-#     version = '0.0.1'
-#     with open(filename, 'r') as f:
-#         for line in f:
-#             if line.startswith('__version__'): version = line.strip().split('=')[1].strip(' \'"'); break
-#     return {'dirty':False, 'version':version, 'error':False}
+# if you want to remove suffix with "dirty" when packaking, you can activate this
+# and you have to set use_manual_versioning flag in setup.py & here as True
+use_manual_versioning = False
+if use_manual_versioning:
+    def versions_from_file(filename):
+        version = '0.8.4'
+        with open(filename, 'r') as f:
+            for line in f:
+                if line.startswith('__version__'): version = line.strip().split('=')[1].strip(' \'"'); break
+        return {'dirty':False, 'version':version, 'error':False}
+else:
+    def versions_from_file(filename):
+        "Try to determine the version from _version.py if present."
+        try:
+            with open(filename) as f:
+                contents = f.read()
+        except EnvironmentError:
+            raise NotThisMethod("unable to read _version.py")
+        mo = re.search(r"version_json = '''\n(.*)'''  # END VERSION_JSON",
+                    contents, re.M | re.S)
+        if not mo:
+            mo = re.search(r"version_json = '''\r\n(.*)'''  # END VERSION_JSON",
+                        contents, re.M | re.S)
+        if not mo:
+            raise NotThisMethod("no version_json in _version.py")
+        return json.loads(mo.group(1))
 
 def write_to_version_file(filename, versions):
     """Write the given version number to the given _version.py file."""

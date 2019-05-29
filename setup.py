@@ -2,7 +2,7 @@ from io import open
 
 from setuptools import find_packages, setup
 
-with open('handy/handy.conf', 'r') as f:
+with open('handy/version.conf', 'r') as f:
     version = '0.0.1'
     for line in f:
         if line.startswith('__version__'): version = line.strip().split('=')[1].strip(' \'"'); break
@@ -36,9 +36,11 @@ keywords = ['utility','basics']
 
 import config
 
+use_manual_versioning = False
+
 setup(
     name='handi',
-    version=versioneer.get_version(),#version
+    version=version if use_manual_versioning else versioneer.get_version() ,
     description='legacy commands & utils',
     long_description=readme,
     author='gustav0125',

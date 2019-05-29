@@ -52,28 +52,6 @@ def replace():
         else: 
             for f in findall(path): replacefile(sys.argv[1],sys.argv[2],f)
     
-def find(name, path):
-    cands = []
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            if name in file: cands.append(os.path.join(root, file))
-    return cands
-
-msg_help_version = "Written by junying, 2019-04-29 \
-                    \nUsage: version [path]  \
-                    \nDefault: version ."
-
-def version():
-    if len(sys.argv) < 2: dirpath='.'
-    else: dirpath=sys.argv[1]
-    equalstring = '='
-    for filepath in find('version',dirpath):
-        with open(filepath, 'r') as file:
-            for line in file:
-                if equalstring in line and any(line.startswith(string) for string in ['__version__','_version_','version']):
-                    version = line.strip().split('=')[1].strip(' \'"'); print(version); return
-    print('not found!')
-
 def filelines(filepath):
     if not os.path.isfile(filepath): return 0
     return sum(1 for line in open(filepath))

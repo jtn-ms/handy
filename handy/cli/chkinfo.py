@@ -28,3 +28,19 @@ def mac():
     if "/" in sys.argv[1]: cmd="nmap -nsP %s | awk '/Nmap scan report/{printf $5;printf \" \";getline;getline;print $3;}'"%sys.argv[1]
     else: cmd = "nmap -nsP %s | awk '/Nmap scan report/{5;printf \"\";getline;getline;print $3;}'"%sys.argv[1]
     os.system(cmd)
+    
+from ._file import findbyname
+msg_help_version = "Written by junying, 2019-04-29 \
+                    \nUsage: version [path]  \
+                    \nDefault: version ."
+
+def version():
+    if len(sys.argv) < 2: dirpath='.'
+    else: dirpath=sys.argv[1]
+    equalstring = '='
+    for filepath in findbyname('version',dirpath):
+        with open(filepath, 'r') as file:
+            for line in file:
+                if equalstring in line and any(line.startswith(string) for string in ['__version__','_version_','version']):
+                    version = line.strip().split('=')[1].strip(' \'"'); print(version); return
+    print('not found!')
