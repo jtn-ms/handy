@@ -7,7 +7,7 @@ msg_comment = "enter comment: "
 msg_not_found = "git repo not found"
 
 cmd_add = "git add ."
-cmd_comment = "git commit -m '%s'"
+cmd_comment = 'git commit -m "%s"'
 cmd_push = "git push origin master"
 
 def commit():

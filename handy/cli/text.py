@@ -23,12 +23,6 @@ msg_help_deline = "Written by junying, 2019-04-29 \
 def deline():
     if len(sys.argv) < 3: print(msg_help_deline); return
     deleteLine(sys.argv[1],sys.argv[2])
-
-def findall(path):
-    cands = []
-    for root, dirs, files in os.walk(path):
-        for file in files: cands.append(os.path.join(root, file))
-    return cands
     
 msg_help_replace = "Written by junying, 2019-04-29 \
                     \nUsage: repl [fromstr] [tostr] [path1] [path2] ..."
@@ -47,6 +41,7 @@ def replacefile(srcstring,deststring,filename):
     f.writelines(output)
     f.close()
 
+from ._file import findall
 # python version of shell command replace
 def replace():
     if len(sys.argv) <= 3: print(msg_help_replace); return

@@ -50,6 +50,8 @@ entry_points = [
                 # clipboard
                 #"pbcopy = handy.cli.clipboard:pbcopy",
                 #"pbpaste = handy.cli.clipboard:pbpaste",
+                # secure
+                "srm = handy.cli.secure:srm",
             ]
 
 commands = [cmd.strip().replace(" ",'').split('=')[0] for cmd in entry_points]
