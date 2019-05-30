@@ -208,6 +208,10 @@ addapt:
 		echo "deb http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;\
 		echo "deb-src http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;fi
 
+rmapt:
+	@deline "deb http://${IPADDR}" /etc/apt/sources.list
+	@deline "deb-src http://${IPADDR}" /etc/apt/sources.list
+
 start-apache2:
 	@apt install apache2
 	@cd /var/www/;\
@@ -221,7 +225,7 @@ stop-apache2:
 	 a2dissite repo;\
 	 systemctl stop apache2
 
-apt-install:
+apt-install: addapt start-apache2
 	@curl -H GET ${IPADDR}/${DOMAIN}.key > $(CURDIR)/${DOMAIN}.key;
 	@cp -rf /var/packages/ubuntu /var/www/html/ubuntu
 	@apt-key add ${DOMAIN}.key
@@ -229,9 +233,7 @@ apt-install:
 	@apt install python-handi
 	@rm $(CURDIR)/${DOMAIN}.key
 
-apt-remove:
-	@deline "deb http://${IPADDR}" /etc/apt/sources.list
-	@deline "deb-src http://${IPADDR}" /etc/apt/sources.list
+apt-remove: rmapt stop-apache2
 	@apt remove python-handi
 	
 # https://www.maketecheasier.com/setup-local-repository-ubuntu/
