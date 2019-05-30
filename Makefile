@@ -199,11 +199,11 @@ rmapt:
 	@if [ -d "/var/packages/ubuntu" ]; then cd /var/packages/ubuntu;\
 	 			  						   reprepro remove precise python-handi; fi
 
-
+# local part
 DOMAIN= packages.linux-admins
 IPADDR = 192.168.10.124
 KEYNAME = Anton Vos
-ppa:
+addapt:
 	@if [ "$$(findstr ${IPADDR} /etc/apt/sources.list)" == "" ]; then \
 		echo "deb http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;\
 		echo "deb-src http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;fi
@@ -247,6 +247,22 @@ uninstall:
 	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
 	@rm -rf *.pyc
 
+# ppa part
+# https://askubuntu.com/questions/71510/how-do-i-create-a-ppa/493577#493577
+# keyword: mmta
+# https://launchpad.net/~falcon0125/+archive/ubuntu/pyhandy
+# https://help.launchpad.net/Packaging/PPA/Uploading
+# Note that Launchpad builds the packages onsite, and does not accept deb files. The correct command for creating the Debian package source is 'debuild -S'.
+# python not supported by debuild -S
+srcpkg: on
+	@python setup.py sdist bdist_wheel
+
+ppa-ftp:
+	@apt install dput
+	@cp apt/.dput.cf ~
+	@dput ppa:falcon0125/pyhandy <source.changes> 
+
+# misc
 publish:
 	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
 	 for cmd in $$cmds; do if [ "$$cmd" != "boo" ] && \

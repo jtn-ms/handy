@@ -1,0 +1,6 @@
+[falcon0125/pyhandy]
+fqdn = ppa.launchpad.net
+method = ftp
+incoming = ~falcon0125/ubuntu/pyhandy/
+login = anonymous
+allow_unsigned_uploads = 0
