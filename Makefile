@@ -208,14 +208,19 @@ addapt:
 		echo "deb http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;\
 		echo "deb-src http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;fi
 
-ftp:
+start-apache2:
 	@apt install apache2
 	@cd /var/www/;\
 	 cp $(CURDIR)/apt/repo.conf /etc/apache2/sites-available;\
 	 gpg --armor --output html/${DOMAIN}.key --export "${KEYNAME}";\
 	 a2ensite repo;\
 	 service apache2 reload
-	 
+
+stop-apache2:
+	@cd /var/www/;\
+	 a2dissite repo;\
+	 systemctl stop apache2
+
 apt-install:
 	@curl -H GET ${IPADDR}/${DOMAIN}.key > $(CURDIR)/${DOMAIN}.key;
 	@cp -rf /var/packages/ubuntu /var/www/html/ubuntu
