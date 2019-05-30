@@ -229,7 +229,9 @@ apt-install:
 	@apt install python-handi
 	@rm $(CURDIR)/${DOMAIN}.key
 
-apt-uninstall:
+apt-remove:
+	@deline "deb http://${IPADDR}" /etc/apt/sources.list
+	@deline "deb-src http://${IPADDR}" /etc/apt/sources.list
 	@apt remove python-handi
 	
 # https://www.maketecheasier.com/setup-local-repository-ubuntu/
