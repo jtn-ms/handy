@@ -11,7 +11,7 @@ def secure_delete(filepath,repeats=3):
     
 from sys import platform
 from ._file import findall
-from _constants import msg_file_not_found
+from ._constants import msg_file_not_found
 import string
 
 def srm():
