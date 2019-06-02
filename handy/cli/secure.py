@@ -11,7 +11,7 @@ def secure_delete(filepath,repeats=3):
     
 from sys import platform
 from ._file import findall
-from constants import msg_file_not_found
+from _constants import msg_file_not_found
 import string
 
 def srm():
@@ -19,7 +19,7 @@ def srm():
     if len(sys.argv) < 2: print(msg_help_srm); return
     repeats = 3
     #
-    if all(char in string.digits for char in sys.argv[1]) and not os.path.exists(sys.arvs[1]):
+    if all(char in string.digits for char in sys.argv[1]) and not os.path.exists(sys.argv[1]):
         repeats = sys.argv[1]
         paths = [sys.argv[index] for index in range(2,len(sys.argv)) if os.path.exists(sys.argv[index])]
     else: paths = [sys.argv[index] for index in range(1,len(sys.argv)) if os.path.exists(sys.argv[index])]

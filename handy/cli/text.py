@@ -1,7 +1,7 @@
 import sys
 import os
 
-from .constants import msg_file_not_found
+from ._constants import msg_file_not_found
 
 def deleteLine(keystring,filename):
     fullpath = os.path.realpath(filename)

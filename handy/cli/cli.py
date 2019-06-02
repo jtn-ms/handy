@@ -2,7 +2,7 @@ import sys
 import argparse
 parser = argparse.ArgumentParser()
 
-from .constants import msg_no_output, yes_symbols, no_symbols
+from ._constants import msg_no_output, yes_symbols, no_symbols
 
 def main():
     parser.add_argument('-m','--mode', default='json', help='modes: json, document, hack, file, network (default: json)')

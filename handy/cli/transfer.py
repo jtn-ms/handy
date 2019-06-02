@@ -4,7 +4,7 @@ import sys
 msg_help_upload = "Written by junying, 2019-04-30 \
                    \nUsage: upload [filename]"
 
-from .constants import msg_file_not_found
+from ._constants import msg_file_not_found
 
 def upload():
     if len(sys.argv) < 2: print(msg_help_upload); return

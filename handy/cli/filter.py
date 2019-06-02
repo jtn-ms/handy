@@ -11,7 +11,7 @@ def column():
     if platform == "win32": return
     if len(sys.argv) < 2: print(msg_help_column); return
     if any(char not in string.digits for char in sys.argv[1]): print("index must be digits"); return
-    simplecmd = "awk '{print $%sF}'"%sys.argv[1]
+    simplecmd = 'awk "{print $%sF}"'%sys.argv[1]
     if len(sys.argv) == 2:
         if sys.stdin.isatty(): print(msg_help_column); return 
         os.system(simplecmd); return
@@ -26,7 +26,7 @@ msg_help_row = "Written by junying, 2019-05-09 \
                \nEx2: row 2 a.txt \
                \nEx3: row 3 a.txt 1"
 
-from .constants import msg_file_not_found
+from ._constants import msg_file_not_found
 
 import string                      
 def row():
@@ -35,13 +35,13 @@ def row():
     if any(char not in string.digits for char in sys.argv[1]): print("index must be digits"); return
     if len(sys.argv) == 2: 
         if sys.stdin.isatty(): print(msg_help_row); return    
-        os.system("sed -n '%sp'"%sys.argv[1]); return
+        os.system('sed -n "%sp"'%sys.argv[1]); return
     if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
     if len(sys.argv) == 3:
-        os.system("cat {1} | sed -n '{0}p'".format(sys.argv[1],sys.argv[2]))
+        os.system('cat {1} | sed -n "{0}p"'.format(sys.argv[1],sys.argv[2]))
     else:
         offset = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
-        os.system("cat {1} | sed -n '{0}p'".format(int(sys.argv[1])+offset,sys.argv[2]))
+        os.system('cat {1} | sed -n "{0}p"'.format(int(sys.argv[1])+offset,sys.argv[2]))
 
 msg_help_findstr = "Written by junying, 2019-05-09 \
                    \nUsage: find [keystring] [path] \
@@ -50,7 +50,7 @@ msg_help_findstr = "Written by junying, 2019-05-09 \
 def findstr():
     if platform == "win32": return
     if len(sys.argv) < 2: print(msg_help_findstr); return
-    cmd = "grep -r '%s'"%sys.argv[1]
+    cmd = 'grep -r "%s"'%sys.argv[1]
     if len(sys.argv) == 2: os.system(cmd); return
     for index in range(2,len(sys.argv)):
         cmd += " %s"%sys.argv[index]

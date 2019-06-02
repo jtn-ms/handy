@@ -30,7 +30,7 @@ msg_help_encrypt = "Written by junying, 2019-05-02 \
 
 
 from getpass import getpass
-from .constants import msg_passwd
+from ._constants import msg_passwd
 
 def Encrypt():
     if len(sys.argv) < 2: print(msg_help_encrypt); return

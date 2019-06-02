@@ -2,7 +2,7 @@ import sys
 
 from handy.jzon.handler import load,save
 from handy.dict.mixedict import delkey, findkey, isin, rmempty
-from .constants import msg_file_not_found
+from ._constants import msg_file_not_found
 
 msg_help_chkey = "Written by junying, 2019-04-29 \
                  \nUsage: chkey [keyname] [inpath]"
@@ -16,7 +16,7 @@ def chKey():
 msg_help_delkey = "Written by junying, 2019-04-29 \
                   \nUsage: delkey [key] [inpath] [outpath]"
 
-from .constants import msg_no_output, yes_symbols, no_symbols
+from ._constants import msg_no_output, yes_symbols, no_symbols
 
 def delKey():
     if len(sys.argv) < 3: print(msg_help_delkey); return
