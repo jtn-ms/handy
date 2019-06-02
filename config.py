@@ -47,6 +47,8 @@ entry_points = [
                 "concatstr = handy.cli.config:concatstr",
                 # network
                 "mac = handy.cli.chkinfo:mac",
+                "pubip = handy.cli.chkinfo:pubip",
+                "prvip = handy.cli.chkinfo:privip",
                 # clipboard
                 #"pbcopy = handy.cli.clipboard:pbcopy",
                 #"pbpaste = handy.cli.clipboard:pbpaste",

@@ -2,7 +2,7 @@ import os,sys
 
 def get_size(start_path = '.'):
     total_size = 0
-    for dirpath, dirnames, filenames in os.walk(start_path):
+    for dirpath, _, filenames in os.walk(start_path):
         for f in filenames:
             fp = os.path.join(dirpath, f)
             total_size += os.path.getsize(fp)
@@ -44,3 +44,11 @@ def version():
                 if equalstring in line and any(line.startswith(string) for string in ['__version__','_version_','version']):
                     version = line.strip().split('=')[1].strip(' \'"'); print(version); return
     print('not found!')
+
+from handy.network.worm import get_private_ip,get_public_ip
+
+def pubip():
+    return get_public_ip()
+
+def privip():
+    return get_private_ip()
