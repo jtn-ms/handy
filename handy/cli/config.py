@@ -2,7 +2,7 @@ import os
 import sys
 import platform
 
-from .constants import msg_file_not_found
+from ._constants import msg_file_not_found
 
 import re
 

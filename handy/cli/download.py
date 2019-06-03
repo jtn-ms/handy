@@ -4,7 +4,7 @@ import sys
 msg_help_upload = "Written by junying, 2019-05-06 \
                    \nUsage: download [filename]"
 
-from .constants import msg_file_not_found
+from ._constants import msg_file_not_found
 
 def download():
     if len(sys.argv) < 2: print(msg_help_upload); return

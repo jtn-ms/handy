@@ -1,0 +1,5 @@
+make
+awk
+sed
+grep
+shred

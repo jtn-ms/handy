@@ -1,7 +1,7 @@
 import sys
 import os
 
-from .constants import msg_file_not_found
+from ._constants import msg_file_not_found
 
 def deleteLine(keystring,filename):
     fullpath = os.path.realpath(filename)
@@ -66,7 +66,7 @@ def totalines():
     if len(sys.argv) < 2: print(msg_help_totalines); exts = ['py','go','cpp','h','java']
     else: exts = [sys.argv[index] for index in range(1,len(sys.argv))]
     count = 0
-    for root, dirs, files in os.walk('.'):
+    for root, _, files in os.walk('.'):
         for file in files:
             if any(ext in os.path.splitext(file)[1] for ext in exts): count += filelines(os.path.join(root, file))
     print("lines: %d"%count)

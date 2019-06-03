@@ -88,7 +88,6 @@ clean:
 ifeq ($(CURRENT_OS),Windows)
 	@del /q /s *.bak
 	@del /q /s *.pyc
-	@del /q /s *.log
 	@rmdir /q /s __pycache__
 	@rmdir /q /s .pytest_cache
 	@rmdir /q /s src
