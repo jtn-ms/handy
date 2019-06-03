@@ -11,7 +11,7 @@ bcrypt>=3.1.3
 bcrypt>=3.1.3
 pyasn1>=0.1.7
 pynacl>=1.0.1
-pyautogui>=0.9.36
+# pyautogui>=0.9.36
 rlp==0.6.0
 pycparser>=2.18
 pytest>=2.9.0
@@ -20,4 +20,4 @@ pyinstaller==3.0
 pydocx>=0.9.10
 docx>=0.2.4
 comtypes>=1.1.7
-scapy==2.2.0.dev0
+# scapy==2.2.0.dev0
