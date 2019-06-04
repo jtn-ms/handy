@@ -11,7 +11,7 @@ def column():
     if platform == "win32": return
     if len(sys.argv) < 2: print(msg_help_column); return
     if any(char not in string.digits for char in sys.argv[1]): print("index must be digits"); return
-    simplecmd = 'awk "{print $%sF}"'%sys.argv[1]
+    simplecmd = "awk '{print $%sF}'"%sys.argv[1]
     if len(sys.argv) == 2:
         if sys.stdin.isatty(): print(msg_help_column); return 
         os.system(simplecmd); return
