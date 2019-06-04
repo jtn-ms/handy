@@ -28,15 +28,30 @@ msg_help_row = "Written by junying, 2019-05-09 \
 
 from ._constants import msg_file_not_found
 
-import string                      
-def row():
-    if platform == "win32": return
-    if len(sys.argv) < 2: print(msg_help_row); return
-    if any(char not in string.digits for char in sys.argv[1]): print("index must be digits"); return
+import string
+
+def row_win():
     if len(sys.argv) == 2: 
-        if sys.stdin.isatty(): print(msg_help_row); return    
-        os.system('sed -n "%sp"'%sys.argv[1]); return
-    if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
+        for index,line in enumerate(sys.stdin):
+            if int(sys.argv[1]) > index: return line
+        return
+    elif len(sys.argv) == 3:
+        if not os.path.exists(sys.argv[2]): return msg_file_not_found
+        with open(sys.argv[2]) as file:
+            for index, line in enumerate(file):
+                if int(sys.argv[1]) > index: return line
+    else:
+        offset = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
+        with open(sys.argv[2]) as file:
+            for index, line in enumerate(file):
+                if int(sys.argv[1])+offset > index: return line       
+def row():
+    if len(sys.argv) < 2: return msg_help_row
+    if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
+    if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_row    
+    if platform == "win32": return row_win()
+    if len(sys.argv) == 2: os.system('sed -n "%sp"'%sys.argv[1]); return
+    if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
     if len(sys.argv) == 3:
         os.system('cat {1} | sed -n "{0}p"'.format(sys.argv[1],sys.argv[2]))
     else:
