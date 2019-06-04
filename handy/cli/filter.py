@@ -11,21 +11,20 @@ def column():
     if len(sys.argv) < 2: return msg_help_column
     if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
     if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_column
-    simplecmd = "awk '{print $%sF}'"%sys.argv[1]
     index = int(sys.argv[1])
     if len(sys.argv) == 2:
         result=''
         for line in sys.stdin:
             frags = line.split()
-            result += '%s\n'%frags[index-1] if len(frags) >= index else ''
+            if len(frags) >= index: print(frags[index-1])
     else: 
         if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
         result=''
         with open(sys.argv[2]) as file:
             for line in file:
                 frags = line.split()
-                result += '%s\n'%frags[index-1] if len(frags) >= index else ''
-    return result[:-1]
+                if len(frags) >= index: print(frags[index-1])
+    return
                     
 # def column():
 #     if platform == "win32": return
@@ -56,17 +55,17 @@ def row():
     if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_row
     if len(sys.argv) == 2: 
         for index,line in enumerate(sys.stdin):
-            if int(sys.argv[1]) > index: return line.strip('\n')
+            if int(sys.argv[1]) > index: print(line.strip('\n'));return
     elif len(sys.argv) == 3:
         if not os.path.exists(sys.argv[2]): return msg_file_not_found
         with open(sys.argv[2]) as file:
             for index, line in enumerate(file):
-                if index+1 == int(sys.argv[1]): return line.strip('\n')
+                if index+1 == int(sys.argv[1]): print(line.strip('\n'));return
     else:
         offset = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
         with open(sys.argv[2]) as file:
             for index, line in enumerate(file):
-                if index+1 == int(sys.argv[1])+offset: return line.strip('\n')      
+                if index+1 == int(sys.argv[1])+offset: print(line.strip('\n'));return
 # def row():
 #     if len(sys.argv) < 2: return msg_help_row
 #     if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
