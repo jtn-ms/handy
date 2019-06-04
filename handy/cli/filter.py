@@ -1,4 +1,4 @@
-import platform
+from sys import platform
 import os,sys
 
 msg_help_column = "Written by junying, 2019-05-09 \
@@ -6,17 +6,37 @@ msg_help_column = "Written by junying, 2019-05-09 \
                   \nUsage2: column [index] [filename] \
                   \nEx1: cat a.txt | column [index] \
                   \nEx2: column 1 a.txt "
-                    
+
 def column():
-    if platform == "win32": return
-    if len(sys.argv) < 2: print(msg_help_column); return
-    if any(char not in string.digits for char in sys.argv[1]): print("index must be digits"); return
+    if len(sys.argv) < 2: return msg_help_column
+    if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
+    if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_column
     simplecmd = "awk '{print $%sF}'"%sys.argv[1]
+    index = int(sys.argv[1])
     if len(sys.argv) == 2:
-        if sys.stdin.isatty(): print(msg_help_column); return 
-        os.system(simplecmd); return
-    if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
-    os.system("cat {1} | {0}".format(simplecmd,sys.argv[2])) 
+        result=''
+        for line in sys.stdin:
+            frags = line.split()
+            result += '%s\n'%frags[index-1] if len(frags) >= index else ''
+    else: 
+        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
+        result=''
+        with open(sys.argv[2]) as file:
+            for line in file:
+                frags = line.split()
+                result += '%s\n'%frags[index-1] if len(frags) >= index else ''
+    return result[:-1]
+                    
+# def column():
+#     if platform == "win32": return
+#     if len(sys.argv) < 2: return msg_help_column
+#     if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
+#     simplecmd = "awk '{print $%sF}'"%sys.argv[1]
+#     if len(sys.argv) == 2:
+#         if sys.stdin.isatty(): print(msg_help_column); return 
+#         os.system(simplecmd); return
+#     if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
+#     os.system("cat {1} | {0}".format(simplecmd,sys.argv[2])) 
                    
 msg_help_row = "Written by junying, 2019-05-09 \
                \nUsage: row [index] \
@@ -30,33 +50,35 @@ from ._constants import msg_file_not_found
 
 import string
 
-def row_win():
+def row():
+    if len(sys.argv) < 2: return msg_help_row
+    if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
+    if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_row
     if len(sys.argv) == 2: 
         for index,line in enumerate(sys.stdin):
-            if int(sys.argv[1]) > index: return line
-        return
+            if int(sys.argv[1]) > index: return line.strip('\n')
     elif len(sys.argv) == 3:
         if not os.path.exists(sys.argv[2]): return msg_file_not_found
         with open(sys.argv[2]) as file:
             for index, line in enumerate(file):
-                if int(sys.argv[1]) > index: return line
+                if index+1 == int(sys.argv[1]): return line.strip('\n')
     else:
         offset = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
         with open(sys.argv[2]) as file:
             for index, line in enumerate(file):
-                if int(sys.argv[1])+offset > index: return line       
-def row():
-    if len(sys.argv) < 2: return msg_help_row
-    if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
-    if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_row    
-    if platform == "win32": return row_win()
-    if len(sys.argv) == 2: os.system('sed -n "%sp"'%sys.argv[1]); return
-    if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
-    if len(sys.argv) == 3:
-        os.system('cat {1} | sed -n "{0}p"'.format(sys.argv[1],sys.argv[2]))
-    else:
-        offset = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
-        os.system('cat {1} | sed -n "{0}p"'.format(int(sys.argv[1])+offset,sys.argv[2]))
+                if index+1 == int(sys.argv[1])+offset: return line.strip('\n')      
+# def row():
+#     if len(sys.argv) < 2: return msg_help_row
+#     if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
+#     if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_row    
+#     if platform == "win32": return "this function only support linux os. "
+#     if len(sys.argv) == 2: os.system('sed -n "%sp"'%sys.argv[1]); return
+#     if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
+#     if len(sys.argv) == 3:
+#         os.system('cat {1} | sed -n "{0}p"'.format(sys.argv[1],sys.argv[2]))
+#     else:
+#         offset = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
+#         os.system('cat {1} | sed -n "{0}p"'.format(int(sys.argv[1])+offset,sys.argv[2]))
 
 msg_help_findstr = "Written by junying, 2019-05-09 \
                    \nUsage: find [keystring] [path] \
