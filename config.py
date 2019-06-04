@@ -56,6 +56,8 @@ entry_points = [
                 #"pbpaste = handy.cli.clipboard:pbpaste",
                 # secure
                 "srm = handy.cli.secure:srm",
+                #
+                "genpass = handy.cli.crypt:genpazz",
             ]
 
 commands = [cmd.strip().replace(" ",'').split('=')[0] for cmd in entry_points]

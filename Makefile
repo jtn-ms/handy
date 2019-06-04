@@ -293,6 +293,9 @@ off:
 	@replconfval setup.py use_manual_versioning True False
 	@replconfval versioneer.py use_manual_versioning True False
 
+again: uninstall setup
+
 .PHONY: build install clear \
-		upapt
+		upapt \
+		test
 
