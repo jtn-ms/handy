@@ -207,7 +207,7 @@ addapt:
 		echo "deb http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;\
 		echo "deb-src http://${IPADDR}/ubuntu precise main" >> /etc/apt/sources.list;fi
 
-rmapt:
+delapt:
 	@deline "deb http://${IPADDR}" /etc/apt/sources.list
 	@deline "deb-src http://${IPADDR}" /etc/apt/sources.list
 
@@ -232,7 +232,7 @@ apt-install: addapt start-apache2
 	@apt install python-handi
 	@rm $(CURDIR)/${DOMAIN}.key
 
-apt-remove: rmapt stop-apache2
+apt-remove: delapt stop-apache2
 	@apt remove python-handi
 	
 # https://www.maketecheasier.com/setup-local-repository-ubuntu/

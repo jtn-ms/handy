@@ -49,6 +49,8 @@ entry_points = [
                 "mac = handy.cli.chkinfo:mac",
                 "pubip = handy.cli.chkinfo:pubip",
                 "prvip = handy.cli.chkinfo:privip",
+                "gps = handy.cli.chkinfo:gps",
+                "ipinfo = handy.cli.chkinfo:ipinfo",
                 # clipboard
                 #"pbcopy = handy.cli.clipboard:pbcopy",
                 #"pbpaste = handy.cli.clipboard:pbpaste",

@@ -45,10 +45,16 @@ def version():
                     version = line.strip().split('=')[1].strip(' \'"'); print(version); return
     print('not found!')
 
-from handy.network.worm import get_private_ip,get_public_ip
+from handy.network.worm import get_private_ip,get_public_ip,get_gps,get_ipinfo
 
 def pubip():
     return get_public_ip()
 
 def privip():
     return get_private_ip()
+
+def gps():
+    return get_gps()
+
+def ipinfo():
+    return get_ipinfo()

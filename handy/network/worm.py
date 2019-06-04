@@ -9,13 +9,17 @@
 import nmap
 import os
 import socket
-from urllib.request import urlopen
+from sys import version
+try:
+    from urllib2 import urlopen  
+except ImportError:
+    from urllib.request import urlopen
 import urllib
 import time
 from ftplib import FTP
 import ftplib
 from shutil import copy2
-import win32api
+#import win32api
 
 def get_private_ip():
     """
@@ -24,8 +28,16 @@ def get_private_ip():
     Returns:
         private IP address
     """
-    ip = socket.gethostbyname(socket.gethostname())
-    return ip
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
     
 def get_public_ip():
     """
@@ -38,6 +50,17 @@ def get_public_ip():
     data = str(urlopen('http://checkip.dyndns.com/').read())
     return re.compile(r'Address: (\d+.\d+.\d+.\d+)').search(data).group(1)
 
+def get_gps():
+    import geocoder
+    g = geocoder.ip('me')
+    return g.latlng
+
+
+def get_ipinfo():
+    import requests
+    req = requests.get("https://ipinfo.io")
+    return req.json()
+        
 # def scan_ssh_hosts():
 #     """
 #     Scans all machines on the same network that
