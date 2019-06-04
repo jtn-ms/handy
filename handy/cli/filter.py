@@ -13,13 +13,11 @@ def column():
     if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_column
     index = int(sys.argv[1])
     if len(sys.argv) == 2:
-        result=''
         for line in sys.stdin:
             frags = line.split()
             if len(frags) >= index: print(frags[index-1])
     else: 
         if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
-        result=''
         with open(sys.argv[2]) as file:
             for line in file:
                 frags = line.split()
