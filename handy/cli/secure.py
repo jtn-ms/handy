@@ -1,7 +1,7 @@
 import os, sys
 
 msg_help_srm = "Written by junying, 2019-05-28 \
-               \nUsage:   srm [repeats] [path1] [path2] \
+               \nUsage: srm [repeats] [path1] [path2] \
                \nExample: srm 10 big.file \
                \nDefault: srm 3 big.file \
                \nSame:    shred -fuvzn 10 big.file "
