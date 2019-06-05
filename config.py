@@ -58,6 +58,8 @@ entry_points = [
                 "srm = handy.cli.secure:srm",
                 #
                 "genpass = handy.cli.crypt:genpazz",
+                # utils
+                "timer = handy.cli.utils:timer",
             ]
 
 commands = [cmd.strip().replace(" ",'').split('=')[0] for cmd in entry_points]
