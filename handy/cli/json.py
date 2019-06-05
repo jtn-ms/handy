@@ -8,7 +8,8 @@ msg_help_chkey = "Written by junying, 2019-04-29 \
                  \nUsage: chkey [keyname] [inpath]"
 def chKey():
     if len(sys.argv) < 3: print(msg_help_chkey); return
-    indata = load(sys.argv[2])
+    try: indata = load(sys.argv[2])
+    except: return "No JSON object could be decoded"
     if not indata: print(msg_file_not_found); return
     if not isin(indata,sys.argv[1]): print("no found!")
     else: print("found!!!")
@@ -26,7 +27,8 @@ def delKey():
         elif any(symbol in answer[0] for symbol in no_symbols): return
         else: outpath = answer
     else: outpath = sys.argv[3]
-    indata = load(sys.argv[2]); key = sys.argv[1]
+    try: indata = load(sys.argv[2]); key = sys.argv[1]
+    except: return "No JSON object could be decoded"
     if not indata: print(msg_file_not_found); return
     delkey(indata,key); rmempty(indata); save(indata,outpath)
 
@@ -34,7 +36,8 @@ msg_help_findkey = "Written by junying, 2019-05-09 \
                  \nUsage: findkey [keyname] [inpath]"
 def findKey():
     if len(sys.argv) < 3: print(msg_help_findkey); return
-    indata = load(sys.argv[2])
+    try: indata = load(sys.argv[2])
+    except: return "No JSON object could be decoded"
     if not indata: print(msg_file_not_found); return
     if not isin(indata,sys.argv[1]): print("no found!")
     else:
@@ -52,7 +55,8 @@ def rmEmpty():
         else: outpath = answer
     else: outpath = sys.argv[2]
     # load
-    indata = load(sys.argv[1])
+    try: indata = load(sys.argv[1])
+    except: return "No JSON object could be decoded"
     if not indata: print(msg_file_not_found); return
     # process
     rmempty(indata)
