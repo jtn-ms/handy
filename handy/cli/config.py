@@ -62,11 +62,11 @@ def concatStr(filename,juncword=','):
         return juncword.join([line.strip('\n') for line in lines])
 
 msg_help_clearkey = "Written by junying, 2019-05-20 \
-                    \nUsage: replacekey [keystring] [filepath] [quotechar] [replacestring/replacefile] \
-                    \nClean: replacekey [keystring] [filepath] \
-                    \nClean: replacekey [keystring] [filepath] [quotechar] \
-                    \nFillIn: replacekey [keystring] [filepath] [replacestring/replacefile] \
-                    \nDefault: replacekey [keystring] [filepath] '\"' \"\" "
+                    \nUsage: replconfkey [keystring] [filepath] [quotechar] [replacestring/replacefile] \
+                    \nClean: replconfkey [keystring] [filepath] \
+                    \nClean: replconfkey [keystring] [filepath] [quotechar] \
+                    \nFillIn: replconfkey [keystring] [filepath] [replacestring/replacefile] \
+                    \nDefault: replconfkey [keystring] [filepath] '\"' \"\" "
                 
 def replconfkey():
     if len(sys.argv) < 3: print(msg_help_clearkey); return
