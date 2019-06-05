@@ -8,9 +8,9 @@ msg_help_column = "Written by junying, 2019-05-09 \
                   \nEx2: column 1 a.txt "
 
 def column():
-    if len(sys.argv) < 2: return msg_help_column
+    if len(sys.argv) < 2: print(msg_help_column); return
     if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
-    if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_column
+    if len(sys.argv) == 2 and sys.stdin.isatty(): print(msg_help_column);return
     index = int(sys.argv[1])
     if len(sys.argv) == 2:
         result=''
@@ -50,12 +50,12 @@ from ._constants import msg_file_not_found
 import string
 
 def row():
-    if len(sys.argv) < 2: return msg_help_row
+    if len(sys.argv) < 2: print(msg_help_row);return
     if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
-    if len(sys.argv) == 2 and sys.stdin.isatty(): return msg_help_row
+    if len(sys.argv) == 2 and sys.stdin.isatty(): print(msg_help_row);return
     if len(sys.argv) == 2: 
         for index,line in enumerate(sys.stdin):
-            if int(sys.argv[1]) > index: print(line.strip('\n'));return
+            if index+1 == int(sys.argv[1]): print(line.strip('\n'));return
     elif len(sys.argv) == 3:
         if not os.path.exists(sys.argv[2]): return msg_file_not_found
         with open(sys.argv[2]) as file:
