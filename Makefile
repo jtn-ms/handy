@@ -279,7 +279,11 @@ publish:
 							  [ "$$cmd" != "bashrc" ] && \
 							  [ "$$cmd" != "version" ] && \
 							  [ "$$cmd" != "chkstdin" ] && \
-							  [ "$$cmd" != "chkbashrc" ]; then $$cmd|row 2|fromstr "Usage: "; fi; done
+							  [ "$$cmd" != "chkbashrc" ] && \
+							  [ "$$cmd" != "pubip" ] && \
+							  [ "$$cmd" != "prvip" ] && \
+							  [ "$$cmd" != "gps" ] && \
+							  [ "$$cmd" != "ipinfo" ]; then $$cmd|row 2|fromstr "Usage: "; fi; done
 	@rm -rf *.pyc
 
 # Manual Versioning Flag
