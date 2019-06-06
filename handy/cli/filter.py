@@ -51,7 +51,7 @@ def colex():
             frags = line.split()
             if len(frags) >= index: del frags[index-1]
             print("\t".join(frags))
-    else: 
+    else:
         if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
         with open(sys.argv[2]) as file:
             for line in file:

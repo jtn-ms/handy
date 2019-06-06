@@ -72,9 +72,14 @@ def totalines():
     print("lines: %d"%count)
 
 msg_help_linecount = "Written by junying, 2019-05-17 \
-                     \nUsage: linecount [filename]"
+                     \nUsage: linecount [filename] \
+                     \nUsage2: cat xxxx | linecount"
     
 def linecount():
-    if len(sys.argv) < 2: print(msg_help_linecount); return
+    if len(sys.argv) < 2 and sys.stdin.isatty(): print(msg_help_linecount); return
+    if len(sys.argv) < 2:
+        num = 0
+        for line in sys.stdin: num += 1
+        print(num);return
     if not os.path.exists(sys.argv[1]) or not os.path.isfile(sys.argv[1]): print(msg_file_not_found)
     print(filelines(sys.argv[1]))
