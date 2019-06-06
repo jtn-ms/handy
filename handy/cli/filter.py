@@ -34,7 +34,31 @@ def column():
 #         os.system(simplecmd); return
 #     if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
 #     os.system("cat {1} | {0}".format(simplecmd,sys.argv[2])) 
-                   
+
+msg_help_colex = "Written by junying, 2019-06-06 \
+                  \nUsage: colex [index] \
+                  \nUsage2: colex [index] [filename] \
+                  \nEx1: cat a.txt | colex [index] \
+                  \nEx2: colex 1 a.txt "
+
+def colex():
+    if len(sys.argv) < 2: print(msg_help_colex); return
+    if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
+    if len(sys.argv) == 2 and sys.stdin.isatty(): print(msg_help_colex);return
+    index = int(sys.argv[1])
+    if len(sys.argv) == 2:
+        for line in sys.stdin:
+            frags = line.split()
+            if len(frags) >= index: del frags[index-1]
+            print("\t".join(frags))
+    else: 
+        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
+        with open(sys.argv[2]) as file:
+            for line in file:
+                frags = line.split()
+                if len(frags) >= index: del frags[index-1]
+                print("\t".join(frags))
+   
 msg_help_row = "Written by junying, 2019-05-09 \
                \nUsage: row [index] \
                \nUsage2: row [index] [filename] \
@@ -76,6 +100,35 @@ def row():
 #     else:
 #         offset = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
 #         os.system('cat {1} | sed -n "{0}p"'.format(int(sys.argv[1])+offset,sys.argv[2]))
+
+msg_help_colex = "Written by junying, 2019-06-06 \
+                 \nUsage: rowex [index] \
+                 \nUsage2: rowex [index] [filename] \
+                 \nUsage3: rowex [index] [filename] [offset] \
+                 \nEx1: cat a.txt | rowex 1 \
+                 \nEx2: rowex 2 a.txt \
+                 \nEx3: rowex 3 a.txt 1"
+
+def rowex():
+    if len(sys.argv) < 2: print(msg_help_colex);return
+    if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
+    if len(sys.argv) == 2 and sys.stdin.isatty(): print(msg_help_colex);return
+    if len(sys.argv) == 2: 
+        for index,line in enumerate(sys.stdin):
+            if index+1 == int(sys.argv[1]): continue
+            print(line.strip('\n'));
+    elif len(sys.argv) == 3:
+        if not os.path.exists(sys.argv[2]): return msg_file_not_found
+        with open(sys.argv[2]) as file:
+            for index, line in enumerate(file):
+                if index+1 == int(sys.argv[1]): continue
+                print(line.strip('\n'));
+    else:
+        offset = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
+        with open(sys.argv[2]) as file:
+            for index, line in enumerate(file):
+                if index+1 == int(sys.argv[1])+offset: continue
+                print(line.strip('\n'));
 
 msg_help_findstr = "Written by junying, 2019-05-09 \
                    \nUsage: find [keystring] [path] \

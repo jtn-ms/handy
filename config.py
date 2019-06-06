@@ -28,7 +28,9 @@ entry_points = [
                 "decrypt = handy.cli.crypt:Decrypt",
                 # filter
                 "column = handy.cli.filter:column",
+                "colex = handy.cli.filter:colex",
                 "row = handy.cli.filter:row",
+                "rowex = handy.cli.filter:rowex",
                 "findstr = handy.cli.filter:findstr",
                 "extractstr = handy.cli.filter:extractstr",
                 "fromstr = handy.cli.filter:fromstr",
