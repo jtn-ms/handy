@@ -4,6 +4,8 @@ import os
 
 msg_help_timer = "Written by junying, 2019-06-05 \
                  \nUsage: timer \
+                 \nExample: timer -h\
+                 \nExample: timer make test\
                  \nExample: timer "
 def log(t):
     fullpath='/tmp/tictoc'
@@ -20,6 +22,12 @@ def log(t):
 def timer():
     import sys
     if any("-h" in argv for argv in sys.argv): return msg_help_timer
-    toc = int(time.time())
-    tic = log(toc)
+    if len(sys.argv) < 2: toc = int(time.time()); tic = log(toc); return humanize.naturaltime(toc-tic)
+    cmd = ''
+    for index,argv in enumerate(sys.argv): 
+        if index == 0: continue
+        cmd+="%s "%argv if '"' not in argv else '%s '%argv
+    tic = int(time.time())
+    os.system(cmd)
+    toc = int(time.time());log(toc)
     return humanize.naturaltime(toc-tic)
