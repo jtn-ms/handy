@@ -62,6 +62,8 @@ entry_points = [
                 "genpass = handy.cli.crypt:genpazz",
                 # utils
                 "timer = handy.cli.utils:timer",
+                #
+                "wifipass = handy.cli.hack:wifipass",
             ]
 
 commands = [cmd.strip().replace(" ",'').split('=')[0] for cmd in entry_points]
