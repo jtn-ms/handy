@@ -31,3 +31,10 @@ def timer():
     os.system(cmd)
     toc = int(time.time());log(toc)
     return humanize.naturaltime(toc-tic)
+
+# def sleepafter():
+#     pass
+
+# def langdetect():
+#     from langdetect import detect
+    
