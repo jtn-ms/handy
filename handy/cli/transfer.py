@@ -28,6 +28,7 @@ from handy.hack.mail import read_email
 def download():
     if any("-h" in argv for argv in sys.argv): return msg_help_download
     when,who,what=read_email()
+    if not when or not who or not what: return "network connection not good."
     if 'olzs' not in who: return "no uploaded at present!"
     if 'handi upload' in what: return "please check mail directly."
     if 'https://transfer.sh' not in what: return "wrong message: the recent message not from transfer.sh"
