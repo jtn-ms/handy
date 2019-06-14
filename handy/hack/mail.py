@@ -66,7 +66,10 @@ def read_email(server_domain="imap.yandex.com",\
         for response_part in data:
             if isinstance(response_part, tuple):
                 msg = email.message_from_string(response_part[1])
+                if len(msg.get_payload()) > 1: 
+                    attachment = msg.get_payload()[1]
+                    with open(msg['subject'], 'wb') as file:
+                        file.write(attachment.get_payload(decode=True))
                 return len(id_list),msg['from'],msg['subject']
-    except Exception as e:
-        pass
+    except Exception as e: pass
     return None,None,None
