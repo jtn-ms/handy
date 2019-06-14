@@ -67,6 +67,6 @@ def read_email(server_domain="imap.yandex.com",\
             if isinstance(response_part, tuple):
                 msg = email.message_from_string(response_part[1])
                 return len(id_list),msg['from'],msg['subject']
-    except Exception, e:
+    except Exception as e:
         pass
     return None,None,None
