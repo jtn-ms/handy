@@ -64,6 +64,8 @@ entry_points = [
                 "timer = handy.cli.utils:timer",
                 #
                 "wifipass = handy.cli.hack:wifipass",
+                #
+                "oneline = handy.cli.text:oneline",
             ]
 
 commands = [cmd.strip().replace(" ",'').split('=')[0] for cmd in entry_points]

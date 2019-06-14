@@ -83,3 +83,18 @@ def linecount():
         print(num);return
     if not os.path.exists(sys.argv[1]) or not os.path.isfile(sys.argv[1]): print(msg_file_not_found)
     print(filelines(sys.argv[1]))
+ 
+msg_help_oneline = "Written by junying, 2019-06-13 \
+                   \nUsage: oneline [filename] \
+                   \nUsage2: cat xxxx | oneline"
+                         
+def oneline():
+    if len(sys.argv) < 2 and sys.stdin.isatty(): print(msg_help_oneline); return
+    merged = ''
+    if len(sys.argv) < 2:
+        for line in sys.stdin: merged += line.strip('\n')
+    elif not os.path.exists(sys.argv[1]) or not os.path.isfile(sys.argv[1]): print(msg_file_not_found); return
+    else:
+        with open(sys.argv[1]) as file:
+            for line in file: merged += line.strip('\n')
+    print(merged);

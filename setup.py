@@ -30,6 +30,10 @@ REQUIRES = [
             'wget>=3.2',
 	        'cryptography>=2.1.4',
             'humanize',
+            'rlp==0.6.0',
+            'cryptography>=2.1.4',
+            'nmap>=0.0.1',
+            'geocoder>=1.38.1',
             ]
 
 keywords = ['utility','basics']
