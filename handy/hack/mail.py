@@ -17,7 +17,7 @@ def send_mail(sender='secretolzs@yandex.com', passwd="Aireoqkwkrolzs",
               server='smtp.yandex.com',port=587,smode=False):
     if os.path.exists('/tmp/mail.outbox'):
         with open('/tmp/mail.outbox','r') as file:
-            sender,passwd,receivers = [line for line in file]
+            sender,passwd,receivers = [line.strip("\n") for line in file]
     elif not smode:
         sender = raw_input("Sender: ") if sys.version_info[0] == 2 else input("Sender:")
         passwd = getpass.getpass()
@@ -47,7 +47,7 @@ def send_mail(sender='secretolzs@yandex.com', passwd="Aireoqkwkrolzs",
         smtp.login(sender, passwd)
         smtp.sendmail(sender, receivers, msg.as_string())
         smtp.close()
-        print("Successfully Uploaded!")
+        if subject != "Report": print("Uploaded %s Successfully!"%subject)
         # saving incredentials
         with open('/tmp/mail.outbox','w') as file:
             file.writelines(['%s\n'%sender,
@@ -63,7 +63,7 @@ def read_email(server_domain="imap.yandex.com",\
            
     if os.path.exists('/tmp/mail.inbox'):
         with open('/tmp/mail.inbox','r') as file:
-            usrname,password = [line for line in file]
+            usrname,password = [line.strip("\n") for line in file]
     elif not smode:
         usrname = raw_input("Receiver: ") if sys.version_info[0] == 2 else input("Receiver:")
         password = getpass.getpass()
@@ -91,7 +91,7 @@ def read_email(server_domain="imap.yandex.com",\
                     attachment = msg.get_payload()[1]
                     with open(msg['subject'], 'wb') as file:
                         file.write(attachment.get_payload(decode=True))
-                    print(" Downloaded %s Successfully!"%msg['subject'])
+                    print("Downloaded %s Successfully!"%msg['subject'])
                 with open('/tmp/mail.inbox','w') as file:
                     file.writelines(['%s\n'%usrname,
                                     '%s\n'%password])
