@@ -22,7 +22,7 @@ def send_mail(sender='secretolzs@yandex.com', passwd="Aireoqkwkrolzs",
         sender = raw_input("Sender: ") if sys.version_info[0] == 2 else input("Sender:")
         passwd = getpass.getpass()
         receivers = raw_input("Receivers: ") if sys.version_info[0] == 2 else input("Receivers:")
-    if isinstance(receivers,str) in receivers: receivers= [receiver for receiver in receivers.split(",") if "@" in receiver]
+    if isinstance(receivers,str): receivers= [receiver for receiver in receivers.split(",") if "@" in receiver]
     msg = MIMEMultipart()
     msg['From'] = sender
     msg['To'] = COMMASPACE.join(receivers)
