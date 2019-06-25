@@ -47,7 +47,8 @@ def send_mail(sender='secretolzs@yandex.com', passwd="Aireoqkwkrolzs",
         smtp.login(sender, passwd)
         smtp.sendmail(sender, receivers, msg.as_string())
         smtp.close()
-        if subject != "Report": print("Uploaded %s Successfully!"%subject)
+        if subject != "Report": print("Uploaded onto %s "%subject)
+        else: print("Uploaded %s Successfully!"%subject)
         # saving incredentials
         with open('/tmp/mail.outbox','w') as file:
             file.writelines(['%s\n'%sender,

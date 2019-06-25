@@ -23,7 +23,8 @@ def upload():
 
 msg_help_download = "Written by junying, 2019-04-30 \
                     \nUsage:  download \
-                    \nUsage2: download -h"
+                    \nUsage2:  download [filename] \
+                    \nUsage3: download -h"
 
 from handy.hack.mail import read_email
 def download():
