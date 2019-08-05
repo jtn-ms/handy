@@ -18,7 +18,7 @@ uninstall:
 	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
 	@rm -rf *.pyc
 # formal version setup
-install: github.release
+install: github.new.tag
 # test version setup
 setup: uninstall
 	#pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
@@ -128,7 +128,7 @@ endif
 version:
 	@git describe --tags `git rev-list --tags --max-count=1`
 
-github.release: github.upsrc
+github.new.tag: github.upsrc
 	@cur_tag=$$(git describe --tags `git rev-list --tags --max-count=1`);\
 	 echo current version: $$cur_tag;\
 	 read -p "type new version: " new_tag;\

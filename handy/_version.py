@@ -43,8 +43,8 @@ def get_config():
     cfg.VCS = "git"
     cfg.style = ""
     cfg.tag_prefix = ""
-    cfg.parentdir_prefix = "magic-wormhole"
-    cfg.versionfile_source = "src/wormhole/_version.py"
+    cfg.parentdir_prefix = "handy"
+    cfg.versionfile_source = "src/handy/_version.py"
     cfg.verbose = False
     return cfg
 
