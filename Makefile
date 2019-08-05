@@ -5,8 +5,7 @@ else
     CURRENT_OS := $(shell uname -s)
 endif
 
-all: update install
-
+all: upgrade install
 #########################
 # Installation
 #########################
@@ -17,8 +16,15 @@ uninstall:
 	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
 	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
 	@rm -rf *.pyc
+install:
+	@pip install -U handi
 # formal version setup
-install: github.new.tag pypi.upkg
+# Caution: DON'T MOVE A MUSCLE. 
+#		   Do not change a single code until installation is completed.
+# 		   Dirty tag is enabled once your code is a tiny different from a fresh tag content.
+#		   Avoid unnecessary wandering
+upgrade: github.new.tag pypi.upkg
+
 # test version setup
 setup: uninstall
 	#pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
@@ -71,9 +77,6 @@ endif
 pypi.register:
 	@python3 setup.py register
 
-# update
-update: github.upsrc pypi.upkg
-
 github.upsrc: clean
 ifeq ($(CURRENT_OS),Windows)
 	@git add .
@@ -87,8 +90,9 @@ else
 	git commit -m "$$comment";\
 	git push origin master
 endif
-	
+#########################
 # clean part
+#########################	
 clean: 
 ifeq ($(CURRENT_OS),Windows)
 	@del /q /s *.bak
@@ -129,7 +133,7 @@ version:
 	@git describe --tags `git rev-list --tags --max-count=1`
 
 github.new.tag: github.upsrc
-	@cur_tag=$$(git describe --tags `git rev-list --tags --max-count=1`);\
+	@cur_tag=$$(make -S version);\
 	 echo current version: $$cur_tag;\
 	 read -p "type new version: " new_tag;\
 	 git tag $$new_tag;\
@@ -302,7 +306,8 @@ manual.mode.off:
 ## upload Manual Version to pypi
 # config
 pypi: pypi.config.copy pypi.register pypi.upkg
-
+# test
+update: github.upsrc pypi.upkg
 #
 test:
 	pytest
