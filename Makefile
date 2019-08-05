@@ -7,28 +7,35 @@ endif
 
 all: update install
 
-# setup
-build: clean
-	pyinstaller --clean --distpath=dist handy.spec
-
-install:
-	pip install -U handi
-
+#########################
+# Installation
+#########################
+# remove all installed exection files
+# and print all
+uninstall:
+	@pip uninstall handi
+	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
+	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
+	@rm -rf *.pyc
+# formal version setup
+install: github.release 
+# test version setup
 setup: uninstall
 	#pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
 	python setup.py install
+# make binary
+build: clean
+	pyinstaller --clean --distpath=dist handy.spec
 
-test:
-	pytest
-
-pypi: copy register upkg
-
-github: login upsrc
-
+#########################
+# Configuration
+#########################
 # config
-config: login copy register
+config.all: github.login pypi.config.copy pypi.register
 
-login:
+github: github.login github.upsrc
+
+github.login:
 ifeq ($(CURRENT_OS),Windows)
 	@echo "type mail:"
 	@set /p mail=""
@@ -48,8 +55,7 @@ else
 	git remote set-url origin https://$$username:$$password@github.com/gustavkkk/handy.git	
 endif
 
-
-copy:
+pypi.config.copy:
 ifeq ($(CURRENT_OS),Windows)
 	@copy .pypirc %USERPROFILE%
 else
@@ -60,13 +66,13 @@ else
 	sed -i s/passphrase/$$password/g $(HOME)/.pypirc
 endif
 
-register:
+pypi.register:
 	@python3 setup.py register
 
 # update
-update: upsrc uppkg
+update: github.upsrc pypi.upkg
 
-upsrc: clean
+github.upsrc: clean
 ifeq ($(CURRENT_OS),Windows)
 	@git add .
 	@echo "type comment:"
@@ -79,9 +85,6 @@ else
 	git commit -m "$$comment";\
 	git push origin master
 endif
-
-upkg:
-	@python3 setup.py sdist upload
 	
 # clean part
 clean: 
@@ -123,15 +126,12 @@ endif
 version:
 	@git describe --tags `git rev-list --tags --max-count=1`
 
-release: upsrc
+github.release: github.upsrc
 	@cur_tag=$$(git describe --tags `git rev-list --tags --max-count=1`);\
 	 echo current version: $$cur_tag;\
 	 read -p "type new version: " new_tag;\
 	 git tag $$new_tag;\
 	 git push origin --tags
-
-pre:
-	@dpkg -P scala
 
 # problem: version 0.0.1
 #		   python module not installed	
@@ -142,6 +142,9 @@ pre:
 # 	@dpkg --force-overwrite -i deb_dist/python-handi_$$(version handy)-1_all.deb
 
 # install path: /usr/local/bin
+pre:
+	@dpkg -P scala
+
 deb-pre:
 	@apt-get install ruby ruby-dev rubygems build-essential
 	@gem install --no-ri --no-rdoc fpm
@@ -157,6 +160,7 @@ install-deb:
 
 # apt
 # http://www.linux-admins.net/2012/08/creating-apt-repository-with-reprepro.html
+# failed to upload to apt because apt doesn't support python
 genkey: apt-conf
 	@apt-get install gnupg dpkg-sig reprepro
 	@gpg --gen-key
@@ -247,13 +251,7 @@ apt-remove: delapt stop-apache2
 # 	@if [ "$$(findstr ${IPADDR} /etc/apt/sources.list)" == "" ]; then \
 # 	  echo "deb http://${IPADDR}/debs/ amd64/" >> /etc/apt/sources.list;fi
 
-# remove all installed exection files
-# and print all
-uninstall:
-	@pip uninstall handi
-	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
-	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
-	@rm -rf *.pyc
+
 
 # ppa part
 # https://askubuntu.com/questions/71510/how-do-i-create-a-ppa/493577#493577
@@ -262,7 +260,7 @@ uninstall:
 # https://help.launchpad.net/Packaging/PPA/Uploading
 # Note that Launchpad builds the packages onsite, and does not accept deb files. The correct command for creating the Debian package source is 'debuild -S'.
 # python not supported by debuild -S
-srcpkg: on
+srcpkg: manual.mode.on
 	@python setup.py sdist bdist_wheel
 
 ppa-ftp:
@@ -287,17 +285,27 @@ publish:
 	@rm -rf *.pyc
 
 # Manual Versioning Flag
-status:
-	@findstr use_manual_versioning setup.py 
-on:
+## Manual Versioning supports you to modify the version of the repository in manual
+## It doesn't follow the default dirty versioning.
+manual.mode.status:
+	@findstr use_manual_versioning setup.py|row 1
+## set TRUE
+manual.mode.on:
 	@replconfval setup.py use_manual_versioning False True
 	@replconfval versioneer.py use_manual_versioning False True
-
-off:
+## set False
+manual.mode.off:
 	@replconfval setup.py use_manual_versioning True False
 	@replconfval versioneer.py use_manual_versioning True False
+## upload Manual Version to pypi
+# config
+pypi: pypi.config.copy pypi.register pypi.upkg
+pypi.upkg:
+	@python3 setup.py sdist upload
 
-again: uninstall setup
+#
+test:
+	pytest
 
 .PHONY: build install clear \
 		upapt \
