@@ -24,7 +24,6 @@ All you have to do is to just call the corresponding function. It will save your
 ### COMMAND-LINE-TOOLS
       $ delkey [key] [inpath] [outpath]
       $ rmempty [inpath] [outpath]
-      $ rmempty [inpath] [outpath]
       $ chkey [keyname] [inpath]
       $ findkey [keyname] [inpath]
       $ repl [fromstr] [tostr] [path1] [path2] ...
@@ -44,7 +43,7 @@ All you have to do is to just call the corresponding function. It will save your
       $ upperstr [string]                     
       $ lowerstr [string]                     
       $ linecount [filename]
-      $ replacekey [keystring] [filepath] [quotechar] [replacestring/replacefile]                     
+      $ replconfkey [keystring] [filepath] [quotechar] [replacestring/replacefile]                     
       $ replconfval [filepath] [keystring]  [findstr] [replacestr] [seperator]                         
       $ concatstr [juncword] [filepath]
 
