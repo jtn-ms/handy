@@ -18,7 +18,7 @@ uninstall:
 	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
 	@rm -rf *.pyc
 # formal version setup
-install: github.new.tag
+install: github.new.tag pypi.upkg
 # test version setup
 setup: uninstall
 	#pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
