@@ -20,4 +20,3 @@ def save(dict_,filename,ensure_ascii = False):
         #string = json.dumps(dict_,ensure_ascii=ensure_ascii, sort_keys=True, indent=4)#.replace(",", ",\n")
         string = json.dumps(dict_, sort_keys=True, indent=4)#.replace(",", ",\n")
         file.write(string)
-    
