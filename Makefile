@@ -18,7 +18,7 @@ uninstall:
 	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
 	@rm -rf *.pyc
 # formal version setup
-install: github.release 
+install: github.release
 # test version setup
 setup: uninstall
 	#pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
@@ -27,6 +27,8 @@ setup: uninstall
 build: clean
 	pyinstaller --clean --distpath=dist handy.spec
 
+pypi.upkg:
+	@python3 setup.py sdist upload
 #########################
 # Configuration
 #########################
@@ -300,8 +302,6 @@ manual.mode.off:
 ## upload Manual Version to pypi
 # config
 pypi: pypi.config.copy pypi.register pypi.upkg
-pypi.upkg:
-	@python3 setup.py sdist upload
 
 #
 test:
