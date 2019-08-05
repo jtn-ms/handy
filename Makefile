@@ -14,7 +14,7 @@ build: clean
 install:
 	pip install -U handi
 
-setup:
+setup: uninstall
 	#pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
 	python setup.py install
 

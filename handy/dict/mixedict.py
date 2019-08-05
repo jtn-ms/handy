@@ -25,6 +25,14 @@ def findkey(mixed,field):
             for v in findkey(item,field): values.append(v)
     return values
 
+def replkey(mixed,key,value):
+    if isinstance(mixed,dict):
+        for key_, value_ in mixed.items():
+            if key_ == key: mixed[key]=value
+            if isinstance(value_, dict) or isinstance(value_, list): replkey(value_,key,value)
+    elif isinstance(mixed, list) and all(isinstance(item,dict) for item in mixed):
+        for item in mixed: replkey(item,key,value)
+            
 def rmempty(mixed):
     if isinstance(mixed,dict):
         for key, value in mixed.items():

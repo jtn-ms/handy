@@ -50,8 +50,17 @@ All you have to do is to just call the corresponding function. It will save your
 ### ACKNOWLEDGEMENT
 
    Thanks to Ofek Lev for his [hatch](https://github.com/ofek/hatch).
-  
-### TIP: TO CREATE A REPO USING HATCH & HANDY
+
+## INSTRUCTIONS
+#### ADD a New COMMAND
+      1. add function to handy/cli/xxx.py
+      2. add call to config.py
+      3. make setup
+#### DIRTY TEST
+      $ make setup
+#### FORMAL SETUP
+      $ 
+#### CREATE A REPO USING HATCH & HANDY
 
       If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
       
