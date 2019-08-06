@@ -70,7 +70,7 @@ def rmEmpty():
 
 msg_help_replkey = "Written by junying, 2019-08-05 \
                    \nComment: replace the value of a specific key from A to B.\
-                   \nUsage: replkey [key] [value] [inpath]"
+                   \nUsage: replkey [key] [value] [inpath] [outpath/symbol]"
                  
 def replKey():
     if len(sys.argv) < 4: print(msg_help_replkey); return
@@ -79,6 +79,7 @@ def replKey():
         if not answer or any(symbol in answer[0] for symbol in yes_symbols): outpath=sys.argv[3]
         elif any(symbol in answer[0] for symbol in no_symbols): return
         else: outpath = answer
+    elif len(sys.argv[4]) == 1: answer=sys.argv[4];outpath=sys.argv[3]
     else: outpath = sys.argv[4]
     # load
     try: indata = load(sys.argv[3])
@@ -87,5 +88,5 @@ def replKey():
     # process
     replkey(indata,sys.argv[1],sys.argv[2])
     # save
-    if any(symbol in answer[0] for symbol in print_symbols): print(indata); return
+    if answer and any(symbol in answer[0] for symbol in print_symbols): print(indata); return
     else: save(indata,outpath)
