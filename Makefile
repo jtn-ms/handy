@@ -16,7 +16,8 @@ uninstall:
 	@cmds=$$(python -c "from config import commands; print(' '.join(commands))");\
 	 for cmd in $$cmds; do rm -f $$(which $$cmd); done
 	@rm -rf *.pyc
-install:
+	
+install: uninstall
 	@pip install -U handi
 # formal version setup
 # Caution: DON'T MOVE A MUSCLE. 
