@@ -68,6 +68,24 @@ def rmEmpty():
     # save
     save(indata,outpath)
 
+msg_help_rmempty = "Written by junying, 2019-04-29 \
+                   \nComment: beautify a json file human-readable.\
+                   \nUsage: beautifyjson [inpath] [outpath]"
+def beautify():
+    if len(sys.argv) < 2: print(msg_help_rmempty); return
+    elif len(sys.argv) == 2:
+        answer = raw_input(msg_no_output) if sys.version_info[0] == 2 else input(msg_no_output)
+        if not answer or any(symbol in answer[0] for symbol in yes_symbols): outpath=sys.argv[1]
+        elif any(symbol in answer[0] for symbol in no_symbols): return
+        else: outpath = answer
+    else: outpath = sys.argv[2]
+    # load
+    try: indata = load(sys.argv[1])
+    except: return "No JSON object could be decoded"
+    if not indata: print(msg_file_not_found); return
+    # save
+    save(indata,outpath)    
+
 msg_help_replkey = "Written by junying, 2019-08-05 \
                    \nComment: replace the value of a specific key from A to B.\
                    \nUsage: replkey [key] [value] [inpath] [outpath/symbol]"
