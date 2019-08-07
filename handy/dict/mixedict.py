@@ -32,7 +32,15 @@ def replkey(mixed,key,value):
             if isinstance(value_, dict) or isinstance(value_, list): replkey(value_,key,value)
     elif isinstance(mixed, list) and all(isinstance(item,dict) for item in mixed):
         for item in mixed: replkey(item,key,value)
-            
+
+def replvalue(mixed,key,srcvalue,destvalue):
+    if isinstance(mixed,dict):
+        for key_, value_ in mixed.items():
+            if key_ == key and mixed[key]==srcvalue: mixed[key]=destvalue
+            if isinstance(value_, dict) or isinstance(value_, list): replvalue(value_,key,srcvalue,destvalue)
+    elif isinstance(mixed, list) and all(isinstance(item,dict) for item in mixed):
+        for item in mixed: replvalue(item,key,srcvalue,destvalue)
+                   
 def rmempty(mixed):
     if isinstance(mixed,dict):
         for key, value in mixed.items():

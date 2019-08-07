@@ -1,7 +1,7 @@
 import sys
 
 from handy.jzon.handler import load,save
-from handy.dict.mixedict import delkey, findkey, isin, rmempty, replkey
+from handy.dict.mixedict import delkey, findkey, isin, rmempty, replkey, replvalue
 from ._constants import msg_file_not_found
 
 msg_help_chkey = "Written by junying, 2019-04-29 \
@@ -87,7 +87,7 @@ def beautify():
     save(indata,outpath)    
 
 msg_help_replkey = "Written by junying, 2019-08-05 \
-                   \nComment: replace the value of a specific key from A to B.\
+                   \nComment: set the value of a specific key as A.\
                    \nUsage: replkey [key] [value] [inpath] [outpath/symbol]"
                  
 def replKey():
@@ -105,6 +105,29 @@ def replKey():
     if not indata: print(msg_file_not_found); return
     # process
     replkey(indata,sys.argv[1],sys.argv[2])
+    # save
+    if answer and any(symbol in answer[0] for symbol in print_symbols): print(indata); return
+    else: save(indata,outpath)
+    
+msg_help_replvalue = "Written by junying, 2019-08-05 \
+                    \nComment: replace the value of a specific key from A to B.\
+                    \nUsage: replvalue [key] [value(src)] [value(dest)] [inpath] [outpath/symbol]"
+                 
+def replValue():
+    if len(sys.argv) < 5: print(msg_help_replvalue); return
+    elif len(sys.argv) == 5:
+        answer = raw_input(msg_no_output) if sys.version_info[0] == 2 else input(msg_no_output)
+        if not answer or any(symbol in answer[0] for symbol in yes_symbols): outpath=sys.argv[4]
+        elif any(symbol in answer[0] for symbol in no_symbols): return
+        else: outpath = answer
+    elif len(sys.argv[5]) == 1: answer=sys.argv[5];outpath=sys.argv[4]
+    else: outpath = sys.argv[5]
+    # load
+    try: indata = load(sys.argv[4])
+    except: return "No JSON object could be decoded"
+    if not indata: print(msg_file_not_found); return
+    # process
+    replvalue(indata,sys.argv[1],sys.argv[2],sys.argv[3])
     # save
     if answer and any(symbol in answer[0] for symbol in print_symbols): print(indata); return
     else: save(indata,outpath)

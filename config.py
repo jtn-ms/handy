@@ -7,6 +7,7 @@ entry_points = [
                 "chkey = handy.cli.json:chKey",
                 "findkey = handy.cli.json:findKey",
                 "replkey = handy.cli.json:replKey",
+                "replvalue = handy.cli.json:replValue",
                 "repl = handy.cli.text:replace",
                 "deline = handy.cli.text:deline",
                 # git control
