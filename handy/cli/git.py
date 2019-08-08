@@ -8,7 +8,7 @@ msg_not_found = "git repo not found"
 
 cmd_add = "git add ."
 cmd_comment = 'git commit -m "%s"'
-cmd_push = "git push origin master"
+cmd_push = "git push origin $(git rev-parse --abbrev-ref HEAD)"
 
 def commit():
     if len(sys.argv) > 1: print(msg_help); return
