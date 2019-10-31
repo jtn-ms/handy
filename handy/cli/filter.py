@@ -273,12 +273,12 @@ def rmlnno():
     counts = int(sys.argv[1])
     if len(sys.argv) == 2:
         for line in sys.stdin:
-            result = "" if len(line) <= counts else line[counts:]
+            result = "" if len(line) <= counts else line[counts:].strip('\n')
             print(result)
     else: 
         if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
         with open(sys.argv[2]) as file:
             for line in file:
-                result = "" if len(line) <= counts else line[counts:]
+                result = "" if len(line) <= counts else line[counts:].strip('\n')
                 print(result)
     return
