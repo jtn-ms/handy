@@ -258,3 +258,27 @@ def chkstdin():
     if len(sys.argv) >= 2 or sys.stdin.isatty(): print(msg_help_chkstdin); return
     for line in sys.stdin:
         print(line.strip('\n'))
+        
+msg_help_rmlnno = "Written by junying, 2019-10-31 \
+                  \nDescription: Remove the first letters of a specified number from every line. \
+                  \nUsage: rmlnno [counts] \
+                  \nUsage2: rmlnno [counts] [filename] \
+                  \nEx1: cat a.txt | rmlnno [counts] \
+                  \nEx2: rmlnno 1 a.txt "
+
+def rmlnno():
+    if len(sys.argv) < 2: print(msg_help_rmlnno); return
+    if any(char not in string.digits for char in sys.argv[1]): return "counts must be digits"
+    if len(sys.argv) == 2 and sys.stdin.isatty(): print(msg_help_rmlnno);return
+    counts = int(sys.argv[1])
+    if len(sys.argv) == 2:
+        for line in sys.stdin:
+            result = "" if len(line) <= counts else line[counts:]
+            print(result)
+    else: 
+        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
+        with open(sys.argv[2]) as file:
+            for line in file:
+                result = "" if len(line) <= counts else line[counts:]
+                print(result)
+    return

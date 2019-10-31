@@ -42,6 +42,7 @@ entry_points = [
                 "upperstr = handy.cli.filter:upperstr",
                 "lowerstr = handy.cli.filter:lowerstr",
                 "chkstdin = handy.cli.filter:chkstdin",
+                "rmlnno = handy.cli.filter:rmlnno",
                 # chkinfo
                 "dirsize = handy.cli.chkinfo:dirsize",
                 "linecount = handy.cli.text:linecount",
