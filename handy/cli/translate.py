@@ -16,7 +16,8 @@ def zh2ko():
         for line in sys.stdin:
             handler.translate(line.strip('\n'))
     else: 
-        if not os.path.exists(sys.argv[1]) or not os.path.isfile(sys.argv[1]): handler.translate(sys.argv[1].strip('\n')) 
+        if not os.path.exists(sys.argv[1]) or not os.path.isfile(sys.argv[1]):
+            handler.translate(sys.argv[1].strip('\n')); return
         with open(sys.argv[1]) as file:
             for line in file:
                 handler.translate(line.strip('\n'))
