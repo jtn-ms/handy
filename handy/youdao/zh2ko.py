@@ -41,7 +41,7 @@ def connect(text,src='zh-CHS',dst='ko'):
     curtime = str(int(time.time()))
     data['curtime'] = curtime
     salt = str(uuid.uuid1())
-    signStr = APP_KEY + truncate(q) + salt + curtime + APP_SECRET
+    signStr = APP_KEY + truncate(text) + salt + curtime + APP_SECRET
     sign = encrypt(signStr)
     data['appKey'] = APP_KEY
     data['q'] = text
