@@ -24,7 +24,7 @@ install: uninstall
 #		   Do not change a single code until installation is completed.
 # 		   Dirty tag is enabled once your code is a tiny different from a fresh tag content.
 #		   Avoid unnecessary wandering
-upgrade: github.new.tag pypi.upkg
+upgrade: github.new.tag pypi.upkg clean
 
 # test version setup
 setup: uninstall
