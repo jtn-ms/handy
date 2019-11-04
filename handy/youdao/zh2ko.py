@@ -6,12 +6,13 @@ import requests
 import hashlib
 import time
 
-if sys.version_info[0] == 2:
-    sys.setdefaultencoding('utf-8')
-else:
+if sys.version_info[0] == 3:
     from imp import reload
 
 reload(sys)
+
+if sys.version_info[0] == 2:
+    sys.setdefaultencoding('utf-8')
 
 YOUDAO_URL = 'https://openapi.youdao.com/api'
 APP_KEY = '1f17d393214b29f2'
