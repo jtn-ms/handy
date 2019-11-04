@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
 from sys import platform
 import os,sys
+if sys.version_info[0] == 2:
+    sys.setdefaultencoding('utf-8')
+else:
+    from imp import reload
+
+reload(sys)
 
 msg_help_zh2ko = "Written by junying, 2019-10-31 \
                 \nDescription: translate from chinese to korean. \
