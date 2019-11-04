@@ -10,7 +10,7 @@ msg_help_zh2ko = "Written by junying, 2019-10-31 \
                 
 from handy.youdao.zh2ko import YouDaoTranslate
 def zh2ko():
-    if len(sys.argv) == 1 and sys.stdin.isatty(): print(zh2ko);return
+    if len(sys.argv) == 1 and sys.stdin.isatty(): print(msg_help_zh2ko);return
     handler = YouDaoTranslate()
     if len(sys.argv) == 1:
         for line in sys.stdin:
