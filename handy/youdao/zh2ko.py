@@ -5,10 +5,13 @@ import uuid
 import requests
 import hashlib
 import time
-import time
+
+if sys.version_info[0] == 2:
+    sys.setdefaultencoding('utf-8')
+else:
+    from imp import reload
 
 reload(sys)
-sys.setdefaultencoding('utf-8')
 
 YOUDAO_URL = 'https://openapi.youdao.com/api'
 APP_KEY = '1f17d393214b29f2'
@@ -24,7 +27,7 @@ def encrypt(signStr):
 def truncate(q):
     if q is None:
         return None
-    q_utf8 = q.decode("utf-8")
+    q_utf8 = q.decode("utf-8") if sys.version_info[0] == 2 else q
     size = len(q_utf8)
     return q_utf8 if size <= 20 else q_utf8[0:10] + str(size) + q_utf8[size - 10:size]
 
@@ -68,7 +71,6 @@ class YouDaoTranslate():
         if "translation" in jsonstr.keys(): print(jsonstr["translation"][0])
         else: print("Not Found!")
 
-import sys
 if __name__ == '__main__':
     while True:
         content =  raw_input('请输入翻译内容：') if sys.version_info[0] == 2 else input('请输入翻译内容：')
