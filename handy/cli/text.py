@@ -45,7 +45,7 @@ from ._file import findall
 # python version of shell command replace
 def replace():
     if len(sys.argv) <= 3: print(msg_help_replace); return
-    paths = [sys.argv[index] for index in range(3,len(sys.argv)) if os.path.exists(sys.argv[index]) and os.path.isfile(sys.argv[index])]
+    paths = [sys.argv[index] for index in range(3,len(sys.argv)) if os.path.exists(sys.argv[index])]
     for path in paths:
         if not os.path.exists(path): continue
         if os.path.isfile(path): replacefile(sys.argv[1],sys.argv[2],path)
