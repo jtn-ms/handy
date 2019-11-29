@@ -19,7 +19,7 @@ msg_help_delkey = "Written by junying, 2019-04-29 \
                   \nComment: to delete a specific key in a json file.\
                   \nUsage: delkey [key] [inpath] [outpath]"
 
-from ._constants import msg_no_output, yes_symbols, no_symbols,print_symbols
+from ._constants import msg_no_output, yes_symbols, no_symbols,print_symbols,int_symbols
 
 def delKey():
     if len(sys.argv) < 3: print(msg_help_delkey); return
@@ -88,7 +88,8 @@ def beautify():
 
 msg_help_replkey = "Written by junying, 2019-08-05 \
                    \nComment: set the value of a specific key as A.\
-                   \nUsage: replkey [key] [value] [inpath] [outpath/symbol]"
+                   \nUsage: replkey [key] [value] [inpath] [outpath/symbol]\
+                   \nSymbols: Yes[y,Y], No[n,N], Print[p,P], Int[i,I]"
                  
 def replKey():
     if len(sys.argv) < 4: print(msg_help_replkey); return
@@ -104,7 +105,9 @@ def replKey():
     except: return "No JSON object could be decoded"
     if not indata: print(msg_file_not_found); return
     # process
-    replkey(indata,sys.argv[1],sys.argv[2])
+    if answer and any(symbol in answer[0] for symbol in int_symbols):
+        replkey(indata,sys.argv[1],int(sys.argv[2]))
+    else: replkey(indata,sys.argv[1],sys.argv[2])
     # save
     if answer and any(symbol in answer[0] for symbol in print_symbols): print(indata); return
     else: save(indata,outpath)

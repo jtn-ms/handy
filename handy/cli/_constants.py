@@ -9,3 +9,4 @@ msg_file_not_found = "file doesn't exist."
 yes_symbols = ['y','Y']
 no_symbols = ['n','N']
 print_symbols = ['p','P']
+int_symbols = ['i','I']
