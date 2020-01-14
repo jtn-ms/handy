@@ -17,7 +17,7 @@ def column():
             frags = line.split()
             if len(frags) >= index: print(frags[index-1])
     else: 
-        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
+        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
         with open(sys.argv[2]) as file:
             for line in file:
                 frags = line.split()
@@ -52,7 +52,7 @@ def colex():
             if len(frags) >= index: del frags[index-1]
             print("\t".join(frags))
     else:
-        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
+        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
         with open(sys.argv[2]) as file:
             for line in file:
                 frags = line.split()
@@ -79,7 +79,7 @@ def row():
         for index,line in enumerate(sys.stdin):
             if index+1 == int(sys.argv[1]): print(line.strip('\n'));return
     elif len(sys.argv) == 3:
-        if not os.path.exists(sys.argv[2]): return msg_file_not_found
+        if not os.path.exists(sys.argv[2]): print(msg_file_not_found); return
         with open(sys.argv[2]) as file:
             for index, line in enumerate(file):
                 if index+1 == int(sys.argv[1]): print(line.strip('\n'));return
@@ -101,7 +101,7 @@ def row():
 #         offset = int(sys.argv[3]) if all(char in string.digits for char in sys.argv[3]) else 0
 #         os.system('cat {1} | sed -n "{0}p"'.format(int(sys.argv[1])+offset,sys.argv[2]))
 
-msg_help_colex = "Written by junying, 2019-06-06 \
+msg_help_rowex = "Written by junying, 2019-06-06 \
                  \nUsage: rowex [index] \
                  \nUsage2: rowex [index] [filename] \
                  \nUsage3: rowex [index] [filename] [offset] \
@@ -110,15 +110,15 @@ msg_help_colex = "Written by junying, 2019-06-06 \
                  \nEx3: rowex 3 a.txt 1"
 
 def rowex():
-    if len(sys.argv) < 2: print(msg_help_colex);return
+    if len(sys.argv) < 2: print(msg_help_rowex);return
     if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
-    if len(sys.argv) == 2 and sys.stdin.isatty(): print(msg_help_colex);return
+    if len(sys.argv) == 2 and sys.stdin.isatty(): print(msg_help_rowex);return
     if len(sys.argv) == 2: 
         for index,line in enumerate(sys.stdin):
             if index+1 == int(sys.argv[1]): continue
             print(line.strip('\n'));
     elif len(sys.argv) == 3:
-        if not os.path.exists(sys.argv[2]): return msg_file_not_found
+        if not os.path.exists(sys.argv[2]): print(msg_file_not_found); return
         with open(sys.argv[2]) as file:
             for index, line in enumerate(file):
                 if index+1 == int(sys.argv[1]): continue
@@ -130,6 +130,27 @@ def rowex():
                 if index+1 == int(sys.argv[1])+offset: continue
                 print(line.strip('\n'));
 
+msg_help_rowcnt = "Written by junying, 2020-01-14 \
+                 \nUsage: rowcnt [index] \
+                 \nUsage2: rowcnt [index] [filename] \
+                 \nEx1: cat a.txt | rowcnt 2 \
+                 \nEx2: rowcnt 2 a.txt"
+
+def rowcnt():
+    if len(sys.argv) < 2: print(msg_help_rowcnt);return
+    if any(char not in string.digits for char in sys.argv[1]): return "index must be digits"
+    if len(sys.argv) == 2 and sys.stdin.isatty(): print(msg_help_rowcnt);return
+    if len(sys.argv) == 2: 
+        for line in sys.stdin:
+            if len(line.split()) < int(sys.argv[1]): continue
+            print(line.strip('\n'));
+    elif len(sys.argv) == 3:
+        if not os.path.exists(sys.argv[2]): print(msg_file_not_found); return
+        with open(sys.argv[2]) as file:
+            for index, line in enumerate(file):
+                if len(line.split()) < int(sys.argv[1]): continue
+                print(line.strip('\n'));
+                
 msg_help_findstr = "Written by junying, 2019-05-09 \
                    \nUsage: find [keystring] [path] \
                    \nDefault: find [keystring] ."
@@ -276,7 +297,7 @@ def rmlnno():
             result = "" if len(line) <= counts else line[counts:].strip('\n')
             print(result)
     else: 
-        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): return msg_file_not_found
+        if not os.path.exists(sys.argv[2]) or not os.path.isfile(sys.argv[2]): print(msg_file_not_found); return
         with open(sys.argv[2]) as file:
             for line in file:
                 result = "" if len(line) <= counts else line[counts:].strip('\n')

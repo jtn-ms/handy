@@ -33,6 +33,7 @@ entry_points = [
                 "column = handy.cli.filter:column",
                 "colex = handy.cli.filter:colex",
                 "row = handy.cli.filter:row",
+                "rowcnt = handy.cli.filter:rowcnt",
                 "rowex = handy.cli.filter:rowex",
                 "findstr = handy.cli.filter:findstr",
                 "extractstr = handy.cli.filter:extractstr",
