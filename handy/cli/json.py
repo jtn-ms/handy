@@ -45,7 +45,33 @@ def findKey():
     if not isin(indata,sys.argv[1]): print("no found!")
     else:
         for value in findkey(indata,sys.argv[1]): print(value)
-    
+
+msg_help_printkey = "Written by junying, 2019-05-09 \
+                   \nComment: print content of list with a specific key as requested values.\
+                   \nUsage: printkey [keyname] [inpath] [subkey1] [subkey2] "
+# This function is developed for htdf production export purpose.
+def printKey():
+    if len(sys.argv) < 4: print(msg_help_printkey); return
+    try: indata = load(sys.argv[2])
+    except: return "No JSON object could be decoded"
+    if not indata: print(msg_file_not_found); return
+    if not isin(indata,sys.argv[1]): print("no found!")
+    else:
+        for value in findkey(indata,sys.argv[1]):
+            if not isinstance(value,list): print("the corresponding value is not list!");break
+            for item in value:
+                if not isinstance(item,dict): continue
+                output=""
+                for index in range(3,len(sys.argv)):
+                    subkey = sys.argv[index]
+                    if not isin(item,subkey): continue
+                    subvalue=findkey(item,subkey)
+                    try:
+                        output+=str(subvalue)
+                    except:
+                        continue
+                print(output)
+                
 msg_help_rmempty = "Written by junying, 2019-04-29 \
                    \nComment: remove keys with the empty values. \
                               and to humanize it.\

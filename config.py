@@ -6,6 +6,7 @@ entry_points = [
                 "beautifyjson = handy.cli.json:beautify",
                 "chkey = handy.cli.json:chKey",
                 "findkey = handy.cli.json:findKey",
+                "printkey = handy.cli.json:printKey",
                 "replkey = handy.cli.json:replKey",
                 "replvalue = handy.cli.json:replValue",
                 "repl = handy.cli.text:replace",
