@@ -44,7 +44,10 @@ def replacefile(srcstring,deststring,filename):
 from ._file import findall
 # python version of shell command replace
 def replace():
-    if len(sys.argv) <= 3: print(msg_help_replace); return
+    if len(sys.argv) < 3: print(msg_help_replace); return
+    if len(sys.argv) == 3:
+        for line in sys.stdin:
+            print(line.replace(sys.argv[1],sys.argv[2]).strip('\n'))
     paths = [sys.argv[index] for index in range(3,len(sys.argv)) if os.path.exists(sys.argv[index])]
     for path in paths:
         if not os.path.exists(path): continue
