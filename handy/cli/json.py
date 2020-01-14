@@ -67,7 +67,7 @@ def printKey():
                     if not isin(item,subkey): continue
                     subvalue=findkey(item,subkey)
                     try:
-                        output+=str(subvalue)
+                        output+=" %s"%str(subvalue)
                     except:
                         continue
                 print(output)
