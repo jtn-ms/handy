@@ -73,6 +73,8 @@ entry_points = [
                 "oneline = handy.cli.text:oneline",
                 # translate
                 "zh2ko = handy.cli.translate:zh2ko",
+                # math
+                "sumup = handy.cli.math:sum",
             ]
 
 commands = [cmd.strip().replace(" ",'').split('=')[0] for cmd in entry_points]
