@@ -1,8 +1,8 @@
 import os,sys
 
 msg_help_sum = "Written by junying, 2020-01-15 \
-                \nUsage: sum [filename] \
-                \nUsage2: cat xxxx|column 1|sum"
+                \nUsage: sumup [filename] \
+                \nUsage2: cat xxxx|column 1|sumup"
     
 def sum():
     if len(sys.argv) < 2 and sys.stdin.isatty(): print(msg_help_sum); return
