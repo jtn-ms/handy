@@ -12,8 +12,7 @@ $ pip install -U handi
 
 Utilities
 
-### COMMAND-LINE-TOOLS
-#### 1. Basic Utility
+1. Basic Utility
 ```
 [public ip]
 $ pubip
@@ -91,7 +90,7 @@ $ hash
    3    /bin/ls
    1    /usr/local/bin/gps
 ```
-#### 2. Code Management
+2. Code Management
 ```
 [totalines]
 $ totalines [ext1] [ext2] ...
@@ -101,7 +100,7 @@ $ 124535
 [git commit]
 $ commit
 ```
-#### 3. Text Handling
+3. Text Handling
 ```
 [findstr] 
 $ findstr [keystring] [path]
@@ -164,7 +163,7 @@ $ deline [keystring] [filename]
 $ deline junying accounts.txt
 ```
 
-#### JSON Handling
+4. JSON Handling
 ```
 $ chkey [keyname] [inpath]
 $ delkey [key] [inpath] [outpath]
