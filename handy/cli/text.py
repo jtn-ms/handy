@@ -18,10 +18,18 @@ def deleteLine(keystring,filename):
     f.close()
 
 msg_help_deline = "Written by junying, 2019-04-29 \
-                   \nUsage: deline [keystring] [filename]"
+                   \nUsage: deline [keystring] [filename]\
+                   \nUsage: deline [keystring]\
+                   \nEx: deline stake accounts.list\
+                   \nEx2: cat accounts.list|deline stake "
 
 def deline():
-    if len(sys.argv) < 3: print(msg_help_deline); return
+    if len(sys.argv) < 2: print(msg_help_deline); return
+    if len(sys.argv) == 2:
+        if sys.stdin.isatty(): print(msg_help_deline); return
+        for line in sys.stdin:
+            if not sys.argv[1] in line: print(line.strip("\n"))
+        return
     deleteLine(sys.argv[1],sys.argv[2])
     
 msg_help_replace = "Written by junying, 2019-04-29 \
