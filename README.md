@@ -195,7 +195,8 @@ $ rmempty [inpath] [outpath]
 #### DIRTY TEST
       $ make setup
 #### FORMAL SETUP
-      $ 
+      $ make install
+### [RST EDIT](http://rst.ninjs.org/#)
 #### CREATE A REPO USING HATCH & HANDY
 
       If you want to use this repo as a guide for packaging your source to pypi, you can follow the below steps.
