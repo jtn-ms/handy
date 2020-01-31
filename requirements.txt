@@ -22,3 +22,4 @@ comtypes>=1.1.7
 # scapy==2.2.0.dev0
 geocoder>=1.38.1
 nmap>=0.0.1
+humanize>=0.5.1
