@@ -24,3 +24,27 @@ def wifipass():
         if platform():
             os.system('grep psk= /etc/NetworkManager/system-connections/*')
             break
+
+from handy.hack.img2txt import paint
+
+msg_help_img2txt = "Written by junying, 2020-02-14 \
+                   \nUsage: img2txt [url] [size]"
+
+from ._constants import msg_file_not_found
+
+def img2txt():
+    if len(sys.argv) < 2: print(msg_help_img2txt); return
+    try:
+        uri = sys.argv[1]
+        assert type(uri) == str
+    except:
+        uri = 'https://www.v2ex.com/static/img/v2ex@2x.png'
+    try:
+        weight = int(sys.argv[2])
+        assert type(weight) == int
+    except:
+        weight = 80
+    s = paint(uri, weight=weight)
+    if not s:
+        return
+    print(s)

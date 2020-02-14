@@ -69,6 +69,7 @@ entry_points = [
                 "timer = handy.cli.utils:timer",
                 #
                 "wifipass = handy.cli.hack:wifipass",
+                "img2txt = handy.cli.hack:img2txt",
                 #
                 "oneline = handy.cli.text:oneline",
                 # translate
