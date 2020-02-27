@@ -30,6 +30,7 @@ upgrade: github.new.tag pypi.upkg clean
 setup: uninstall
 	#pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
 	python setup.py install
+	make -sC . clean
 # make binary
 build: clean
 	pyinstaller --clean --distpath=dist handy.spec

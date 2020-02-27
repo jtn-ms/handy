@@ -24,3 +24,4 @@ comtypes>=1.1.7
 geocoder>=1.38.1
 nmap>=0.0.1
 humanize>=0.5.1
+mechanize>=0.4.5

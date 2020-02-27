@@ -70,6 +70,7 @@ entry_points = [
                 #
                 "wifipass = handy.cli.hack:wifipass",
                 "img2txt = handy.cli.hack:img2txt",
+                "crawlp = handy.cli.hack:crawlp",
                 #
                 "oneline = handy.cli.text:oneline",
                 # translate

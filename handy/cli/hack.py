@@ -48,3 +48,16 @@ def img2txt():
     if not s:
         return
     print(s)
+
+from handy.hack.crawl import downloadURL
+
+msg_help_crawl = "Written by junying, 2020-02-27 \
+                   \nUsage: crawlp [url] [outpath]"
+
+from ._constants import msg_file_not_found
+
+def crawlp():
+    if len(sys.argv) < 2: print(msg_help_crawl); return
+    url = sys.argv[1]
+    outpath = sys.argv[2] if len(sys.argv) > 2 else None
+    downloadURL(url,outpath)
