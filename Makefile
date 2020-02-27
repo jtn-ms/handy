@@ -57,11 +57,11 @@ ifeq ($(CURRENT_OS),Windows)
 	@git config --global user.name "%username%"
 	@git remote set-url origin https://%username%:%GITHUB_PASSWORD%@github.com/gustavkkk/handy.git
 else
-	@read -p "type mail:" mail;\
-	read -p "type username:" username;\
-	read -p "type password: " password;\
-	git config --global user.email "$$mail"\
-	git config --global user.name "$$password"\
+	@read -p "type mail(github):" mail;\
+	read -p "type username(github):" username;\
+	read -p "type password(github): " password;\
+	git config --global user.email "$$mail";\
+	git config --global user.name "$$username";\
 	git remote set-url origin https://$$username:$$password@github.com/gustavkkk/handy.git	
 endif
 
@@ -70,8 +70,8 @@ ifeq ($(CURRENT_OS),Windows)
 	@copy .pypirc %USERPROFILE%
 else
 	@cp .pypirc $(HOME)
-	@read -p "type username:" username;\
-	read -p "type password: " password;\
+	@read -p "type username(pypi.org):" username;\
+	read -p "type password(pypi.org): " password;\
 	sed -i s/usrname/$$username/g $(HOME)/.pypirc;\
 	sed -i s/passphrase/$$password/g $(HOME)/.pypirc
 endif
