@@ -1,21 +1,12 @@
 # Handi(a.k.a Handy)
 
-This repository is created and maintained according to 'one-click' idea of the author. It contains some frequently-used functions.
-All you have to do is to just call the corresponding function. It will save your time and your energy for minor jobs.
+Legacy Commands & Utilities
 
 [![PyPI Version](https://img.shields.io/pypi/v/handi.svg)](https://pypi.python.org/pypi/handi)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/handi.svg)](https://pypi.python.org/pypi/handi)
 [![Travis Build Status](https://img.shields.io/travis/gustavkkk/handy.svg)](https://travis-ci.org/gustavkkk/handy)
 [![license](https://img.shields.io/github/license/gaojunying/license.svg)](https://github.com/gaojunying/license/blob/master/LICENSE)
 [![LoC](https://tokei.rs/b1/github/gustavkkk/handy)](https://github.com/gustavkkk/handy)
-
-### What is One-Click?
-
-* "One-Click" means to do anything by just a single click.
-* "One-Click" stands for simple and fast.
-* "One-Click" helps you save time on daily and repetitive jobs as much as possible
-, and focus on more important things.
-* "One-Click" is inspired by python's simpleness and is to accelerate the speed.
 
 ### INSTALLATION
 ```
