@@ -25,12 +25,12 @@ install: uninstall
 # 		   Dirty tag is enabled once your code is a tiny different from a fresh tag content.
 #		   Avoid unnecessary wandering
 upgrade: github.new.tag pypi.upkg clean
-
+	@make -sC . clean
 # test version setup
 setup: uninstall
 	#pip install -e git+http://github.com/gustavkkk/handy.git#egg=handy
-	python setup.py install
-	make -sC . clean
+	@python setup.py install
+	@make -sC . clean
 # make binary
 build: clean
 	pyinstaller --clean --distpath=dist handy.spec
