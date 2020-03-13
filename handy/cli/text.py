@@ -2,36 +2,62 @@ import sys
 import os
 
 from ._constants import msg_file_not_found
-
-def deleteLine(keystring,filename):
+from ..misc import switch
+def deleteLine(keystring,filename,option='-a'):
     fullpath = os.path.realpath(filename)
     if not os.path.exists(fullpath): print(msg_file_not_found); return
     if not os.path.isfile(fullpath): print("directory not accepted."); return
     f = open(fullpath)
     output = []
     for line in f:
-        if not line.startswith(keystring):
-            output.append(line)
+        for case in switch(sys.argv[2]):
+            if case("-e"):
+                if not line.endswith(keystring):  output.append(line); break
+            if case("-s"):
+                if not line.startswith(keystring):  output.append(line); break
+            if case():
+                if not keystring in line:  output.append(line); break
     f.close()
     f = open(fullpath, 'w')
     f.writelines(output)
     f.close()
 
-msg_help_deline = "Written by junying, 2019-04-29 \
-                   \nUsage: deline [keystring] [filename]\
-                   \nUsage: deline [keystring]\
-                   \nEx: deline stake accounts.list\
-                   \nEx2: cat accounts.list|deline stake "
+msg_help_deline = "NAME \
+                   \n    deline deletes lines in file or stdin \
+                   \nUSAGE \
+                   \n    deline [keystring] [filename] [options]\
+                   \nOPTION \
+                   \n   -a(default)  anywhere in line\
+                   \n   -e           ends with \
+                   \n   -s           starts with \
+                   \nEXAMPLE \
+                   \n    deline stake accounts.lst\
+                   \n          remove all lines which start with 'stake' in accounts.lst \
+                   \n    cat accounts.lst|deline stake \
+                   \n          print lines which start with 'stake'"
 
 def deline():
     if len(sys.argv) < 2: print(msg_help_deline); return
-    if len(sys.argv) == 2:
+    elif len(sys.argv) == 2:
         if sys.stdin.isatty(): print(msg_help_deline); return
         for line in sys.stdin:
-            if not sys.argv[1] in line: print(line.strip("\n"))
+            if line.startswith(sys.argv[1]): print(line.strip("\n"))
         return
-    deleteLine(sys.argv[1],sys.argv[2])
-    
+    elif len(sys.argv) == 3:
+        if os.path.exists(sys.argv[2]): deleteLine(sys.argv[1],sys.argv[2]); return
+        elif sys.stdin.isatty(): print(msg_help_deline); return
+        from handy.misc import switch
+        for line in sys.stdin:
+            for case in switch(sys.argv[2]):
+                if case("-e"):
+                    if not line.endswith(sys.argv[1]): print(line.strip("\n")); break
+                if case("-s"):
+                    if not line.startswith(sys.argv[1]): print(line.strip("\n")); break
+                if case():
+                    if not sys.argv[1] in line: print(line.strip("\n")); break
+    else:
+        deleteLine(sys.argv[1],sys.argv[2],sys.argv[3])
+
 msg_help_replace = "Written by junying, 2019-04-29 \
                     \nUsage: repl [fromstr] [tostr] [path1] [path2] ..."
                     
@@ -90,7 +116,7 @@ def linecount():
     if len(sys.argv) < 2 and sys.stdin.isatty(): print(msg_help_linecount); return
     if len(sys.argv) < 2:
         num = 0
-        for line in sys.stdin: num += 1
+        for _ in sys.stdin: num += 1
         print(num);return
     if not os.path.exists(sys.argv[1]) or not os.path.isfile(sys.argv[1]): print(msg_file_not_found)
     print(filelines(sys.argv[1]))
