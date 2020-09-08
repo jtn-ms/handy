@@ -158,6 +158,8 @@ $ 14273
 $ concatstr [juncword] [filepath]
 $ concatstr , 1 2 3 4 5
 $ 1,2,3,4,5
+$ python -c "print sum([`concatstr , 1300 1300  1303 1151 1185 1132 1210 1283 1287 1283`])"
+$ 12434
 
 [delete specific lines in file]
 $ deline [keystring] [filename]
